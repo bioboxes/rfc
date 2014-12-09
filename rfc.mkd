@@ -29,7 +29,7 @@ Applications of this standardisation are:
     containers. These containers are evaluated using assembly performance
     metrics. The standardised interface allows all containers to be benchmarked
     in the same way.
-  * A large sequencing centres invests time to develop an improved genome
+  * A large sequencing centre invests time to develop an improved genome
     assembly pipeline for single cell data. The pipeline is packaged inside a
     Linux container and shared with the bioinformatics community. Other
     sequencing centres are able to immediately compare this new pipeline with
@@ -53,8 +53,8 @@ bioinformatics software, independent of the application type.
 
 #### Inputs
 
-* **Proc**: The argument given to start a container MUST be a single string not
-  containing on the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
+* **Proc**: The argument given to start a container MUST be a single string
+  containing only the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
   used to differentiate different combination of settings the containerised
   software can be run as. Every bioinformatics container SHOULD support a
   'default' proc. This runs the container in a mode that is applicable for the
