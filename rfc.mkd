@@ -1,0 +1,118 @@
+# Introduction
+
+## Purpose
+
+The purpose of this document is provide a detailed specification for developers
+to write standardised bioinformatics containers. The audience of this document
+are bioinformaticians and developers writing bioinformatics software be shared
+interchangeably using Linux containers. This document will describe the
+interfaces that a should be provided to a running container and that a
+developer should write their software against.
+
+## Scope of Project
+
+The scope of this document is bioinformatics software packaged using Linux
+containers. Bioinformatics software in a Linux container can be shared and
+provided to third parties as software dependencies are included within the
+container. Examples of bioinformatics software are genome assemblers, read
+binners and read aligners. Examples of container software are Docker, Rocket
+and LXC/LXD. Standardising bioinformatics software in containers allows
+interchange use between different research groups and institutions.
+
+Applications of this standardisation are:
+
+  * A developer uploads his short read aligner as a container to an online
+    repository for others to use. A biologists downloads this aligner and is
+    able to use it immediately as it follows a standardised interface that the
+    biologist is already familiar with.
+  * A genome assembly benchmarking service downloads many genome assembler
+    containers. These containers are evaluated using assembly performance
+    metrics. The standardised interface allows all containers to be benchmarked
+    in the same way.
+  * A large sequencing centres invests time to develop an improved genome
+    assembly pipeline for single cell data. The pipeline is packaged inside a
+    Linux container and shared with the bioinformatics community. Other
+    sequencing centres are able to immediately compare this new pipeline with
+    their in-house workflow using the same container interface.
+
+## References
+
+IEEE. IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements
+Specifications. IEEE Computer Society, 1998.
+
+# Specific Requirements
+
+## Functional Requirements
+
+### Generic bioinformatics container
+
+#### Introduction
+
+This specification describes the required inputs for all containerised
+bioinformatics software, independent of the application type.
+
+#### Inputs
+
+**Proc**: The argument given to start a container MUST be a single string not
+containing on the characters A-Z, a-z, 0-9, '_' and '-'. This argument is used
+to differentiate different combination of settings the containerised software
+can be run as. Every bioinformatics container SHOULD support a 'default' proc.
+This runs the container in a mode that is applicable for the most common
+situation in which the software is used.
+
+**INPUT_DIR**: The variable **INPUT_DIR** MUST be present inside the container
+environment. This is the absolute path to a read-only directory containing any
+input files provided by the user.
+
+**OUTPUT_DIR**: The variable **OUTPUT_DIR** MUST be present inside the
+container environment. This is the absolute path to a writable directory. This
+location should be used to write the completed files to.
+
+**LOG_FILE**: The variable **LOG_FILE** MUST be present in the container
+environment. This is a path relative to **OUTPUT_DIR**. This location should be
+used by the software to write any information about the process that may be
+useful for information or debugging.
+
+**AVAIL_CPUS**: The variable **AVAIL_CPUS** MUST be present in the container
+environment. This describes the number of CPUs that have been provided to the
+container.
+
+#### Outputs
+
+The **OUTPUT_DIR** MUST be a container mounted volume so that created files are
+available on the host file system after the container exits. The containerised
+software should return a zero exit code when completing successfully, and
+return a non-zero exit code when an error occurs.
+
+### Short-read genome assembler container
+
+#### Introduction
+
+This specification describes the interface for containerised short-read genome
+assemblers. A genome assembler converts a FASTQ file of DNA short reads into
+larger contiguous ('contigs') regions of DNA. In addition to the specifications
+described below, this container MUST implement all specifications defined in
+'Generic bioinformatics container'.
+
+#### Inputs
+
+**FASTQ_FILE**: This variable MUST be present in the container environment. This
+variable specifies the location, relative to **INPUT_DIR**, of a gzipped FASTQ
+file. This file contains the FASTQ reads for assembly into contigs.
+
+**PAIRED_READS**: This variable MUST be present in the container environment.
+This variable MUST have the value 'true' to specify the **FASTQ_FILE** contains
+interleaved short reads. Interleaved is defined as the N and N+1 FASTQ entries
+originating from opposite ends of the same DNA fragment. The value 'false' MUST
+be specified when the short-reads are unpaired. All other values for this
+variable are not allowed.
+
+**CONTIGS_FILE**: This variable MUST be present in the container environment.
+This specifies the location, relative to the **OUTPUT_DIR**, of where the file
+containing the generated contig sequences should be created. The created
+contigs file MUST be in FASTA format.
+
+#### Outputs
+
+The container MUST generate a FASTA file of contigs in the location
+**OUTPUT_DIR**/**CONTIGS_FILE**.
