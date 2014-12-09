@@ -79,10 +79,10 @@ bioinformatics software, independent of the application type.
 
 #### Outputs
 
-The **OUTPUT_DIR** MUST be a container mounted volume so that created files are
-available on the host file system after the container exits. The containerised
-software should return a zero exit code when completing successfully, and
-return a non-zero exit code when an error occurs.
+The directory **$OUTPUT_DIR** MUST be a container mounted volume so that
+created files are available on the host file system after the container exits.
+The containerised software should return a zero exit code when completing
+successfully, and return a non-zero exit code when an error occurs.
 
 ### Short-read genome assembler container
 
@@ -115,4 +115,4 @@ described below, this container MUST implement all specifications defined in
 #### Outputs
 
 The container MUST generate a FASTA file of contigs in the location
-**OUTPUT_DIR**/**CONTIGS_FILE**.
+**$OUTPUT_DIR**/**$CONTIGS_FILE**.
