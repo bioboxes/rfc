@@ -70,16 +70,25 @@ successfully, and return a non-zero exit code when an error occurs.
 #### Introduction
 
 This specification describes the interface for containerised short-read genome
-assemblers. A genome assembler converts a FASTQ file of DNA short reads into
-larger contiguous ('contigs') regions of DNA. In addition to the specifications
-described below, this container MUST implement all specifications defined in
-'Generic bioinformatics container'.
+assemblers. A genome assembler converts one or more FASTQ files of DNA short
+reads into larger contiguous ('contigs') regions of DNA. In addition to the
+specifications described below, this container MUST implement the
+specifications defined in 'Generic bioinformatics container'.
 
 #### Inputs
 
-* **FASTQ_FILE**: This variable MUST be present in the container environment.
-  This variable specifies the location, relative to **INPUT_DIR**, of a gzipped
-  FASTQ file. This file contains the FASTQ reads for assembly into contigs.
+* **FASTQ_FILE**: This variable MAY be present in the container environment. If
+  used this variable MUST specify the absolute path, inside the container, of a
+  gzipped FASTQ file. This file contains the FASTQ reads for assembly into
+  contigs. This variable and the **FASTQ_FILE_LISTING** variable MUST NOT both
+  be present in the environment.
+
+* **FASTQ_FILE_LISTING**: This variable MAY be present in the container
+  environment. If used this variable MUST specifies the absolute path, inside
+  the container, of a file containing the absolute paths of gzipped FASTQ
+  files. One FASTQ file absolute path appears per line. These files contain the
+  FASTQ reads for assembly into contigs. This variable and the **FASTQ_FILE**
+  variable MUST NOT both be present in the environment.
 
 * **PAIRED_READS**: This variable MUST be present in the container environment.
   This variable MUST have the value 'true' to specify the **FASTQ_FILE**
