@@ -1,15 +1,11 @@
 # Introduction
 
-## Purpose
-
 The purpose of this document is provide a detailed specification for developers
 to write standardised bioinformatics containers. The audience of this document
 are bioinformaticians and developers writing bioinformatics software be shared
 interchangeably using Linux containers. This document will describe the
 interfaces that MUST be provided to a running container and that a developer
 may write their software against.
-
-## Scope of Project
 
 The scope of this document is bioinformatics software packaged using Linux
 containers. Bioinformatics software in a Linux container can be shared and
@@ -35,29 +31,22 @@ Applications of this standardisation are:
     sequencing centres are able to immediately compare this new pipeline with
     their in-house workflow using the same container interface.
 
-## Definitions
+## Notational Conventions
 
-* PAIRED: Paired reads are defined as the Nth and Nth+1 reads in a FASTQ file
-  originating from opposite ends of the same DNA fragment, where N % 2 == 0
-  using 0-based indexing.
+* The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”,
+  “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be
+  interpreted as described in [RFC2119].
 
-## References
+* PAIRED: Paired reads are defined as the organisation of a FASTQ file where
+  the Nth and Nth+1 reads originate from opposite ends of the same DNA
+  fragment, where N % 2 == 0 using 0-based indexing.
 
-IEEE. IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements
-Specifications. IEEE Computer Society, 1998.
-
-# Specific Requirements
-
-## Functional Requirements
-
-### Generic bioinformatics container
-
-#### Introduction
+# Generic bioinformatics container
 
 This specification describes the required inputs for all containerised
 bioinformatics software, independent of the application type.
 
-#### Inputs
+## Inputs
 
 * **TASK**: The argument given to start a container MUST be a single string
   containing only the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
@@ -66,14 +55,12 @@ bioinformatics software, independent of the application type.
   runs the container in a mode that is applicable to the most common situation
   in which the software is used.
 
-#### Outputs
+## Outputs
 
 The containerised software MUST return a zero exit code when completing
 successfully, and return a non-zero exit code when an error occurs.
 
-### Short-read genome assembler container
-
-#### Introduction
+# Short-read genome assembler container
 
 This specification describes the interface for containerised short-read genome
 assemblers. A genome assembler converts one or more FASTQ files of DNA short
@@ -81,7 +68,7 @@ reads into larger contiguous ('contigs') regions of DNA. In addition to the
 specifications described below, this container MUST implement the
 specifications defined in 'Generic bioinformatics container'.
 
-#### Inputs
+## Inputs
 
 * **CONT_FASTQ_FILE**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
@@ -115,14 +102,12 @@ specifications defined in 'Generic bioinformatics container'.
   the generated contig sequences MUST be created. The created contigs file MUST
   be in FASTA format.
 
-#### Outputs
+## Outputs
 
 The container MUST generate a FASTA file of contigs in the location
 **$CONT_CONTIGS_FILE**.
 
-### Reference-based genome assembly benchmarking container
-
-#### Introduction
+# Reference-based genome assembly benchmarking container
 
 This specification describes the interface for containerised software to
 evaluate a genome assembly in FASTQ format using a reference genome sequence in
@@ -131,7 +116,7 @@ may be evaluated by comparing it to a higher quality reference of the same
 genome. In addition to the specifications described below, this container MUST
 implement all specifications defined in 'Generic bioinformatics container'.
 
-#### Inputs
+## Inputs
 
 * **CONT_CONTIGS_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
@@ -147,8 +132,13 @@ implement all specifications defined in 'Generic bioinformatics container'.
   environment. This variable specifies the absolute path of where the file MUST
   be created containing the metrics describing the reference genome assembly.
 
-#### Outputs
+## Outputs
 
 The container MUST generate a file of metrics in the file **$CONT_OUTPUT_FILE**
 from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
 using the reference sequence in the file **$CONT_REFERENCE_FILE**.
+
+# Normative References
+
+* [RFC2119]	Bradner, S., “Key words for use in RFCs to Indicate Requirement
+  Levels”, BCP 14, RFC 2119, March 1997.
