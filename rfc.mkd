@@ -1,4 +1,18 @@
-# Introduction
+## Standards for Bioinformatics Containers
+
+## Status of this Memo
+
+This document specifies an Internet standards track protocol for the Internet
+community, and requests discussion and suggestions for improvements. Please
+refer to the current edition of the "Internet Official Protocol Standards" (STD
+1) for the standardization state and status of this protocol. Distribution of
+this memo is unlimited.
+
+## Copyright Notice
+
+Copyright (C) The Internet Society (2015).  All Rights Reserved.
+
+## Introduction
 
 The purpose of this document is provide a detailed specification for developers
 to write standardised bioinformatics containers. The audience of this document
@@ -31,7 +45,7 @@ Applications of this standardisation are:
     sequencing centres are able to immediately compare this new pipeline with
     their in-house workflow using the same container interface.
 
-## Notational Conventions
+### Notational Conventions
 
 * The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”,
   “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be
@@ -41,12 +55,12 @@ Applications of this standardisation are:
   the Nth and Nth+1 reads originate from opposite ends of the same DNA
   fragment, where N % 2 == 0 using 0-based indexing.
 
-# Generic bioinformatics container
+## Generic bioinformatics container
 
 This specification describes the required inputs for all containerised
 bioinformatics software, independent of the application type.
 
-## Inputs
+### Inputs
 
 * **TASK**: The argument given to start a container MUST be a single string
   containing only the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
@@ -55,12 +69,12 @@ bioinformatics software, independent of the application type.
   runs the container in a mode that is applicable to the most common situation
   in which the software is used.
 
-## Outputs
+### Outputs
 
 The containerised software MUST return a zero exit code when completing
 successfully, and return a non-zero exit code when an error occurs.
 
-# Short-read genome assembler container
+## Short-read genome assembler container
 
 This specification describes the interface for containerised short-read genome
 assemblers. A genome assembler converts one or more FASTQ files of DNA short
@@ -68,7 +82,7 @@ reads into larger contiguous ('contigs') regions of DNA. In addition to the
 specifications described below, this container MUST implement the
 specifications defined in 'Generic bioinformatics container'.
 
-## Inputs
+### Inputs
 
 * **CONT_FASTQ_FILE**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
@@ -102,12 +116,12 @@ specifications defined in 'Generic bioinformatics container'.
   the generated contig sequences MUST be created. The created contigs file MUST
   be in FASTA format.
 
-## Outputs
+### Outputs
 
 The container MUST generate a FASTA file of contigs in the location
 **$CONT_CONTIGS_FILE**.
 
-# Reference-based genome assembly benchmarking container
+## Reference-based genome assembly benchmarking container
 
 This specification describes the interface for containerised software to
 evaluate a genome assembly in FASTQ format using a reference genome sequence in
@@ -116,7 +130,7 @@ may be evaluated by comparing it to a higher quality reference of the same
 genome. In addition to the specifications described below, this container MUST
 implement all specifications defined in 'Generic bioinformatics container'.
 
-## Inputs
+### Inputs
 
 * **CONT_CONTIGS_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
@@ -132,13 +146,45 @@ implement all specifications defined in 'Generic bioinformatics container'.
   environment. This variable specifies the absolute path of where the file MUST
   be created containing the metrics describing the reference genome assembly.
 
-## Outputs
+### Outputs
 
 The container MUST generate a file of metrics in the file **$CONT_OUTPUT_FILE**
 from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
 using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 
-# Normative References
+## Normative References
 
 * [RFC2119]	Bradner, S., “Key words for use in RFCs to Indicate Requirement
   Levels”, BCP 14, RFC 2119, March 1997.
+
+Authors's Addresses
+
+* Michael Barton <mail@michaelbarton.me.uk>
+* Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+* Alexander Sczyrba <pbelmann@cebitec.uni-bielefeld.de>
+* Johannes Droege <johannes.droege@uni-duesseldorf.de>
+
+## Copyright
+
+Copyright (C) The Internet Society (2015).  All Rights Reserved.
+
+This document and translations of it may be copied and furnished to others, and
+derivative works that comment on or otherwise explain it or assist in its
+implementation may be prepared, copied, published and distributed, in whole or
+in part, without restriction of any kind, provided that the above copyright
+notice and this paragraph are included on all such copies and derivative works.
+However, this document itself may not be modified in any way, such as by
+removing the copyright notice or references to the Internet Society or other
+Internet organizations, except as needed for the purpose of developing Internet
+standards in which case the procedures for copyrights defined in the Internet
+Standards process must be followed, or as required to translate it into
+languages other than English.
+
+The limited permissions granted above are perpetual and will not be revoked by
+the Internet Society or its successors or assigns.
+
+This document and the information contained herein is provided on an "AS IS"
+basis and THE INTERNET SOCIETY AND THE INTERNET ENGINEERING TASK FORCE
+DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO ANY
+WARRANTY THAT THE USE OF THE INFORMATION HEREIN WILL NOT INFRINGE ANY RIGHTS OR
+ANY IMPLIED WARRANTIES OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE.
