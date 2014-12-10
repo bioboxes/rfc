@@ -53,17 +53,12 @@ bioinformatics software, independent of the application type.
 
 #### Inputs
 
-* **Proc**: The argument given to start a container MUST be a single string
+* **TASK**: The argument given to start a container MUST be a single string
   containing only the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
   used to differentiate different combination of settings the containerised
-  software can be run as. Every bioinformatics container SHOULD support a
-  'default' proc. This runs the container in a mode that is applicable for the
-  most common situation in which the software is used.
-
-* **LOG_FILE**: The variable **LOG_FILE** MUST be present in the container
-  environment. This is a path relative to **OUTPUT_DIR**. This location MUST be
-  used by the software to write any information about the process that may be
-  useful for information or debugging.
+  software can be run as. Every container SHOULD support a 'default' task. This
+  runs the container in a mode that is applicable to the most common situation
+  in which the software is used.
 
 #### Outputs
 
