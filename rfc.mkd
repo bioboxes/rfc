@@ -133,22 +133,20 @@ implement all specifications defined in 'Generic bioinformatics container'.
 #### Inputs
 
 * **CONTIGS_FILE**: This variable MUST be present in the container environment.
-  This specifies the location, relative to the **INPUT_DIR**, of where the file
-  containing the genome assembly contigs can be found. The contigs file MUST be
-  in FASTA format.
+  This specifies the absolute path of where the file containing the genome
+  assembly contigs can be found. The contigs file MUST be in FASTA format.
 
 * **REFERENCE_FILE**: This variable MUST be present in the container
-  environment. This variable MUST specify the location, relative to
-  **INPUT_DIR**, of the file containing a FASTA formatted reference sequence
-  from the same origin as the **CONTIGS_FILE** contigs.
+  environment. This variable MUST specify the absolute path of the file
+  containing a FASTA formatted reference sequence from the same origin as the
+  **CONTIGS_FILE** contigs.
 
 * **OUTPUT_FILE**: This variable MUST be present in the container environment.
-  This variable specifies the location, relative to **OUTPUT_DIR**, of where
-  the file MUST be created containing the metrics describing the reference
-  genome assembly.
+  This variable specifies the absolute path of where the file MUST be created
+  containing the metrics describing the reference genome assembly.
 
 #### Outputs
 
-The container MUST generate a file of metrics from evaluating the quality of
-the assembly in the file **$INPUT_DIR**/**$CONTIGS_FILE** using the reference
-sequence in the file **$INPUT_DIR**/**$REFERENCE_FILE**.
+The container MUST generate a file of metrics in the file **$OUTPUT_FILE** from
+evaluating the quality of the assembly in the file **$CONTIGS_FILE** using the
+reference sequence in the file **$REFERENCE_FILE**.
