@@ -60,22 +60,10 @@ bioinformatics software, independent of the application type.
   'default' proc. This runs the container in a mode that is applicable for the
   most common situation in which the software is used.
 
-* **INPUT_DIR**: The variable **INPUT_DIR** MUST be present inside the
-  container environment. This is the absolute path to a read-only directory
-  containing any input files provided by the user.
-
-* **OUTPUT_DIR**: The variable **OUTPUT_DIR** MUST be present inside the
-  container environment. This is the absolute path to a writable directory.
-  This location MUST be used to write final ouput files.
-
 * **LOG_FILE**: The variable **LOG_FILE** MUST be present in the container
   environment. This is a path relative to **OUTPUT_DIR**. This location MUST be
   used by the software to write any information about the process that may be
   useful for information or debugging.
-
-* **AVAIL_CPUS**: The variable **AVAIL_CPUS** MUST be present in the container
-  environment. This describes the number of CPUs that have been provided to the
-  container.
 
 #### Outputs
 
