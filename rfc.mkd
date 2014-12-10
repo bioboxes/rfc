@@ -35,6 +35,12 @@ Applications of this standardisation are:
     sequencing centres are able to immediately compare this new pipeline with
     their in-house workflow using the same container interface.
 
+## Definitions
+
+* PAIRED: Paired reads are defined as the Nth and Nth+1 reads in a FASTQ file
+  originating from opposite ends of the same DNA fragment, where N % 2 == 0
+  using 0-based indexing.
+
 ## References
 
 IEEE. IEEE Std 830-1998 IEEE Recommended Practice for Software Requirements
@@ -84,18 +90,24 @@ specifications defined in 'Generic bioinformatics container'.
   be present in the environment.
 
 * **FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specifies the absolute path, inside
-  the container, of a file containing the absolute paths of gzipped FASTQ
-  files. One FASTQ file absolute path appears per line. These files contain the
-  FASTQ reads for assembly into contigs. This variable and the **FASTQ_FILE**
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a file containing the absolute paths of gzipped FASTQ files.
+  One FASTQ file absolute path appears per line. These files contain the FASTQ
+  reads for assembly into contigs. This variable and the **FASTQ_FILE**
   variable MUST NOT both be present in the environment.
 
-* **PAIRED_READS**: This variable MUST be present in the container environment.
-  This variable MUST have the value 'true' to specify the **FASTQ_FILE**
-  contains interleaved short reads. Interleaved is defined as the N and N+1
-  FASTQ entries originating from opposite ends of the same DNA fragment. The
-  value 'false' MUST be specified when the short-reads are unpaired. All other
-  values for this variable are not allowed.
+* **PAIRED_FASTQ_FILE**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a gzipped FASTQ file. This file contains PAIRED FASTQ reads for
+  assembly into contigs. This variable and the **FASTQ_FILE_LISTING** variable
+  MUST NOT both be present in the environment.
+
+* **PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a file containing the absolute paths of gzipped FASTQ files.
+  One FASTQ file absolute path appears per line. These files contain the PAIRED
+  FASTQ reads for assembly into contigs. This variable and the
+  **PAIRED_FASTQ_FILE** variable MUST NOT both be present in the environment.
 
 * **CONTIGS_FILE**: This variable MUST be present in the container environment.
   This specifies the location, relative to the **OUTPUT_DIR**, of where the
