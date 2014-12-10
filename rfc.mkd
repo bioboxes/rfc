@@ -62,8 +62,6 @@ bioinformatics software, independent of the application type.
 
 #### Outputs
 
-The directory **$OUTPUT_DIR** MUST be a container mounted volume so that
-created files are available on the host file system after the container exits.
 The containerised software MUST return a zero exit code when completing
 successfully, and return a non-zero exit code when an error occurs.
 
