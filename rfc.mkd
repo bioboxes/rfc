@@ -1,11 +1,11 @@
-## Standards for Bioinformatics Containers
+## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
 
 ## Status of this Memo
 
 This document specifies an Internet standards track protocol for the Internet
 community, and requests discussion and suggestions for improvements. Please
 refer to the current edition of the "Internet Official Protocol Standards" (STD
-1) for the standardization state and status of this protocol. Distribution of
+1) for the standardisation state and status of this protocol. Distribution of
 this memo is unlimited.
 
 ## Copyright Notice
@@ -15,19 +15,21 @@ Copyright (C) The Internet Society (2015).  All Rights Reserved.
 ## Introduction
 
 The purpose of this document is provide a detailed specification for developers
-to write standardised bioinformatics containers. The audience of this document
-are bioinformaticians and developers writing bioinformatics software be shared
-interchangeably using Linux containers. This document will describe the
-interfaces that MUST be provided to a running container and that a developer
-may write their software against.
+to write standardised bioinformatics containers. The goal of this document is
+to define a standard whereby bioinformatics software containers of the same
+type are interoperable and therefore can used interchangeably. The audience of
+this document are bioinformaticians and developers writing bioinformatics
+software shared using Linux containers. This document will describe the
+interface that MUST be provided to a running container and that a developer of
+the bioinformatics container MUST write their software against.
 
 The scope of this document is bioinformatics software packaged using Linux
 containers. Bioinformatics software in a Linux container can be shared and
-provided to third parties as software dependencies are included within the
+provided to third parties because software dependencies are included within the
 container. Examples of bioinformatics software are genome assemblers, read
 binners and read aligners. Examples of container software are Docker, Rocket
 and LXC/LXD. Standardising bioinformatics software in containers allows
-interchange use between different research groups and institutions.
+interchangeable use between different research groups and institutions.
 
 Applications of this standardisation are:
 
@@ -38,12 +40,12 @@ Applications of this standardisation are:
   * A genome assembly benchmarking service downloads many genome assembler
     containers. These containers are evaluated using assembly performance
     metrics. The standardised interface allows all containers to be benchmarked
-    in the same way.
+    the same way.
   * A large sequencing centre invests time to develop an improved genome
     assembly pipeline for single cell data. The pipeline is packaged inside a
-    Linux container and shared with the bioinformatics community. Other
-    sequencing centres are able to immediately compare this new pipeline with
-    their in-house workflow using the same container interface.
+    Linux container and shared with the bioinformatics community. Another large
+    sequencing centre is able to immediately compare this new pipeline with
+    their in-house pipeline using the same container interface.
 
 ### Notational Conventions
 
@@ -51,8 +53,8 @@ Applications of this standardisation are:
   “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be
   interpreted as described in [RFC2119].
 
-* PAIRED: Paired reads are defined as the organisation of a FASTQ file where
-  the Nth and Nth+1 reads originate from opposite ends of the same DNA
+* PAIRED: Paired reads are defined as the organisation of a FASTA or FASTQ file
+  where the Nth and Nth+1 reads originate from opposite ends of the same DNA
   fragment, where N % 2 == 0 using 0-based indexing.
 
 ## Generic bioinformatics container
@@ -157,12 +159,12 @@ using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 * [RFC2119]	Bradner, S., “Key words for use in RFCs to Indicate Requirement
   Levels”, BCP 14, RFC 2119, March 1997.
 
-Authors's Addresses
+# Authors's Addresses
 
-* Michael Barton <mail@michaelbarton.me.uk>
-* Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 * Alexander Sczyrba <pbelmann@cebitec.uni-bielefeld.de>
 * Johannes Droege <johannes.droege@uni-duesseldorf.de>
+* Michael Barton <mail@michaelbarton.me.uk>
+* Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ## Copyright
 
@@ -175,7 +177,7 @@ in part, without restriction of any kind, provided that the above copyright
 notice and this paragraph are included on all such copies and derivative works.
 However, this document itself may not be modified in any way, such as by
 removing the copyright notice or references to the Internet Society or other
-Internet organizations, except as needed for the purpose of developing Internet
+Internet organisations, except as needed for the purpose of developing Internet
 standards in which case the procedures for copyrights defined in the Internet
 Standards process must be followed, or as required to translate it into
 languages other than English.
