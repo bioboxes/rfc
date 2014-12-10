@@ -110,17 +110,16 @@ specifications defined in 'Generic bioinformatics container'.
   **PAIRED_FASTQ_FILE** variable MUST NOT both be present in the environment.
 
 * **CONTIGS_FILE**: This variable MUST be present in the container environment.
-  This specifies the location, relative to the **OUTPUT_DIR**, of where the
-  file containing the generated contig sequences MUST be created. The created
-  contigs file MUST be in FASTA format.
+  This specifies the absolute path of where the file containing the generated
+  contig sequences MUST be created. The created contigs file MUST be in FASTA
+  format.
 
 #### Outputs
 
 The container MUST generate a FASTA file of contigs in the location
-**$OUTPUT_DIR**/**$CONTIGS_FILE**.
+**$CONTIGS_FILE**.
 
 ### Reference-based genome assembly benchmarking container
-
 
 #### Introduction
 
