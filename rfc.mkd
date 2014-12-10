@@ -53,34 +53,15 @@ bioinformatics software, independent of the application type.
 
 #### Inputs
 
-* **Proc**: The argument given to start a container MUST be a single string
+* **TASK**: The argument given to start a container MUST be a single string
   containing only the characters A-Z, a-z, 0-9, '_' and '-'. This argument is
   used to differentiate different combination of settings the containerised
-  software can be run as. Every bioinformatics container SHOULD support a
-  'default' proc. This runs the container in a mode that is applicable for the
-  most common situation in which the software is used.
-
-* **INPUT_DIR**: The variable **INPUT_DIR** MUST be present inside the
-  container environment. This is the absolute path to a read-only directory
-  containing any input files provided by the user.
-
-* **OUTPUT_DIR**: The variable **OUTPUT_DIR** MUST be present inside the
-  container environment. This is the absolute path to a writable directory.
-  This location MUST be used to write final ouput files.
-
-* **LOG_FILE**: The variable **LOG_FILE** MUST be present in the container
-  environment. This is a path relative to **OUTPUT_DIR**. This location MUST be
-  used by the software to write any information about the process that may be
-  useful for information or debugging.
-
-* **AVAIL_CPUS**: The variable **AVAIL_CPUS** MUST be present in the container
-  environment. This describes the number of CPUs that have been provided to the
-  container.
+  software can be run as. Every container SHOULD support a 'default' task. This
+  runs the container in a mode that is applicable to the most common situation
+  in which the software is used.
 
 #### Outputs
 
-The directory **$OUTPUT_DIR** MUST be a container mounted volume so that
-created files are available on the host file system after the container exits.
 The containerised software MUST return a zero exit code when completing
 successfully, and return a non-zero exit code when an error occurs.
 
