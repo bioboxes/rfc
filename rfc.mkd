@@ -159,7 +159,8 @@ using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 This specification describes the interface for containerised binning applications. 
 A binning application groups reads or contigs and/or assigns them to operational taxonomic units.
 In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'.
+specifications defined in 'Generic bioinformatics container'. 
+Furthermore all variables from the 'Database' section will be available.
 
 ### Inputs
 
