@@ -161,7 +161,7 @@ using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 
 # Authors's Addresses
 
-* Alexander Sczyrba <pbelmann@cebitec.uni-bielefeld.de>
+* Alexander Sczyrba <asczyrba@cebitec.uni-bielefeld.de>
 * Johannes Droege <johannes.droege@uni-duesseldorf.de>
 * Michael Barton <mail@michaelbarton.me.uk>
 * Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
