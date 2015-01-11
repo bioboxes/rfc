@@ -118,6 +118,10 @@ specifications defined in 'Generic bioinformatics container'.
   the generated contig sequences MUST be created. The created contigs file MUST
   be in FASTA format.
 
+**Note!** At least one of the variables **CONT_FASTQ_FILE**, **CONT_FASTQ_FILE_LISTING**,
+**CONT_PAIRED_FASTQ_FILE**, **CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the
+container environment.
+
 ### Outputs
 
 The container MUST generate a FASTA file of contigs in the location
