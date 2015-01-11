@@ -144,13 +144,13 @@ implement all specifications defined in 'Generic bioinformatics container'.
   containing a FASTA formatted reference sequence from the same origin as the
   **CONTIGS_FILE** contigs.
 
-* **CONT_OUTPUT_FILE**: This variable MUST be present in the container
-  environment. This variable specifies the absolute path of where the file MUST
+* **CONT_OUTPUT_DIR**: This variable MUST be present in the container
+  environment. This variable specifies the absolute path of where the directories/files MUST
   be created containing the metrics describing the reference genome assembly.
 
 ### Outputs
 
-The container MUST generate a file of metrics in the file **$CONT_OUTPUT_FILE**
+The container MUST generate files of metrics in the directory **$CONT_OUTPUT_DIR**
 from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
 using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 
