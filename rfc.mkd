@@ -154,6 +154,66 @@ The container MUST generate a file of metrics in the file **$CONT_OUTPUT_FILE**
 from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
 using the reference sequence in the file **$CONT_REFERENCE_FILE**.
 
+## Binning container
+
+This specification describes the interface for containerised binning applications. 
+A binning application groups reads or contigs and/or assigns them to operational taxonomic units.
+In addition to the specifications described below, this container MUST implement the
+specifications defined in 'Generic bioinformatics container'. 
+Furthermore all variables from the 'Database' section will be available.
+
+### Inputs
+
+* **CONT_FASTQ_FILE**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a gzipped FASTQ file. This file contains the FASTQ reads for
+  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
+  variable MUST NOT both be present in the environment.
+
+* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a file containing the absolute paths of gzipped FASTQ files.
+  One FASTQ file absolute path appears per line. These files contain the FASTQ
+  reads for assembly into contigs. This variable and the **CONT_FASTQ_FILE**
+  variable MUST NOT both be present in the environment.
+
+* **CONT_PAIRED_FASTQ_FILE**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a gzipped FASTQ file. This file contains PAIRED FASTQ reads for
+  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
+  variable MUST NOT both be present in the environment.
+
+* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
+  container environment. If used this variable MUST specify the absolute path,
+  inside the container, of a file containing the absolute paths of gzipped
+  FASTQ files. One FASTQ file absolute path appears per line. These files
+  contain the PAIRED FASTQ reads for assembly into contigs. This variable and
+  the **CONT_PAIRED_FASTQ_FILE** variable MUST NOT both be present in the
+  environment.
+
+* **CONT_CONTIGS_FILE**: This variable MAY be present in the container
+  environment. This specifies the absolute path of where the file containing
+  the contigs can be found. The contigs file MUST be in FASTA
+  format. This variable and the **CONT_CONTIGS_FILE_LISTING** variable MUST NOT both 
+  be present in the environment.
+
+* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the
+  container environment. If used this variable MUST specify the absolute path,
+  inside the container, of a file containing the absolute paths of FASTA files. 
+  One FASTA file absolute path appears per line. These files
+  contain the FASTA contigs. This variable and
+  the **CONT_CONTIGS_FILE** variable MUST NOT both be present in the
+  environment.
+
+* **CONT_BINNING_FILE**: This variable MUST be present in the container
+  environment. This specifies the absolute path of where the file containing
+  the computed binning and/or taxonomic groups MUST be created. The created file MUST
+  be in [BINNING format](https://github.com/CAMI-challenge/contest_information/blob/master/file_formats/CAMI_Bv1_specification.txt).  
+
+### Outputs
+
+The container MUST generate a the binning file in the location **$CONT_BINNING_FILE**.
+
 ## Normative References
 
 * [RFC2119]	Bradner, S., “Key words for use in RFCs to Indicate Requirement
