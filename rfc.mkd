@@ -1,5 +1,7 @@
 ## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
 
+### Verion: 1.0
+
 ## Status of this Memo
 
 This document specifies an Internet standards track protocol for the Internet
