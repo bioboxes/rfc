@@ -1,6 +1,6 @@
 ## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
 
-### Version: 1.0
+### Version: 0.8
 
 ## Status of this Memo
 
