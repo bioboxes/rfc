@@ -78,6 +78,14 @@ bioinformatics software, independent of the application type.
 The containerised software MUST return a zero exit code when completing
 successfully, and return a non-zero exit code when an error occurs.
 
+## Databases
+
+This section describes the variables containing the paths to various databases.
+
+### Variables
+
+* **CONT_DATABASES_DIR**: This variable specifies the absolute path to a directory containing the databases. 
+
 ## Short-read genome assembler container
 
 This specification describes the interface for containerised short-read genome
