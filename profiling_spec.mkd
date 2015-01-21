@@ -1,7 +1,6 @@
-The Profiling Output Format 
+##The Profiling Output Format 
 
-1. The profiling format specification
----------------------------------------------
+###1.The profiling format specification
 
 The CAMI taxonomic profiling format was specified for this contest and is intended to serve as a standard format for taxonomic profiling methods.
 
@@ -12,8 +11,7 @@ Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PE
 Profiles should be written to a file named profiles.camip
 
 
-1.2 The header section
-----------------------
+###1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content
@@ -29,8 +27,7 @@ For instance:
 The last line is always the header for the output section and begins with '@@'. It defines the content of the output columns in a tab-separated format. The tags are described in the output section below. 
 
 
-1.3 The Output section
-----------------------
+###1.3 The Output section
 
 The TAXID specifies a unique alphanumeric ID for a node in a reference tree such as the NCBI taxonomy. This will be used for evaluation of your predictions with taxonomy-based measures. If you resolve to bins below existing taxonomic IDs in your reference tree, e.g. to resolve novel strains, you can append a numeric identifier to your classification, e.g. 5232.1(according to the provided taxonomy version from the download site).
 
@@ -52,9 +49,8 @@ Further fields with additional information can be appended to the right.
 Each output line should match: /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
 
 
-1.4 EXAMPLES
------------
-
+###1.4 EXAMPLES
+```
 # CAMI Submission for Taxonomic Profiling
 @@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
 2	superkingdom	2	Bacteria	98.81211
@@ -69,7 +65,4 @@ Each output line should match: /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
 356	order	2|1224|28211|356	Bacteria|Proteobacteria|Alphaproteobacteria|Rhizobacteria	10.52311
 204455	order	2|1224|28211|204455	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales	8.42263
 2158	order	2157|28890|183925|2158	Archaea|Euryarchaeotes|Methanobacteria|Methanobacteriales	1.18789
-
-
-
-
+```
