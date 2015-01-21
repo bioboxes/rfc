@@ -1,7 +1,6 @@
-The Binning Output Format 
+##The Binning Output Format 
 
-1. The binning format specification
----------------------------------------------
+### 1.The binning format specification
 
 The binning format was specified for this competition and is intended to serve as a standard format for (taxonomic) binning methods. It is a TAB-delimited text format consisting of a header section and an output section. The header must be prior the output. Header lines start with '@' or '#' for comments, while output lines do not.
 
@@ -9,9 +8,7 @@ Each output line has 2 mandatory fields: The SEQUENCEID and either TAXID or BINI
 
 Bins should be written to a file named bins.camib
 
-
-1.2 The header section
-----------------------
+### 1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
 
@@ -35,22 +32,18 @@ or
 @@SEQUENCEID	TAXID	BINID	SCORE	MYCOLUMN2	MYCOLUMN3
 The last line is always the header for the output section and begins with '@@'. It defines the content of the output columns in a tab-separated format. The mandatory tags are described in the output section below. Further optional columns with alphanumeric header tags can be appended to the right.
 
-
-1.3 The Output section
-----------------------
+### 1.3 The Output section
 
 Each output line should match: /^[A-Za-z0-9]+(\t[A-Za-z0-9]+(\.[0-9]+)?)+/
 SEQUENCEID specifies the ID of either a read or a contig sequence
 
 (depending on the sample). 
 
-
 The TAXID is a taxonomic assignment for your binned sequences (according to the provided taxonomy version from the download site) and will be used for evaluation of your predictions with taxonomy-based  measures.
 
 The BINID entries can be arbitrary alphanumeric identifiers for the bins. No taxonomy-based evaluation will be performed using the entries in this column.
 
 There are three different scenarios for binning tools.
-
 
 The first case, example A below: If you create taxonomic bins as output without further resolution, you do not need to include the BINID colummn, but only the TAXID column, in your output.
 
@@ -59,48 +52,38 @@ The second case, example B below: If you create bins that do not include taxonom
 
 The third case, example C below, is if you perform taxonomic binning and additionally resolve bins below existing taxonomic IDs, e.g. to define bins representing novel strains. In this case, you add both the TAXID. It will be easiest to check for consistency for us, if you in this case use for the BINID the TAXID entry and a numeric identifier appended (e.g. 562.2).
 
-
-
 Further columns with additional information can be appended to the right.
 
-
-
-1.4 EXAMPLES
------------
+### 1.4 EXAMPLES
 
 1.4.A
-
+```
 #CAMI Format for Binning
-
-@@SEQUENCEID		TAXID	
-
+@@SEQUENCEID	TAXID	
 read1201	123	
 read1202	123	
 read1203	131564	
 read1204	562	
 read1205	562	
-
-
-
+```
 1.4.B
-	
+```	
 #CAMI Format for Binning
-@@SEQUENCEID		BINID	
-
+@@SEQUENCEID		BINID\n	
 read1201	12346BIN
 read1202	ANOTHERBIN	
-read1203	BIN6	
+read1203	BIN6
 read1204	BIN5	
-read1205	BIN5	
-
-
+read1205	BIN5
+```
 1.4.C
-
+```
 #CAMI Format for Binning
-@@SEQUENCEID		TAXID	BINID
+@@SEQUENCEID	TAXID	BINID
 
 read1201	123	123
 read1202	123	123
 read1203	131564	131564
 read1204	562	562.1
 read1205	562	562.2
+```
