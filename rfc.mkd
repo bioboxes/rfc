@@ -222,7 +222,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the computed binning and/or taxonomic groups MUST be created. The created file MUST
-  be in [BINNING format](https://github.com/CAMI-challenge/contest_information/blob/master/file_formats/CAMI_Bv1_specification.txt).  
+  be in [BINNING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/binning_spec.mkd#the-binning-output-format).  
 
 ### Outputs
 
@@ -283,7 +283,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_PROFILING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the computed profiling and/or taxonomic groups MUST be created. The created file MUST
-  be in [PROFILING format](https://github.com/CAMI-challenge/contest_information/blob/master/file_formats/CAMI_TPv1_specification.txt).  
+  be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format).  
 
 ### Outputs
 
