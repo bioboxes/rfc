@@ -1,5 +1,7 @@
 ##The Profiling Output Format 
 
+###Version:0.8
+
 ###1.The profiling format specification
 
 The CAMI taxonomic profiling format was specified for this contest and is intended to serve as a standard format for taxonomic profiling methods.
