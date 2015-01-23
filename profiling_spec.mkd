@@ -10,9 +10,6 @@ It is a TAB-delimited text format consisting of a header section and an output s
 
 Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PERCENTAGE. Further optional columns can be appended to the right.
 
-Profiles should be written to a file named profiles.camip
-
-
 ###1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
