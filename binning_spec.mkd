@@ -8,7 +8,6 @@ The binning format was specified for this competition and is intended to serve a
 
 Each output line has 2 mandatory fields: The SEQUENCEID and either TAXID or BINID.
 
-Bins should be written to a file named bins.camib
 
 ### 1.2 The header section
 
