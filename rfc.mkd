@@ -96,41 +96,27 @@ specifications defined in 'Generic bioinformatics container'.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains the FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
-
 * **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a file containing the absolute paths of gzipped FASTQ files.
-  One FASTQ file absolute path appears per line. These files contain the FASTQ
-  reads for assembly into contigs. This variable and the **CONT_FASTQ_FILE**
-  variable MUST NOT both be present in the environment.
-
-* **CONT_PAIRED_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains PAIRED FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
+  container, of a text file. This file MUST contain a list of absolute paths,
+  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
+  path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a file containing the absolute paths of gzipped
-  FASTQ files. One FASTQ file absolute path appears per line. These files
-  contain the PAIRED FASTQ reads for assembly into contigs. This variable and
-  the **CONT_PAIRED_FASTQ_FILE** variable MUST NOT both be present in the
-  environment.
+  inside the container, of a text file. This file MUST contain a list of
+  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain
+  PAIRED FASTQ reads.
 
 * **CONT_CONTIGS_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the generated contig sequences MUST be created. The created contigs file MUST
   be in FASTA format.
 
-**Note!** At least one of the variables **CONT_FASTQ_FILE**, **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE**, **CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the
-container environment.
+**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
+**CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the container
+environment. Only one or both of these variables may be used.
 
 ### Outputs
 
@@ -178,51 +164,34 @@ Furthermore all variables from the 'Database' section will be available.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains the FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
-
 * **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a file containing the absolute paths of gzipped FASTQ files.
-  One FASTQ file absolute path appears per line. These files contain the FASTQ
-  reads for assembly into contigs. This variable and the **CONT_FASTQ_FILE**
-  variable MUST NOT both be present in the environment.
-
-* **CONT_PAIRED_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains PAIRED FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
+  container, of a text file. This file MUST contain a list of absolute paths,
+  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
+  path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a file containing the absolute paths of gzipped
-  FASTQ files. One FASTQ file absolute path appears per line. These files
-  contain the PAIRED FASTQ reads for assembly into contigs. This variable and
-  the **CONT_PAIRED_FASTQ_FILE** variable MUST NOT both be present in the
-  environment.
+  inside the container, of a text file. This file MUST contain a list of
+  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain
+  PAIRED FASTQ reads.
 
-* **CONT_CONTIGS_FILE**: This variable MAY be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the contigs can be found. The contigs file MUST be in FASTA
-  format. This variable and the **CONT_CONTIGS_FILE_LISTING** variable MUST NOT both 
-  be present in the environment.
-
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a file containing the absolute paths of FASTA files. 
-  One FASTA file absolute path appears per line. These files
-  contain the FASTA contigs. This variable and
-  the **CONT_CONTIGS_FILE** variable MUST NOT both be present in the
-  environment.
+* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a text file. This file MUST contain a list of absolute paths,
+  or paths relative to this file of FASTA files. Only one FASTA file path MUST
+  appear per line. These files MUST contain FASTA contigs.
 
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
-  the computed binning and/or taxonomic groups MUST be created. The created file MUST
-  be in [BINNING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/binning_spec.mkd#the-binning-output-format).  
+  the computed binning and/or taxonomic groups MUST be created. The created
+  file MUST be in [BINNING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/binning_spec.mkd#the-binning-output-format).
+
+**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
+**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
+present in the container environment. One or more of these variables may be
+used.
 
 ### Outputs
 
@@ -239,51 +208,34 @@ Furthermore all variables from the 'Database' section will be available.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains the FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
-
 * **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a file containing the absolute paths of gzipped FASTQ files.
-  One FASTQ file absolute path appears per line. These files contain the FASTQ
-  reads for assembly into contigs. This variable and the **CONT_FASTQ_FILE**
-  variable MUST NOT both be present in the environment.
-
-* **CONT_PAIRED_FASTQ_FILE**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a gzipped FASTQ file. This file contains PAIRED FASTQ reads for
-  assembly into contigs. This variable and the **CONT_FASTQ_FILE_LISTING**
-  variable MUST NOT both be present in the environment.
+  container, of a text file. This file MUST contain a list of absolute paths,
+  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
+  path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a file containing the absolute paths of gzipped
-  FASTQ files. One FASTQ file absolute path appears per line. These files
-  contain the PAIRED FASTQ reads for assembly into contigs. This variable and
-  the **CONT_PAIRED_FASTQ_FILE** variable MUST NOT both be present in the
-  environment.
+  inside the container, of a text file. This file MUST contain a list of
+  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain
+  PAIRED FASTQ reads.
 
-* **CONT_CONTIGS_FILE**: This variable MAY be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the contigs can be found. The contigs file MUST be in FASTA
-  format. This variable and the **CONT_CONTIGS_FILE_LISTING** variable MUST NOT both 
-  be present in the environment.
-
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a file containing the absolute paths of FASTA files. 
-  One FASTA file absolute path appears per line. These files
-  contain the FASTA contigs. This variable and
-  the **CONT_CONTIGS_FILE** variable MUST NOT both be present in the
-  environment.
+* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a text file. This file MUST contain a list of absolute paths,
+  or paths relative to this file of FASTA files. Only one FASTA file path MUST
+  appear per line. These files MUST contain FASTA contigs.
 
 * **CONT_PROFILING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
-  the computed profiling and/or taxonomic groups MUST be created. The created file MUST
-  be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format).  
+  the computed profiling and/or taxonomic groups MUST be created. The created
+  file MUST be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format).
+
+**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
+**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
+present in the container environment. One or more of these variables may be
+used.
 
 ### Outputs
 
