@@ -116,7 +116,9 @@ specifications defined in 'Generic bioinformatics container'.
 
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the container
-environment. Only one or both of these variables may be used.
+environment. Only one or both of these variables may be used. The container
+should decide which action to take and how to use the data to use based on the
+availability of these variables in the environment.
 
 ### Outputs
 
@@ -191,7 +193,9 @@ Furthermore all variables from the 'Database' section will be available.
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
 present in the container environment. One or more of these variables may be
-used.
+used. The container should decide which action to take and how to use the data
+to use based on the availability of these variables in the environment.
+
 
 ### Outputs
 
@@ -235,7 +239,8 @@ Furthermore all variables from the 'Database' section will be available.
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
 present in the container environment. One or more of these variables may be
-used.
+used. The container should decide which action to take and how to use the data
+to use based on the availability of these variables in the environment.
 
 ### Outputs
 
