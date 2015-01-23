@@ -13,6 +13,7 @@ Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PE
 ###1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
+@sampleId, @ranks
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content
 and format for the output section.
 The order of the columns should match: TAXID	RANK	TAXPATH	PERCENTAGE
