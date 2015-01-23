@@ -180,8 +180,8 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
   container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of gzipped FASTA files. Only one FASTA file
-  path MUST appear per line. These files MUST contain FASTA contigs.
+  or paths relative to this file of FASTA files. Only one FASTA file path MUST
+  appear per line. These files MUST contain FASTA contigs.
 
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
@@ -224,8 +224,8 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
   container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of gzipped FASTA files. Only one FASTA file
-  path MUST appear per line. These files MUST contain FASTA contigs.
+  or paths relative to this file of FASTA files. Only one FASTA file path MUST
+  appear per line. These files MUST contain FASTA contigs.
 
 * **CONT_PROFILING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
