@@ -12,7 +12,6 @@ Each output line has 2 mandatory fields: The SEQUENCEID and either TAXID or BINI
 ### 1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
-@sampleId
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content and format for the output section. The order of the columns is not important.
 This line should match: /^\@\@[A-Za-z0-9]+(\t[A-Za-z0-9\_\s]+)+/ For instance:
 
