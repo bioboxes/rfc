@@ -223,10 +223,12 @@ Furthermore all variables from the 'Database' section will be available.
   or paths relative to this file of FASTA files. Only one FASTA file path MUST
   appear per line. These files MUST contain FASTA contigs.
 
-* **CONT_PROFILING_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
+* **CONT_PROFILING_FILES**: This variable MUST be present in the container
+  environment. This specifies the absolute path of where the files containing
   the computed profiling and/or taxonomic groups MUST be created. The created
-  file MUST be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format).
+  files MUST be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format). Furthermore these 
+  files MUST be numbered beginning with 1 where the value corresponds to the 1-based
+  index in the text file whose path is specified by **CONT_CONTIGS_FILE_LISTING**.
 
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
