@@ -4,7 +4,7 @@
 
 ###1.The profiling format specification
 
-The CAMI taxonomic profiling format was specified for this contest and is intended to serve as a standard format for taxonomic profiling methods.
+The taxonomic profiling format was specified for this contest and is intended to serve as a standard format for taxonomic profiling methods.
 
 It is a TAB-delimited text format consisting of a header section and an output section. The header must be prior the output. Header lines start with '@' or '#' for comments, while output lines do not. 
 
@@ -13,7 +13,12 @@ Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PE
 ###1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
-@sampleId, @ranks
+Each mandatory header line begins with the character '@'. If there is just one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG is a variable alphanumeric string that defines the content and the format of VALUE. Each of these
+header lines should match: /^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/. Though capitalisation can be used for readability, tags are regarded as case insensitive. 
+In this version of this format just the TAG SAMPLEID is required.
+SAMPLEID is a unique identifier for a sequence sample. Do not give a tool name or your name here.
+
+
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content
 and format for the output section.
 The order of the columns should match: TAXID	RANK	TAXPATH	PERCENTAGE
@@ -31,7 +36,7 @@ The last line is always the header for the output section and begins with '@@'. 
 
 The TAXID specifies a unique alphanumeric ID for a node in a reference tree such as the NCBI taxonomy. This will be used for evaluation of your predictions with taxonomy-based measures. If you resolve to bins below existing taxonomic IDs in your reference tree, e.g. to resolve novel strains, you can append a numeric identifier to your classification, e.g. 5232.1(according to the provided taxonomy version from the download site).
 
-RANK includes alphanumeric identifiers that define ranks in the reference taxonomy at which the respective taxon is located. The used ranks in the NCBI taxonomy and in the CAMI contest are: superkingdom	phylum	class	order	family	genus	species	strain
+RANK includes alphanumeric identifiers that define ranks in the reference taxonomy at which the respective taxon is located. The used ranks in the NCBI taxonomy: superkingdom	phylum	class	order	family	genus	species	strain
 
 The PERCENTAGE field specifies what percentage of the sample was assigned to the respective TAXID. The PERCENTAGE can be a real number between 0 and 100. The percentages given for all taxa from the same rank should sum up to <= 100%, that is, if something is unassigned, this will be reflected in a percentage of less than 100% being assigned.
 
@@ -52,6 +57,7 @@ Each output line should match: /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
 ###1.4 EXAMPLES
 ```
 # CAMI Submission for Taxonomic Profiling
+@SampleID:SAMPLEID
 @@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
 2	superkingdom	2	Bacteria	98.81211
 2157	superkingdom	2157	Archaea	1.18789
