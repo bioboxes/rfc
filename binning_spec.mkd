@@ -1,5 +1,7 @@
 ##The Binning Output Format 
 
+###Version:0.8 
+
 ### 1.The binning format specification
 
 The binning format was specified for this competition and is intended to serve as a standard format for (taxonomic) binning methods. It is a TAB-delimited text format consisting of a header section and an output section. The header must be prior the output. Header lines start with '@' or '#' for comments, while output lines do not.
