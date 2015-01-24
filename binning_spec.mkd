@@ -12,6 +12,13 @@ Each output line has 2 mandatory fields: The SEQUENCEID and either TAXID or BINI
 ### 1.2 The header section
 
 The header section may contain comment lines, which begin with the character '#'.
+Each mandatory header line begins with the character '@'. If there is just one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG is a variable alphanumeric string that defines the content and the format of VALUE. Each of these
+header lines should match: /^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/. Though capitalisation can be used for readability, tags are regarded as case insensitive. 
+
+In this format version just the tag VERSION is required.
+
+* VERSION This gives information about the profiling format version. You can find the current version under the heading.
+
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content and format for the output section. The order of the columns is not important.
 This line should match: /^\@\@[A-Za-z0-9]+(\t[A-Za-z0-9\_\s]+)+/ For instance:
 
@@ -58,7 +65,8 @@ Further columns with additional information can be appended to the right.
 
 1.4.A
 ```
-#CAMI Format for Binning
+#Format for Binning
+@Version:0.8
 @@SEQUENCEID	TAXID	
 read1201	123	
 read1202	123	
@@ -68,7 +76,8 @@ read1205	562
 ```
 1.4.B
 ```	
-#CAMI Format for Binning
+#Format for Binning
+@Version:0.8
 @@SEQUENCEID		BINID\n	
 read1201	12346BIN
 read1202	ANOTHERBIN	
@@ -78,9 +87,9 @@ read1205	BIN5
 ```
 1.4.C
 ```
-#CAMI Format for Binning
+#Format for Binning
+@Version:0.8
 @@SEQUENCEID	TAXID	BINID
-
 read1201	123	123
 read1202	123	123
 read1203	131564	131564
