@@ -92,16 +92,16 @@ specifications defined in 'Generic bioinformatics container'.
 
 * **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
-  path MUST appear per line. These files MUST contain FASTQ reads.
+  container, of a text file. This file MUST contain a list of absolute paths beginning
+  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of
-  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain
-  PAIRED FASTQ reads.
+  inside the container, of a text file. This file MUST contain a list of absolute paths
+  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
+  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
+  contain PAIRED FASTQ reads.
 
 * **CONT_CONTIGS_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
@@ -170,22 +170,22 @@ Furthermore all variables from the 'Database' section will be available.
 
 * **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
-  path MUST appear per line. These files MUST contain FASTQ reads.
+  container, of a text file. This file MUST contain a list of absolute paths beginning
+  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of
-  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain
-  PAIRED FASTQ reads.
+  inside the container, of a text file. This file MUST contain a list of absolute paths
+  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
+  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
+  contain PAIRED FASTQ reads.
 
 * **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of FASTA files. Only one FASTA file path MUST
-  appear per line. These files MUST contain FASTA contigs.
+  container, of a text file. This file MUST contain a list of absolute paths
+  beginning with a slash ('/'), or paths relative to this file, which point to
+  FASTA contigs.
 
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
@@ -218,24 +218,24 @@ Furthermore all variables from the 'Database' section will be available.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
+**CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of gzipped FASTQ files. Only one FASTQ file
-  path MUST appear per line. These files MUST contain FASTQ reads.
+  container, of a text file. This file MUST contain a list of absolute paths beginning
+  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
+  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
 
 * **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
   container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of
-  absolute paths, or paths relative to this file of gzipped PAIRED FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain
-  PAIRED FASTQ reads.
+  inside the container, of a text file. This file MUST contain a list of absolute paths
+  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
+  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
+  contain PAIRED FASTQ reads.
 
 * **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths,
-  or paths relative to this file of FASTA files. Only one FASTA file path MUST
-  appear per line. These files MUST contain FASTA contigs.
+  container, of a text file. This file MUST contain a list of absolute paths
+  beginning with a slash ('/'), or paths relative to this file, which point to
+  FASTA contigs.
 
 * **CONT_PROFILING_FILES**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the files containing
