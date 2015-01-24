@@ -15,9 +15,11 @@ Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PE
 The header section may contain comment lines, which begin with the character '#'.
 Each mandatory header line begins with the character '@'. If there is just one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG is a variable alphanumeric string that defines the content and the format of VALUE. Each of these
 header lines should match: /^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/. Though capitalisation can be used for readability, tags are regarded as case insensitive. 
-In this version of this format just the TAG SAMPLEID is required.
-SAMPLEID is a unique identifier for a sequence sample. Do not give a tool name or your name here.
 
+In this format version just the tag SAMPLEID and VERSION is required.
+
+* SAMPLEID is a unique identifier for a sequence sample. Do not give a tool name or your name here.
+* VERSION This gives information about the profiling format version. You can find the current version under the heading. 
 
 The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content
 and format for the output section.
@@ -56,8 +58,9 @@ Each output line should match: /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
 
 ###1.4 EXAMPLES
 ```
-# CAMI Submission for Taxonomic Profiling
+# Submission for Taxonomic Profiling
 @SampleID:SAMPLEID
+@Version:0.8
 @@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
 2	superkingdom	2	Bacteria	98.81211
 2157	superkingdom	2157	Archaea	1.18789
