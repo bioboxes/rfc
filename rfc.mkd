@@ -190,7 +190,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/binning_spec.mkd#the-binning-output-format).
+  file MUST be in [BINNING format](binning_spec.mkd).
 
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
@@ -240,7 +240,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_PROFILING_FILES**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the files containing
   the computed profiling and/or taxonomic groups MUST be created. The created
-  files MUST be in [PROFILING format](https://github.com/michaelbarton/bioinformatics-container-rfc/blob/binning_profiling_formats/profiling_spec.mkd#the-profiling-output-format). Furthermore these 
+  files MUST be in [PROFILING format](profiling_spec.mkd). Furthermore these 
   files MUST be numbered beginning with 1 where the value corresponds to the 1-based
   index in the text file whose path is specified by **CONT_CONTIGS_FILE_LISTING**.
 
