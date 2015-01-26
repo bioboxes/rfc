@@ -1,6 +1,6 @@
 ## The Binning Output Format
 
-  * Version: 0.8.0
+  * Version:    0.8.1
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ### 1.The binning format specification

@@ -1,6 +1,6 @@
 ## Profiling container
 
- * Version: 0.8.0
+ * Version:    0.8.1
  * Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
 
 ### Outline

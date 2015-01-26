@@ -1,6 +1,6 @@
 ## Specifications of bioinformatics file formats
 
-  * Version: 0.8
+  * Version:    0.8.1
   * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
 
 ### Outline

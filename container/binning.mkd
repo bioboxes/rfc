@@ -1,6 +1,6 @@
 ## Binning container
 
- * Version:0.8
+ * Version:    0.8.1
  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ### Outline
