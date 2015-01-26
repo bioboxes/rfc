@@ -77,55 +77,6 @@ This section describes the variables containing the paths to various databases.
    * BLAST DBs
 
 
-## Binning container
-
-####Version:0.8
-
-####Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-
-This specification describes the interface for containerised binning applications. 
-A binning application groups reads or contigs and/or assigns them to operational taxonomic units.
-In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'. 
-Furthermore all variables from the 'Database' section will be available.
-
-### Inputs
-
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
-
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
-
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to
-  FASTA contigs.
-
-* **CONT_BINNING_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](binning_spec.mkd).
-
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
-present in the container environment. One or more of these variables may be
-used. The container should decide which action to take and how to use the data
-to use based on the availability of these variables in the environment.
-
-
-### Outputs
-
-The container MUST generate a the binning file in the location **$CONT_BINNING_FILE**.
-
 ## Profiling container
 
 ####Version:0.8
