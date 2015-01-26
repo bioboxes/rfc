@@ -1,17 +1,21 @@
 ## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
 
+  * Version: 0.8.1
+  * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
+
 ## Introduction
 
-The purpose of this document is provide a detailed specification for developers
-to write standardised bioinformatics containers. The goal of this document is
-to define a standard whereby bioinformatics software containers of the same
-type are interoperable and therefore can used interchangeably. The audience of
-this document are bioinformaticians and developers writing bioinformatics
-software shared using Linux containers. This document will describe the
-interface that MUST be provided to a running container and that a developer of
-the bioinformatics container MUST write their software against.
+The purpose of this subsequent documents is provide a detailed specification
+for developers to write standardised bioinformatics containers. The goal of
+this document is to define a standard whereby bioinformatics software
+containers of the same type are interoperable and therefore can used
+interchangeably. The audience of this document are bioinformaticians and
+developers writing bioinformatics software shared using Linux containers. This
+document will describe the interface that MUST be provided to a running
+container and that a developer of the bioinformatics container MUST write their
+software against.
 
-The scope of this document is bioinformatics software packaged using Linux
+The scope of this standard is bioinformatics software packaged using Linux
 containers. Bioinformatics software in a Linux container can be shared and
 provided to third parties because software dependencies are included within the
 container. Examples of bioinformatics software are genome assemblers, read
@@ -75,7 +79,6 @@ This section describes the variables containing the paths to various databases.
    * NCBI Genomes
    * Refseq
    * BLAST DBs
-
 
 ## Normative References
 
