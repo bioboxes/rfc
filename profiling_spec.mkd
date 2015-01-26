@@ -1,0 +1,77 @@
+##The Profiling Output Format 
+
+###Version:0.8
+
+###1.The profiling format specification
+
+The taxonomic profiling format was specified for this contest and is intended to serve as a standard format for taxonomic profiling methods.
+
+It is a TAB-delimited text format consisting of a header section and an output section. The header must be prior the output. Header lines start with '@' or '#' for comments, while output lines do not. 
+
+Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the PERCENTAGE. Further optional columns can be appended to the right.
+
+###1.2 The header section
+
+The header section may contain comment lines, which begin with the character '#'.
+Each mandatory header line begins with the character '@'. If there is just one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG is a variable alphanumeric string that defines the content and the format of VALUE. Each of these
+header lines should match: /^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/. Though capitalisation can be used for readability, tags are regarded as case insensitive. 
+
+In this format version just the tag SAMPLEID and VERSION is required.
+
+* SAMPLEID is a unique identifier for a sequence sample. Do not give a tool name or your name here.
+* VERSION This gives information about the profiling format version. You can find the current version under the heading. 
+
+The last line in the header section begins with '@@' and includes tab-separated column tags, where TAG is a variable string that defined the content
+and format for the output section.
+The order of the columns should match: TAXID	RANK	TAXPATH	PERCENTAGE
+This line should also match: /^\@\@[A-Za-z]+(\t[A-Za-z]+)+/
+
+For instance:
+
+@@TAXID	RANK	TAXPATH	PERCENTAGE
+
+@@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE	
+The last line is always the header for the output section and begins with '@@'. It defines the content of the output columns in a tab-separated format. The tags are described in the output section below. 
+
+
+###1.3 The Output section
+
+The TAXID specifies a unique alphanumeric ID for a node in a reference tree such as the NCBI taxonomy. This will be used for evaluation of your predictions with taxonomy-based measures. If you resolve to bins below existing taxonomic IDs in your reference tree, e.g. to resolve novel strains, you can append a numeric identifier to your classification, e.g. 5232.1(according to the provided taxonomy version from the download site).
+
+RANK includes alphanumeric identifiers that define ranks in the reference taxonomy at which the respective taxon is located. The used ranks in the NCBI taxonomy: superkingdom	phylum	class	order	family	genus	species	strain
+
+The PERCENTAGE field specifies what percentage of the sample was assigned to the respective TAXID. The PERCENTAGE can be a real number between 0 and 100. The percentages given for all taxa from the same rank should sum up to <= 100%, that is, if something is unassigned, this will be reflected in a percentage of less than 100% being assigned.
+
+The TAXPATH and TAXPATH_SN tag is the path from the root of the reference taxonomy to the respective taxon, where alphanumeric identifiers such as the TAXIDs (TAXPATH) or the taxonomic names (TAXPATH_SN) for all taxa that lie on this path are included. We are not parsing this column for the competition but will use the distributed NCBI reference taxonomy version. Please ensure that your predictions comply with this version. Taxonomic identifers in the TAXPATH and TAXPATH_SV for different taxonomic ranks are separated by "|". If a TAXID is missing at a rank or there is no name, this can be marked with an empty entry in the TAXPATH and TAXPATH_SN "||". For partial paths from the root to an internal node, you only need to fill in the path until you reach the node. 
+
+Example for TAXPATH_SN:
+Archaea|Thaumarchaeota|||Aigarchaeota archaeon JGI 0000001-A7
+
+Example for TAXPATH
+2157|651137 |651142 |1104572 |1052838 
+
+Further fields with additional information can be appended to the right.
+
+
+Each output line should match: /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
+
+
+###1.4 EXAMPLES
+```
+# Submission for Taxonomic Profiling
+@SampleID:SAMPLEID
+@Version:0.8
+@@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
+2	superkingdom	2	Bacteria	98.81211
+2157	superkingdom	2157	Archaea	1.18789
+1239	phylum	2|1239	Bacteria|Firmicutes	59.75801
+1224	phylum	2|1224	Bacteria|Proteobacteria	18.94674
+28890	phylum	2157|28890	Archaea|Euryarchaeotes	1.18789
+91061	class	2|1239|91061	Bacteria|Firmicutes|Bacilli	59.75801
+28211	class	2|1224|28211	Bacteria|Proteobacteria|Alphaproteobacteria	18.94674
+183925	class	2157|28890|183925	Archaea|Euryarchaeotes|Methanobacteria	1.18789
+1385	order	2|1239|91061|1385	Bacteria|Firmicutes|Bacilli|Bacillales	59.75801
+356	order	2|1224|28211|356	Bacteria|Proteobacteria|Alphaproteobacteria|Rhizobacteria	10.52311
+204455	order	2|1224|28211|204455	Bacteria|Proteobacteria|Alphaproteobacteria|Rhodobacterales	8.42263
+2158	order	2157|28890|183925|2158	Archaea|Euryarchaeotes|Methanobacteria|Methanobacteriales	1.18789
+```

@@ -1,0 +1,126 @@
+## Specifications of bioinformatics file formats
+
+Version: 0.8
+
+### Introduction
+
+The purpose of this document is to describe the sequence FASTA/Q file formats
+used in the Standards for Interoperable Bioinformatics Container Interfaces
+(SIBCI) RFC. There is no formal definition for FASTA or FASTQ in the same way
+there are RFC definitions for [JSON][json] and [CSV][csv]. Furthermore it is
+beyond the scope of this document create a strict definition of either. Instead
+the community definitions for these formats are included to clarify the terms
+FASTQ or FASTA when used in other RFCs.
+
+[json]: https://tools.ietf.org/html/rfc7159
+[csv]: https://tools.ietf.org/html/rfc4180
+
+### Notational Conventions
+
+* The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”,
+  “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be
+  interpreted as described in [RFC2119].
+
+### FASTA
+
+#### Introduction
+
+The FASTA format is described in the [BLAST input description][blast]. This is
+quoted directly.
+
+[blast]: http://www.ncbi.nlm.nih.gov/BLAST/blastcgihelp.shtml
+
+> A sequence in FASTA format begins with a single-line description, followed by
+> lines of sequence data. The description line (defline) is distinguished from
+> the sequence data by a greater-than (">") symbol at the beginning. It is
+> recommended that all lines of text be shorter than 80 characters in length.
+>
+> Blank lines are not allowed in the middle of FASTA input. Sequences are
+> expected to be represented in the standard IUB/IUPAC amino acid and nucleic
+> acid codes, with these exceptions: lower-case letters are accepted and are
+> mapped into upper-case; a single hyphen or dash can be used to represent a gap
+> of indeterminate length; and in amino acid sequences, U and * are acceptable
+> letters.
+
+#### Formal Grammar
+
+A formal grammar for FASTA is described on [BioStar][biostar]. This is quoted
+below as a specification of the FASTA format.
+
+[biostar]: https://www.biostars.org/p/11254/#11255
+
+    <file>     ::= <token> | <token> <file>
+    <token>    ::= <ignore> | <seq>
+    <ignore>   ::= <whitespace> | <comment> <newline>
+    <seq>      ::= <header> <molecule> <newline>
+    <header>   ::= ">" <arbitrary text> <newline>
+    <molecule> ::= <mol-line> | <mol-line> <molecule>
+    <mol-line> ::= <nucl-line> | <prot-line>
+    <nucl-line>::= "^[ACGTURYKMSWBDHVNX-]+$"
+    <prot-line>::= "^[ABCDEFGHIKLMNOPQRSTUVWYZX*-]+$"
+
+#### Example
+
+    >gi|129295|sp|P01013|OVAX_CHICK GENE X PROTEIN (OVALBUMIN-RELATED)
+    QIKDLLVSSSTDLDTTLVLVNAIYFKGMWKTAFNAEDTREMPFHVTKQESKPVQMMCMNNSFNVATLPAE
+    KMKILELPFASGDLSMLVLLPDEVSDLERIEKTINFEKLTEWTNPNTMEKRRVKVYLPQMKIEEKYNLTS
+    VLMALGMTDLFIPSANLTGISSAESLKISQAVHGAFMELSEDGIEMAGSTGVIEDIKHSPESEQFRADHP
+    FLFLIKHNPTNTIVYFGRYWSP
+
+### FASTQ
+
+#### Description
+
+The FASTQ format is described in detail in the article ["The Sanger FASTQ file
+format for sequences with quality scores, and the Solexa/Illumina FASTQ
+variants"][1]. This definition will be used and quoted below. Importantly all
+FASTQ MUST use the Phred+33 quality offset described in the final paragraph.
+
+[1]: http://nar.oxfordjournals.org/content/38/6/1767
+
+> There are four line types in the FASTQ format. First a ‘@’ title line which
+> often holds just a record identifier. This is a free format field with no
+> length limit—allowing arbitrary annotation or comments to be included, as in
+> the example above where the NCBI have included an alternative ID and the
+> sequence length. Some sequencing centers encode paired end read information
+> here (alternatively two matched FASTQ files are often used).
+>
+> Second comes the sequence line(s), which as in the FASTA format can be line
+> wrapped. Also like FASTA format, there is no explicit limitation on the
+> characters expected, but restriction to the IUPAC single letter codes for
+> (ambiguous) DNA or RNA is wise, and upper case is conventional. In some
+> contexts, the use of lower or mixed case or the inclusion of a gap character
+> may make sense. White space such as tabs or spaces is not permitted.
+>
+> Third, to signal the end of the sequence lines and the start of the quality
+> string, comes the ‘+’ line. Originally this also included a full repeat of the
+> title line text (as shown in the NCBI example above); however, by common usage
+> and the MAQ tool convention, this is optional and the ‘+’ line can contain just
+> this one character, reducing the file size significantly. The OBF tools follow
+> this MAQ convention on output, and omit the optional repeated title text.
+>
+> Finally, comes quality line(s) which again can be wrapped. As discussed above,
+> these use a subset of the ASCII printable characters (at most ASCII 33–126
+> inclusive) with a simple offset mapping. Crucially, after concatenation
+> (removing line breaks), the quality string must be equal in length to the
+> sequence string.
+
+#### Formal Grammar
+
+[MAQ provides a formal grammar][2] to describe FASTQ. This definition is
+provided below as a specification for FASTQ format.
+
+    <fastq>   :=  <block>+
+    <block>   :=  @<seqname>\n<seq>\n+[<seqname>]\n<qual>\n
+    <seqname> :=  [A-Za-z0-9_.:-]+
+    <seq>     :=  [A-Za-z\n\.~]+
+    <qual>    :=  [!-~\n]+
+
+[2]: http://maq.sourceforge.net/fastq.shtml
+
+#### Example
+
+    @EAS54_6_R1_2_1_413_324
+    CCCTTCTTGTCTTCAGCGTTTCTCC
+    +
+    ;;3;;;;;;;;;;;;7;;;;;;;88
