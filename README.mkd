@@ -11,29 +11,28 @@ The SIBCI RFC is structured around the following branches and the release
 versioning follows [semantic versioning](semver.org):
 
   * **master**: The branch corresponding to the most recent version of all
-    container RFCs.
-
-  * **release/PATH-TO-SPEC/X.0.0**: A branch containing a one or more
-    backwards-incompatible major update to a container spec. This type of
-    branch should be rare as this will require all existing implementations to
-    be updated to match the new interface. Therefore as many breaking changes
-    as possible should be combined at once. An example of this type of breaking
-    change would be renaming an existing environment variable. These branches
-    should be merged into **master**.
-
-  * **release/PATH-TO-SPEC/X.Y.0**: A branch containing to one or more
-    backwards-compatible changes to a container specification. An example is an
-    additional environment variable provided to the container that may be
-    optionally used, and does not break existing implementations. This type of
-    branch should be considered with caution as once implemented, the removal
-    would result in a backwards-incompatible change. These branches should be
-    merged into **master**.
+    RFCs.
 
   * **feature/PATH-TO-SPEC/name-of-fix**: A branch corresponding to a minor or
-    major change to a spec. These should be merged into a release branch
+    major change to a spec. These should be merged into **master** upon
+    acceptance. The branch should update the version number in the relevant RFC
     depending on the type of change.
+
+    * **X.0.0**: A change containing a one or more backwards-incompatible major
+      update to a container spec. This type of branch should be rare as this
+      will require all existing implementations to be updated to match the new
+      interface. Therefore as many breaking changes as possible should be
+      combined at once. An example of this type of breaking change would be
+      renaming an existing environment variable.
+
+    * **X.Y.0**: A branch containing to one or more backwards-compatible
+      changes to a container specification. An example is an additional
+      environment variable provided to the container that may be optionally
+      used, and does not break existing implementations. This type of branch
+      should still be considered with caution as once implemented, the removal
+      would result in a backwards-incompatible change.
 
   * **fix/PATH-TO-SPEC/name-of-fix** or **fix/name-of-fix** A branch
     corresponding to a minor fix to an RFC. An example is a typo or rewording
-    of the text for clarity. These should be based off master and should be
-    merged quickly.
+    of the text for clarity. These should be based-off and merged into master
+    relatively quickly.
