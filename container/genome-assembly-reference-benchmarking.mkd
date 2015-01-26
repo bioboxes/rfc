@@ -1,0 +1,35 @@
+## Genome assembly reference-based benchmarking container
+
+  * Version: 0.8.0
+  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Outline
+
+This specification describes the interface for containerised software to
+evaluate a genome assembly in FASTQ format using a reference genome sequence in
+FASTQ format. Genome assemblers vary in efficacy and the quality of an assembly
+may be evaluated by comparing it to a higher quality reference of the same
+genome. In addition to the specifications described below, this container MUST
+implement all specifications defined in 'Generic bioinformatics container'.
+
+### Inputs
+
+* **CONT_CONTIGS_FILE**: This variable MUST be present in the container
+  environment. This specifies the absolute path of where the file containing
+  the genome assembly contigs can be found. The contigs file MUST be in FASTA
+  format.
+
+* **CONT_REFERENCE_FILE**: This variable MUST be present in the container
+  environment. This variable MUST specify the absolute path of the file
+  containing a FASTA formatted reference sequence from the same origin as the
+  **CONTIGS_FILE** contigs.
+
+* **CONT_OUTPUT_DIR**: This variable MUST be present in the container
+  environment. This variable specifies the absolute path of where the directories/files MUST
+  be created containing the metrics describing the reference genome assembly.
+
+### Outputs
+
+The container MUST generate files of metrics in the directory **$CONT_OUTPUT_DIR**
+from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
+using the reference sequence in the file **$CONT_REFERENCE_FILE**.
