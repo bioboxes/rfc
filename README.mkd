@@ -33,6 +33,7 @@ versioning follows [semantic versioning](semver.org):
     major change to a spec. These should be merged into a release branch
     depending on the type of change.
 
-  * **fix/PATH-TO-SPEC/name-of-fix**: A branch corresponding to a minor fix to
-    an RFC. An example is a typo or rewording of the text for clarity. These
-    should be based off master and should be merged quickly.
+  * **fix/PATH-TO-SPEC/name-of-fix** or **fix/name-of-fix** A branch
+    corresponding to a minor fix to an RFC. An example is a typo or rewording
+    of the text for clarity. These should be based off master and should be
+    merged quickly.
