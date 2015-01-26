@@ -76,48 +76,6 @@ This section describes the variables containing the paths to various databases.
    * Refseq
    * BLAST DBs
 
-## Short-read genome assembler container
-
-####Version:0.8
-
-####Maintainer: Michael Barton <mail@michaelbarton.me.uk>
-
-This specification describes the interface for containerised short-read genome
-assemblers. A genome assembler converts one or more FASTQ files of DNA short
-reads into larger contiguous ('contigs') regions of DNA. In addition to the
-specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'.
-
-### Inputs
-
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
-
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
-
-* **CONT_CONTIGS_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the generated contig sequences MUST be created. The created contigs file MUST
-  be in FASTA format.
-
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the container
-environment. Only one or both of these variables may be used. The container
-should decide which action to take and how to use the data to use based on the
-availability of these variables in the environment.
-
-### Outputs
-
-The container MUST generate a FASTA file of contigs in the location
-**$CONT_CONTIGS_FILE**.
 
 ## Reference-based genome assembly benchmarking container
 
