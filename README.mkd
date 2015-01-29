@@ -26,10 +26,13 @@ Flow](https://guides.github.com/introduction/flow/index.html) and the [Rust
 Language RFC process](https://github.com/rust-lang/rfcs). This process is
 lightweight to encourage others to submit patches.
 
-### Git branches
+### Updates to existing container specs
 
-The SIBCI RFC is structured around the following branches and the release
-versioning follows [semantic versioning](http://semver.org):
+The SIBCI RFC is development process is structured around Github branches and
+pull requests. Each container specification versioning follows [semantic
+versioning](http://semver.org). Each container spec has a named maintainer and
+all issues and pull requests should be assigned to them for initial assessment.
+Github branches should named as follows:
 
   * **master**: The branch corresponding to the most recent version of all
     RFCs.
