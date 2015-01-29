@@ -1,4 +1,4 @@
-<p align="center"> <img width="400px" src="https://github.com/SIBCI/logo/releases/download/v0.0/logo.png" /></p>
+<p align="center"> <img width="400px" src="https://raw.githubusercontent.com/SIBCI/logo/master/logo.png" /></p>
 
 ## Outline
 
