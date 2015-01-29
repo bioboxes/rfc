@@ -1,3 +1,26 @@
+<p align="center"> <img width="400px" src="https://raw.githubusercontent.com/SIBCI/logo/master/logo.png" /></p>
+
+## Outline
+
+Software containers have the potential to solve the common problem in
+bioinformatics where complex dependencies can make installing and using a tool
+difficult. Containerisation allows any developer to include all the required
+dependencies along with their tool to provide the end-user with everything they
+need to start using it.
+
+Two existing projects have taken advantage of this concept to benchmark
+bioinformatics software inside containers: [CAMI](http://cami-challenge.org/)
+and [nucleotid.es](http://nucleotid.es). We, the developers from these two
+projects, met to agree a standard so that containers created by one project
+would be usable by another through the same interface.
+
+The aim of this RFC is to create a standard for well-defined bioinformatics
+applications. This standard will put the users of bioinformatics software
+first, so that a community-agreed interface allows the use of different tools
+regardless of where or by whom it was developed. We welcome contributions and
+suggestions from other developers with aim of creating a standard that everyone
+can follow and agree on.
+
 ## Development process
 
 The SIBCI RFC process is loosely based on the [Github
@@ -5,10 +28,13 @@ Flow](https://guides.github.com/introduction/flow/index.html) and the [Rust
 Language RFC process](https://github.com/rust-lang/rfcs). This process is
 lightweight to encourage others to submit patches.
 
-### Git branches
+### Updates to existing container specs
 
-The SIBCI RFC is structured around the following branches and the release
-versioning follows [semantic versioning](http://semver.org):
+The SIBCI RFC is development process is structured around Github branches and
+pull requests. Each container specification versioning follows [semantic
+versioning](http://semver.org). Each container spec has a named maintainer and
+all issues and pull requests should be assigned to them for initial assessment.
+Github branches should named as follows:
 
   * **master**: The branch corresponding to the most recent version of all
     RFCs.
