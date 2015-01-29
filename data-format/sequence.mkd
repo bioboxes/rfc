@@ -1,8 +1,9 @@
 ## Specifications of bioinformatics file formats
 
-Version: 0.8
+  * Version:    0.8.1
+  * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
 
-### Introduction
+### Outline
 
 The purpose of this document is to describe the sequence FASTA/Q file formats
 used in the Standards for Interoperable Bioinformatics Container Interfaces
@@ -14,12 +15,6 @@ FASTQ or FASTA when used in other RFCs.
 
 [json]: https://tools.ietf.org/html/rfc7159
 [csv]: https://tools.ietf.org/html/rfc4180
-
-### Notational Conventions
-
-* The key words “MUST”, “MUST NOT”, “REQUIRED”, “SHALL”, “SHALL NOT”, “SHOULD”,
-  “SHOULD NOT”, “RECOMMENDED”, “MAY”, and “OPTIONAL” in this document are to be
-  interpreted as described in [RFC2119].
 
 ### FASTA
 

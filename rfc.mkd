@@ -1,17 +1,21 @@
 ## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
 
+  * Version: 0.8.1
+  * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
+
 ## Introduction
 
-The purpose of this document is provide a detailed specification for developers
-to write standardised bioinformatics containers. The goal of this document is
-to define a standard whereby bioinformatics software containers of the same
-type are interoperable and therefore can used interchangeably. The audience of
-this document are bioinformaticians and developers writing bioinformatics
-software shared using Linux containers. This document will describe the
-interface that MUST be provided to a running container and that a developer of
-the bioinformatics container MUST write their software against.
+The purpose of this subsequent documents is provide a detailed specification
+for developers to write standardised bioinformatics containers. The goal of
+this document is to define a standard whereby bioinformatics software
+containers of the same type are interoperable and therefore can used
+interchangeably. The audience of this document are bioinformaticians and
+developers writing bioinformatics software shared using Linux containers. This
+document will describe the interface that MUST be provided to a running
+container and that a developer of the bioinformatics container MUST write their
+software against.
 
-The scope of this document is bioinformatics software packaged using Linux
+The scope of this standard is bioinformatics software packaged using Linux
 containers. Bioinformatics software in a Linux container can be shared and
 provided to third parties because software dependencies are included within the
 container. Examples of bioinformatics software are genome assemblers, read
@@ -75,184 +79,6 @@ This section describes the variables containing the paths to various databases.
    * NCBI Genomes
    * Refseq
    * BLAST DBs
-
-## Short-read genome assembler container
-
-####Version:0.8
-
-####Maintainer: Michael Barton <mail@michaelbarton.me.uk>
-
-This specification describes the interface for containerised short-read genome
-assemblers. A genome assembler converts one or more FASTQ files of DNA short
-reads into larger contiguous ('contigs') regions of DNA. In addition to the
-specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'.
-
-### Inputs
-
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
-
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
-
-* **CONT_CONTIGS_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the generated contig sequences MUST be created. The created contigs file MUST
-  be in FASTA format.
-
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the container
-environment. Only one or both of these variables may be used. The container
-should decide which action to take and how to use the data to use based on the
-availability of these variables in the environment.
-
-### Outputs
-
-The container MUST generate a FASTA file of contigs in the location
-**$CONT_CONTIGS_FILE**.
-
-## Reference-based genome assembly benchmarking container
-
-####Version:0.8
-
-####Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-
-This specification describes the interface for containerised software to
-evaluate a genome assembly in FASTQ format using a reference genome sequence in
-FASTQ format. Genome assemblers vary in efficacy and the quality of an assembly
-may be evaluated by comparing it to a higher quality reference of the same
-genome. In addition to the specifications described below, this container MUST
-implement all specifications defined in 'Generic bioinformatics container'.
-
-### Inputs
-
-* **CONT_CONTIGS_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the genome assembly contigs can be found. The contigs file MUST be in FASTA
-  format.
-
-* **CONT_REFERENCE_FILE**: This variable MUST be present in the container
-  environment. This variable MUST specify the absolute path of the file
-  containing a FASTA formatted reference sequence from the same origin as the
-  **CONTIGS_FILE** contigs.
-
-* **CONT_OUTPUT_DIR**: This variable MUST be present in the container
-  environment. This variable specifies the absolute path of where the directories/files MUST
-  be created containing the metrics describing the reference genome assembly.
-
-### Outputs
-
-The container MUST generate files of metrics in the directory **$CONT_OUTPUT_DIR**
-from evaluating the quality of the assembly in the file **$CONT_CONTIGS_FILE**
-using the reference sequence in the file **$CONT_REFERENCE_FILE**.
-
-## Binning container
-
-####Version:0.8
-
-####Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-
-This specification describes the interface for containerised binning applications. 
-A binning application groups reads or contigs and/or assigns them to operational taxonomic units.
-In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'. 
-Furthermore all variables from the 'Database' section will be available.
-
-### Inputs
-
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
-
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
-
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to
-  FASTA contigs.
-
-* **CONT_BINNING_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](binning_spec.mkd).
-
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
-present in the container environment. One or more of these variables may be
-used. The container should decide which action to take and how to use the data
-to use based on the availability of these variables in the environment.
-
-
-### Outputs
-
-The container MUST generate a the binning file in the location **$CONT_BINNING_FILE**.
-
-## Profiling container
-
-####Version:0.8
-
-####Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
-
-This specification describes the interface for containerised profiling applications. 
-A profiling application gives an insight into the composition of the microbial community by 
-assigning percentage values to taxonomic identifiers.
-In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'. 
-Furthermore all variables from the 'Database' section will be available.
-
-### Inputs
-
-**CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
-
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
-
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to
-  FASTA contigs.
-
-* **CONT_PROFILING_FILES**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the files containing
-  the computed profiling and/or taxonomic groups MUST be created. The created
-  files MUST be in [PROFILING format](profiling_spec.mkd). Furthermore these 
-  files MUST be numbered beginning with 1 where the value corresponds to the 1-based
-  index in the text file whose path is specified by **CONT_CONTIGS_FILE_LISTING**.
-
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
-present in the container environment. One or more of these variables may be
-used. The container should decide which action to take and how to use the data
-to use based on the availability of these variables in the environment.
-
-### Outputs
-
-The container MUST generate a the binning file in the location **$CONT_PROFILING_FILE**.
 
 ## Normative References
 
