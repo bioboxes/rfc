@@ -8,7 +8,7 @@ lightweight to encourage others to submit patches.
 ### Git branches
 
 The SIBCI RFC is structured around the following branches and the release
-versioning follows [semantic versioning](semver.org):
+versioning follows [semantic versioning](http://semver.org):
 
   * **master**: The branch corresponding to the most recent version of all
     RFCs.
