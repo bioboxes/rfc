@@ -6,8 +6,7 @@
 ### Outline
 
 The purpose of this document is to describe the sequence FASTA/Q file formats
-used in the Standards for Interoperable Bioinformatics Container Interfaces
-(SIBCI) RFC. There is no formal definition for FASTA or FASTQ in the same way
+used in the bioboxes RFC. There is no formal definition for FASTA or FASTQ in the same way
 there are RFC definitions for [JSON][json] and [CSV][csv]. Furthermore it is
 beyond the scope of this document create a strict definition of either. Instead
 the community definitions for these formats are included to clarify the terms
