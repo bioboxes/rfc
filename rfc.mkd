@@ -1,4 +1,4 @@
-## Standards for Interoperable Bioinformatics Container Interfaces (SIBCI)
+## bioboxes - Standards for Interoperable Bioinformatics Containers
 
   * Version: 0.8.1
   * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
