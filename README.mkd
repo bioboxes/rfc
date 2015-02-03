@@ -1,4 +1,4 @@
-<p align="center"> <img width="400px" src="https://raw.githubusercontent.com/SIBCI/logo/master/logo.png" /></p>
+<p align="center"> <img width="400px" src="https://raw.githubusercontent.com/bioboxes/logo/master/logo.png" /></p>
 
 ## Outline
 
@@ -23,14 +23,14 @@ can follow and agree on.
 
 ## Development process
 
-The SIBCI RFC process is loosely based on the [Github
+The bioboxes RFC process is loosely based on the [Github
 Flow](https://guides.github.com/introduction/flow/index.html) and the [Rust
 Language RFC process](https://github.com/rust-lang/rfcs). This process is
 lightweight to encourage others to submit patches.
 
 ### Updates to existing container specs
 
-The SIBCI RFC is development process is structured around Github branches and
+The bioboxes RFC is development process is structured around Github branches and
 pull requests. Each container specification versioning follows [semantic
 versioning](http://semver.org). Each container spec has a named maintainer and
 all issues and pull requests should be assigned to them for initial assessment.
