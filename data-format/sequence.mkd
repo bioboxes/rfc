@@ -38,10 +38,11 @@ quoted directly.
 
 #### Formal Grammar
 
-A formal grammar for FASTA is described on [BioStar][biostar]. This is quoted
+A formal grammar using [Backus–Naur Form][bnf] for FASTA is described on [BioStar][biostar]. This is quoted
 below as a specification of the FASTA format.
 
 [biostar]: https://www.biostars.org/p/11254/#11255
+[bnf]: http://en.wikipedia.org/wiki/Backus%E2%80%93Naur_Form
 
     <file>     ::= <token> | <token> <file>
     <token>    ::= <ignore> | <seq>
@@ -101,7 +102,7 @@ FASTQ MUST use the Phred+33 quality offset described in the final paragraph.
 
 #### Formal Grammar
 
-[MAQ provides a formal grammar][2] to describe FASTQ. This definition is
+[MAQ provides a formal grammar][2] using [Backus–Naur Form][bnf] to describe FASTQ. This definition is
 provided below as a specification for FASTQ format.
 
     <fastq>   :=  <block>+
