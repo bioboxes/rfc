@@ -62,3 +62,16 @@ Github branches should named as follows:
     corresponding to a minor fix to an RFC. An example is a typo or rewording
     of the text for clarity. These should be based-off and merged into master
     relatively quickly.
+
+### Core team
+
+There is a core team who work on developing the bioboxes RFCs. The core team's
+goal is to develop the RFC and resolve issues. The members should generally be
+selected from those who are already actively involved in bioboxes. The size of
+the core team should be small to enable decisions to be made quickly. A core
+team member should be willing to:
+
+  * Actively follow, resolve issues and answer questions on the bioboxes github
+    issue tracker.
+  * Meet for a 30 minute teleconference on a biweekly basis to discuss the
+    progress of bioboxes.
