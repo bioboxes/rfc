@@ -23,9 +23,9 @@ specifications defined in 'Generic bioinformatics container'.
   This specifies the absolute to the file containing the true binning and/or taxonomic assignments.
   This file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format).
 
-* **CONT_CONTIGS_FILE_LISTING**: This variable MUST be present in the container
-  environment. It specifies the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths
+* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
+  environment. It specifies the absolute path of a text file, inside the
+  container. This file MUST contain a list of absolute paths
   beginning with a slash ('/'), or paths relative to this file, which points to
   FASTA contigs.
 
@@ -33,7 +33,7 @@ specifications defined in 'Generic bioinformatics container'.
   It specifies the path to a tab separated file with the scaffold name in the first column and the contig name in the second column.
   The sequence names have to be equal to the sequence names specified in the FASTA files listed in **CONT_CONTIGS_FILE_LISTING**. 
 
-* **CONT_NCBI_TAXONOMY**: This variable MUST be present in the container. It specifies the path
+* **CONT_NCBI_TAXONOMY**: This variable MAY be present in the container. It specifies the path
   to a directory with the ncbi [taxonomy database](ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz) containing .dmp files.
 
 * **CONT_OUTPUT_DIR**: This variable MUST be present in the container
