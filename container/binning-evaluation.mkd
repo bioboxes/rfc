@@ -19,7 +19,7 @@ specifications defined in 'Generic bioinformatics container'.
   the computed binning and/or taxonomic groups MUST be created. The created
   file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format).
 
-* **CONT_TRUE_BINNING_FILE**:This variable MUST be present in the container environment.
+* **CONT_TRUE_BINNING_FILE**: This variable MUST be present in the container environment.
   This specifies the absolute to the file containing the true binning and/or taxonomic assignments.
   This file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format).
 
@@ -42,4 +42,4 @@ specifications defined in 'Generic bioinformatics container'.
 
 ### Outputs
 
-The container MUST generate files of metrics in the directory $CONT_OUTPUT_DIR from evaluating the quality of the binning in the file $CONT_BINNING_FILE.
+The container MUST generate files of metrics in the directory **$CONT_OUTPUT_DIR** from evaluating the quality of the binning in the file **$CONT_BINNING_FILE**.
