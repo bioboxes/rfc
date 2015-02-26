@@ -5,8 +5,8 @@
 
 ###1.The profiling format specification
 
-The taxonomic profiling format was specified for the CAMI competition and is intended
-to serve as a standard format for taxonomic profiling methods.
+The taxonomic profiling format was specified for the CAMI competition and is
+intended to serve as a standard format for taxonomic profiling methods.
 
 It is a TAB-delimited text format consisting of a header section and an output
 section. The header must be prior the output. Header lines start with '@' or
