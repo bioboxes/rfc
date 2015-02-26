@@ -36,7 +36,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_PROFILING_FILES**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the files containing
   the computed profiling and/or taxonomic groups MUST be created. The created
-  files MUST be in [PROFILING format](profiling_spec.mkd). Furthermore these 
+  files MUST be in [PROFILING format](https://github.com/bioboxes/rfc/blob/master/data-format/profiling.mkd#the-profiling-output-format). Furthermore these 
   files MUST be numbered beginning with 1 where the value corresponds to the 1-based
   index in the text file whose path is specified by **CONT_CONTIGS_FILE_LISTING**.
 

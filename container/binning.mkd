@@ -35,7 +35,7 @@ Furthermore all variables from the 'Database' section will be available.
 * **CONT_BINNING_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](binning_spec.mkd).
+  file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format/binning_spec.mkd).
 
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
