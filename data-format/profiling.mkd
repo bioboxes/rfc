@@ -1,105 +1,153 @@
-## The Profiling Output Format 
+## Profiling Output Format 
 
-  * Version:    0.8.2
+  * Version:    0.9.1
   * Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
+  * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <johannes.droege@uni-duesseldorf.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
 
-###1.The profiling format specification
+###1. Outline
 
-The taxonomic profiling format was specified for the CAMI competition and is
-intended to serve as a standard format for taxonomic profiling methods.
+The taxonomic profiling format was originally specified for the CAMI contest
+and is intended to serve as a standard format for the output of
+taxonomic profiling methods.
 
-It is a TAB-delimited text format consisting of a header section and an output
-section. The header must be prior the output. Header lines start with '@' or
-'#' for comments, while output lines do not. 
+It is a TAB (`\t`) delimited text format consisting of a header section and an
+output section. The header section MUST be above the output section and header
+lines MUST start with `@` whereas output lines MUST NOT. Comment lines MUST
+start with `#` and MAY occur both in the header and output section. Empty lines
+MAY occur anywhere in the output for better readability. Only the UNIX newline
+character `\n` MUST be used to define the end of a line and the text MUST be
+valid UTF-8 encoding.
 
-Each output line has 4 mandatory fields: The TAXID, the RANK, TAXPATH and the
-PERCENTAGE. Further optional columns can be appended to the right.
+Files containing this data format should be named with the filename suffix `.profile`.
 
-###1.2 The header section
+Regular expressions, when provided, are given as specified in IEEE Std 1003.1™ ERE.
 
-The header section may contain comment lines, which begin with the character
-'#'. Each mandatory header line begins with the character '@'. If there is just
-one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG
-is a variable alphanumeric string that defines the content and the format of
-VALUE. Each of these header lines should match:
-/^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/.
-Though capitalisation can be used for readability, tags are regarded as case
-insensitive. 
+###2. Header section
 
-In this format version just the tag SAMPLEID and VERSION is required.
+Each header line MUST begin with the character `@`. A single `@` defines a
+key-value pair in the format **TAG:VALUE** where **TAG** MUST be an
+alphanumeric string. Tags are case insensitive but MAY be specified using upper
+and lower case letters for better readability. All tags MUST be unique per file.
+ **VALUE** MUST NOT contain characters other than alphanumerical and `,.;_-|`.
+More precisely, each non-empty and non-comment header line except for the last
+header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`
 
-  * SAMPLEID is a unique identifier for a sequence sample. Do not give a tool
-    name or your name here.
-  * VERSION This gives information about the profiling format version. You can
-    find the current version under the heading.
+The specification requires that the following header tags MUST be present:
 
-The last line in the header section begins with '@@' and includes tab-separated
-column tags, where TAG is a variable string that defined the conten and format
-for the output section. The order of the columns should match:
+  * **SAMPLEID**: **VALUE** is the sample identifier, not the generating user or
+  program name. It MUST match the regular expression `[A-Za-z0-9\._]+` and should
+  be unique for the set of relevant samples.
+  * **VERSION**: **VALUE** MUST specify the profiling format version in the heading
+  of this specification and MUST match the regular expression `[0-9\.]`
+  * **RANKS**: **VALUE** MUST specify a list of allowed ranks for the
+  taxa in the output section and ranks MUST be given in increasing order of their
+  distance from the taxonomy root. Each rank MUST be case-insensitive alphanumerical
+  string and each such entry MUST be separated from the previous entry by the '|'
+  character. Therefore, **VALUE** MUST match the regular expression `[A-Za-z]+(\|[A-Za-z]+)*`
+  For example, considering the major ranks in the NCBI taxonomy, VALUE could be
+  specified as `superkingdom|phylum|class|order|family|genus|species`.
 
-    TAXID	RANK TAXPATH	PERCENTAGE
+The following tags MAY be given:
 
-This line should also match:
+  * **TAXONOMYID**: **VALUE** specifies an identifier of the external taxonomy
+  which was used in the output section. **TAXID** values should be valid
+  taxon identifiers in this taxonomy.
+  
+Additional tags and values MAY be specified but each additional tag MUST be
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `__`.
 
-    /^\@\@[A-Za-z]+(\t[A-Za-z]+)+/
+The last header line MUST begin with `@@` and defines TAB-separated column tags,
+where each **TAG** MUST be a string matching the regular expression
+`[A-Za-z]+[A-Za-z0-9]*` and defines the content and format of values in the
+corresponding column of the output section. Tags are considered case-insensitive
+but MAY be specified using upper and lower case letters for better readability.
+The tags MUST be unique in this line. The leading tags and their corresponding
+order MUST be
+
+  * **TAXID**
+  * **RANK**
+  * **TAXPATH**
+  * **PERCENTAGE**
+
+except that **TAXPATH** MAY be followed by the optional tag **TAXPATHSN**.
+
+Additional columns MAY be appended to the right after **PERCENTAGE** but MUST be
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
+custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`
+
+The last header line MUST match the regular expression `^\@\@[Tt][Aa][Xx][Ii][Dd]\t[Rr][Aa][Nn][Kk]\t[Tt][Aa][Xx][Pp][Aa][Tt][Hh]\t([Tt][Aa][Xx][Pp][Aa][Tt][Hh][Ss][Nn]\t)?[Pp][Ee][Rr][Cc][Ee][Nn][Tt][Aa][Gg][Ee](\t([A-Za-z]*_[A-Za-z0-9]+)*$`
 
 For instance:
 
-  @@TAXID	RANK	TAXPATH	PERCENTAGE
+    @@TAXID	RANK	TAXPATH	PERCENTAGE
 
-  @@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
+or
 
-The last line is always the header for the output section and begins with '@@'.
-It defines the content of the output columns in a tab-separated format. The
-tags are described in the output section below.
+    @@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE
 
-###1.3 The Output section
+###3. Output section
 
-The TAXID specifies a unique alphanumeric ID for a node in a reference tree
-such as the NCBI taxonomy. This will be used for evaluation of your predictions
-with taxonomy-based measures. If you resolve to bins below existing taxonomic
-IDs in your reference tree, e.g. to resolve novel strains, you can append a
-numeric identifier to your classification, e.g. 5232.1(according to the
-provided taxonomy version from the download site).
+An output line MUST consist of TAB-separated fields and MUST correspond to
+the last header line definition. Each field MUST match the regular expression
+`[A-Za-z0-9,\.;,\(\)_\-\ ]*`. This specification defines the following field types:
 
-RANK includes alphanumeric identifiers that define ranks in the reference
-taxonomy at which the respective taxon is located. The used ranks in the NCBI
-taxonomy: superkingdom	phylum	class	order	family	genus	species	strain
+**TAXID**: Fields MUST correspond to unique alphanumeric taxon identifiers,
+for instance in the NCBI taxonomy. Each individual field MUST match the
+regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`
 
-The PERCENTAGE field specifies what percentage of the sample was assigned to
-the respective TAXID. The PERCENTAGE can be a real number between 0 and 100.
-The percentages given for all taxa from the same rank should sum up to <= 100%,
-that is, if something is unassigned, this will be reflected in a percentage of
-less than 100% being assigned.
+**RANK**: Fields are case-insensitive and MUST match one of the rank identifiers
+which MUST be given in the header TAG **RANKS** except when an empty rank field
+is specified for a leaf taxon which is below the ranks specified by **RANKS**.
+The **RANK** field specifies where the respective taxons given in **TAXID**,
+**TAXPATH** or **TAXPATHSN** are located.
 
-The TAXPATH and TAXPATH_SN tag is the path from the root of the reference
-taxonomy to the respective taxon, where alphanumeric identifiers such as the
-TAXIDs (TAXPATH) or the taxonomic names (TAXPATH_SN) for all taxa that lie on
-this path are included. We are not parsing this column for the competition but
-will use the distributed NCBI reference taxonomy version. Please ensure that
-your predictions comply with this version. Taxonomic identifers in the TAXPATH
-and TAXPATH_SV for different taxonomic ranks are separated by "|". If a TAXID
-is missing at a rank or there is no name, this can be marked with an empty
-entry in the TAXPATH and TAXPATH_SN "||". For partial paths from the root to an
-internal node, you only need to fill in the path until you reach the node.
+**PERCENTAGE**: Fields specify the relative genome abundance in terms of the
+genome copy number for the respective TAXID in the overall sample. Note that this
+is not identical to the relative abundance in terms of assigned base pairs.
+The PERCENTAGE can be a real number between 0 and 100 but MUST NOT exceed 6 digits
+after the decimal point, so it MUST matcht the regular expression
+`[0-9]+(\.[0-9]{0,6})?`. The sum of percentages given for all taxa from the same
+rank MUST NOT exceed 100, that is, if something is unassigned, this will be
+reflected in a percentage of less than 100% being assigned.
 
-    # Example for TAXPATH_SN:
+**TAXPATH** and **TAXPATHSN**: Fields specify the path from the root of the
+taxonomy to the respective taxon and MUST include the taxon which is given
+by **TAXID**. The path entries MUST be alphanumeric, **TAXPATH** entries MUST
+be taxon identifiers and **TAXPATHSN** entries should give the corresponding
+plain taxonomic names. All entries MUST be separated by a single `|` character
+and MUST be specified at the ranks and using their respective order as specified
+by the **RANKS** header tag. In particular, if the taxonomic path lacks a specified
+rank, this field MUST be left empty and would show as `||`. Empty trailing taxon entries
+MUST be omitted and the path MUST NOT end with `|`. Taxon entries which are not
+specified by the **RANKS** tag MAY only be appended to the right of a full path and
+MUST be refered to by an empty **RANK** field. Each **TAXPATH** and each **TAXPATHSN**
+field MUST match the regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+(\|[A-Za-z0-9\.;,\(\)_\-\ ])*`.
+If both **TAXPATH** and **TAXPATHSN** are given, then they MUST have the same number
+of taxon entries.
+
+For instance:
+
+    # Example for TAXPATHSN:
     Archaea|Thaumarchaeota|||Aigarchaeota archaeon JGI 0000001-A7
 
-    # Example for:
-    TAXPATH 2157|651137 |651142 |1104572 |1052838
+or
 
-Further fields with additional information can be appended to the right. Each
-output line should match:
+    # Example for TAXPATH:
+    2157|651137|651142|1104572|1052838
 
-    /^([A-Za-z0-9\|\_\s]\t)+([0-9]{0,3}\.[0-9]+)/
 
-###1.4 EXAMPLES
+###4. Example
 
-    # Submission for Taxonomic Profiling
+    # Taxonomic Profiling Output
     @SampleID:SAMPLEID
-    @Version:0.8
-    @@TAXID	RANK	TAXPATH	TAXPATH_SN	PERCENTAGE
+    @Version:0.9.1
+    @Ranks:superkingdom|phylum|class|order|family|genus|species
+    @TaxonomyID:ncbi-taxonomy_DATE
+    @@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE
     2	superkingdom	2	Bacteria	98.81211
     2157	superkingdom	2157	Archaea	1.18789
     1239	phylum	2|1239	Bacteria|Firmicutes	59.75801
