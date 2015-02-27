@@ -7,7 +7,7 @@
 ###1. Outline
 
 The taxonomic profiling format was originally specified for the CAMI contest
-and is intended to serve as a working standard format for the output of
+and is intended to serve as a standard format for the output of
 taxonomic profiling methods.
 
 It is a TAB (`\t`) delimited text format consisting of a header section and an
