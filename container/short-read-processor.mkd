@@ -26,7 +26,7 @@ implement the specifications defined in 'Generic bioinformatics container'.
   environment. If used this variable MUST specify the absolute path, inside the
   container, of a gzipped PAIRED FASTQ read file.
 
-* **OUTPUT_READ_FILE**: This variable MUST be present in the container
+* **OUTPUT_FASTQ_FILE**: This variable MUST be present in the container
   environment. This specifies the absolute path of where the file containing
   the processed reads MUST be created. The created contigs file MUST be in
   FASTQ format.
@@ -38,4 +38,4 @@ container MUST use enronment variable present to process the reads.
 ### Outputs
 
 The container MUST generate a FASTQ file of reads in the location
-**$OUTPUT_READ_FILE**.
+**$OUTPUT_FASTQ_FILE**.
