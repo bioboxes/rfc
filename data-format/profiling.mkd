@@ -30,7 +30,7 @@ alphanumeric string. Tags are case insensitive but MAY be specified using upper
 and lower case letters for better readability. All tags MUST be unique per file.
  **VALUE** MUST NOT contain characters other than alphanumerical and `,.;_-|`.
 More precisely, each non-empty and non-comment header line except for the last
-header line MUST match the regular expression `^\@([A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`
+header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`
 
 The specification requires that the following header tags MUST be present:
 
@@ -54,8 +54,9 @@ The following tags MAY be given:
   taxon identifiers in this taxonomy.
   
 Additional tags and values MAY be specified but each additional tag MUST be
-prefixed by a case-insensitive string, e.g. `CUSTOM_`, to avoid collisions when
-this specification is extended in the future.
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `__`.
 
 The last header line MUST begin with `@@` and defines TAB-separated column tags,
 where each **TAG** MUST be a string matching the regular expression
@@ -73,8 +74,10 @@ order MUST be
 except that **TAXPATH** MAY be followed by the optional tag **TAXPATHSN**.
 
 Additional columns MAY be appended to the right after **PERCENTAGE** but MUST be
-prefixed by a case-insensitive string, e.g. `CUSTOM_`. This means that each
-custom field MUST match the regular expression `[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
+custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`
 
 The last header line MUST match the regular expression `^\@\@[Tt][Aa][Xx][Ii][Dd]\t[Rr][Aa][Nn][Kk]\t[Tt][Aa][Xx][Pp][Aa][Tt][Hh]\t([Tt][Aa][Xx][Pp][Aa][Tt][Hh][Ss][Nn]\t)?[Pp][Ee][Rr][Cc][Ee][Nn][Tt][Aa][Gg][Ee](\t([A-Za-z]*_[A-Za-z0-9]+)*$`
 
@@ -97,8 +100,10 @@ for instance in the NCBI taxonomy. Each individual field MUST match the
 regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`
 
 **RANK**: Fields are case-insensitive and MUST match one of the rank identifiers
-which MUST be given in the header TAG **RANKS**. It specifies where the respective
-taxon given by **TAXID**, **TAXPATH** or **TAXPATHSN** is located.
+which MUST be given in the header TAG **RANKS** except when an empty rank field
+is specified for a leaf taxon which is below the ranks specified by **RANKS**.
+The **RANK** field specifies where the respective taxons given in **TAXID**,
+**TAXPATH** or **TAXPATHSN** are located.
 
 **PERCENTAGE**: Fields specify the relative genome abundance in terms of the
 genome copy number for the respective TAXID in the overall sample. Note that this
@@ -110,16 +115,19 @@ rank MUST NOT exceed 100, that is, if something is unassigned, this will be
 reflected in a percentage of less than 100% being assigned.
 
 **TAXPATH** and **TAXPATHSN**: Fields specify the path from the root of the
-taxonomy to the respective taxon, where alphanumeric identifiers such as the
-TAXIDs (**TAXPATH**) or plain taxonomic names (**TAXPATHSN**) for all taxa
-which lie on this path are included. The path entries MUST be separated by a
-single '|' character and MUST be specified at the ranks and using their
-respective order as specified by the **RANKS** header tag. In particular, if
-the taxonomic path lacks a specified rank, this field MUST be left empty and
-would show as "||". Empty trailing taxon entries MAY be omitted and taxon
-entries which are not specified by the **RANKS** tag MAY only be appended to
-the right of a full path. Each **TAXPATH** and each and **TAXPATHSN** field MUST
-match the regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+(\|[A-Za-z0-9\.;,\(\)_\-\ ]*)*`.
+taxonomy to the respective taxon and MUST include the taxon which is given
+by **TAXID**. The path entries MUST be alphanumeric, **TAXPATH** entries MUST
+be taxon identifiers and **TAXPATHSN** entries should give the corresponding
+plain taxonomic names. All entries MUST be separated by a single `|` character
+and MUST be specified at the ranks and using their respective order as specified
+by the **RANKS** header tag. In particular, if the taxonomic path lacks a specified
+rank, this field MUST be left empty and would show as `||`. Empty trailing taxon entries
+MUST be omitted and the path MUST NOT end with `|`. Taxon entries which are not
+specified by the **RANKS** tag MAY only be appended to the right of a full path and
+MUST be refered to by an empty **RANK** field. Each **TAXPATH** and each **TAXPATHSN**
+field MUST match the regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+(\|[A-Za-z0-9\.;,\(\)_\-\ ])*`.
+If both **TAXPATH** and **TAXPATHSN** are given, then they MUST have the same number
+of taxon entries.
 
 For instance:
 
