@@ -1,0 +1,41 @@
+## Short-read processor
+
+  * Version:    0.1.0
+  * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
+  * Validator:  FIXME
+  * Example:    FIXME
+
+### Outline
+
+This specification describes the interface for a short-read processor. This
+takes one FASTQ file of Illumina short reads and outputs one FASTQ file of
+short reads after they have been processed in some way. The types of processing
+may include normalisation, filtering a subset of reads, or trimming bases from
+the reads.
+
+In addition to the specifications described below, this container MUST
+implement the specifications defined in 'Generic bioinformatics container'.
+
+### Inputs
+
+* **CONT_FASTQ_FILE**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a gzipped FASTQ read file.
+
+* **CONT_PAIRED_FASTQ_FILE**: This variable MAY be present in the container
+  environment. If used this variable MUST specify the absolute path, inside the
+  container, of a gzipped PAIRED FASTQ read file.
+
+* **OUTPUT_READ_FILE**: This variable MUST be present in the container
+  environment. This specifies the absolute path of where the file containing
+  the processed reads MUST be created. The created contigs file MUST be in
+  FASTQ format.
+
+**Note!** At most, only one of the variables **CONT_FASTQ_FILE** or
+**CONT_PAIRED_FASTQ_FILE** MUST be present in the container environment. The
+container MUST use enronment variable present to process the reads.
+
+### Outputs
+
+The container MUST generate a FASTQ file of reads in the location
+**$OUTPUT_READ_FILE**.
