@@ -1,76 +1,89 @@
-## The Binning Output Format
+## Binning Output Format
 
-  * Version:    0.8.2
+  * Version:    0.9.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+  * Authors: CAMI-Challege organizers
 
-### 1.The binning format specification
+###1. Outline
 
-The binning format was specified for the CAMI competition and is intended to
-serve as a standard format for (taxonomic) binning methods. It is a
-TAB-delimited text format consisting of a header section and an output section.
-The header must be prior the output. Header lines start with '@' or '#' for
-comments, while output lines do not.
+The binning format was originally specified for the CAMI contest and is intended to
+serve as a standard format for (taxonomic) binning methods. 
 
-Each output line has 2 mandatory fields: The SEQUENCEID and either TAXID or
-BINID.
+It is a TAB (`\t`) delimited text format consisting of a header section and an output section.
+The header MUST be prior the output. Header lines start with `@` or `#` for
+comments, while output lines do not. Only the UNIX newline character `\n` MUST be used to define the end of a line and the text MUST be valid UTF-8 encoding.
 
-### 1.2 The header section
+Files containing this data format should be named with the filename suffix `.binning`.
 
-The header section may contain comment lines, which begin with the character
-'#'. Each mandatory header line begins with the character '@'. If there is just
-one '@', this is followed by a data field with the format 'TAG:VALUE' where TAG
+Each output line has 2 mandatory fields: The **SEQUENCEID** and either **TAXID** or
+**BINID**.
+
+Regular expressions, when provided, are given as specified in IEEE Std 1003.1™ ERE.
+
+###2. Header section
+
+The header section MAY contain comment lines, which begin with the character
+`#`. Each mandatory header line begins with the character `@`. If there is just
+one `@`, this is followed by a data field with the format **TAG:VALUE** where **TAG**
 is a variable alphanumeric string that defines the content and the format of
-VALUE. Each of these header lines should match:
-/^\@[A-Za-z0-9]+\:[A-Za-z0-9\s]+/ or /^\@[A-Za-z0-9\s]+\:[0-9]+\.[0-9]+/.
-Though capitalisation can be used for readability, tags are regarded as case
-insensitive.
+**VALUE**. **VALUE** MUST NOT contain characters other than alphanumerical and `,.;_-|`.
+More precisely, each non-empty and non-comment header line except for the last
+header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`. 
+Though capitalisation can be used for readability, tags are regarded as case insensitive.
 
-In this format version just the tag VERSION is required.
+The specification requires that the following header tag MUST be present:
 
-  * VERSION This gives information about the profiling format version. You can
-    find the current version under the heading.
+  * **VERSION**: **VALUE** MUST specify the profiling format version in the heading
+  of this specification and MUST match the regular expression `[0-9\.]`.
 
-The last line in the header section begins with '@@' and includes tab-separated
-column tags, where TAG is a variable string that defined the content and format
-for the output section. The order of the columns is not important. This line
-should match: /^\@\@[A-Za-z0-9]+(\t[A-Za-z0-9\_\s]+)+/ For instance, the
-following lists all defined tags:
+Additional tags and values MAY be specified but each additional tag MUST be
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `_`.
 
-    SEQUENCEID
-    BINID
-    TAXID
+The last header line MUST begin with `@@` and defines TAB-separated column tags,
+where each **TAG** MUST be a string matching the regular expression
+`[A-Za-z]+[A-Za-z0-9]*` and defines the content and format of values in the
+corresponding column of the output section. The following lists all defined tags:
 
-Further optional columns can be appended to the right.
+  * **SEQUENCEID**
+  * **BINID**
+  * **TAXID**
 
-  @@SEQUENCEID	TAXID
+Further optional columns can be appended to the right but MUST be 
+prefixed by a case-insensitive string with an underscore before and after the string,
+e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
+Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
+custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`
+
+For instance: 
+
+    @@SEQUENCEID	TAXID
 
 or
 
-  @@SEQUENCEID	BINID
+    @@SEQUENCEID	BINID
 or
 
-  @@SEQUENCEID	TAXID	BINID
+    @@SEQUENCEID	TAXID	BINID
 
 or
 
-  @@SEQUENCEID	TAXID	BINID	SCORE	MYCOLUMN2	MYCOLUMN3
+    @@SEQUENCEID	TAXID	BINID	_SCORE_	_MYCOLUMN2_	_MYCOLUMN3_
 
-The last line is always the header for the output section and begins with '@@'.
-It defines the content of the output columns in a tab-separated format. The
-mandatory tags are described in the output section below. Further optional
-columns with alphanumeric header tags can be appended to the right.
+###3. Output section
 
-### 1.3 The Output section
+An output line MUST consist of TAB-separated fields and MUST correspond to
+the last header line definition. Each field MUST match the regular expression
+`[A-Za-z0-9,\.;,\(\)_\-\ ]*`. This specification defines the following field types:
 
-Each output line should match: /^[A-Za-z0-9]+(\t[A-Za-z0-9]+(\.[0-9]+)?)+/
-SEQUENCEID specifies the ID of either a read or a contig sequence (depending on
-the sample).
+  * **SEQUENCEID** specifies the ID of either a read or a contig sequence (depending on
+    the sample).
 
-  * The TAXID is a taxonomic assignment for your binned sequences (according to
-    the provided taxonomy version from the download site) and will be used for
+  * The **TAXID** is a taxonomic assignment for binned sequences and will be used for
     evaluation of your predictions with taxonomy-based measures.
 
-  * The BINID entries can be arbitrary alphanumeric identifiers for the bins.
+  * The **BINID** entries can be arbitrary alphanumeric identifiers for the bins.
     No taxonomy-based evaluation will be performed using the entries in this
     column.
 
@@ -92,12 +105,12 @@ the TAXID entry and a numeric identifier appended (e.g. 562.2).
 
 Further columns with additional information can be appended to the right.
 
-### 1.4 EXAMPLES
+### 4 EXAMPLES
 
-1.4.A
+A
 ```
 #Format for Binning
-@Version:0.8
+@Version:0.9.0
 @@SEQUENCEID	TAXID
 read1201	123
 read1202	123
@@ -105,21 +118,21 @@ read1203	131564
 read1204	562
 read1205	562
 ```
-1.4.B
+B
 ```
 #Format for Binning
-@Version:0.8
-@@SEQUENCEID		BINID\n
+@Version:0.9.0
+@@SEQUENCEID		BINID
 read1201	12346BIN
 read1202	ANOTHERBIN
 read1203	BIN6
 read1204	BIN5
 read1205	BIN5
 ```
-1.4.C
+C
 ```
 #Format for Binning
-@Version:0.8
+@Version:0.9.0
 @@SEQUENCEID	TAXID	BINID
 read1201	123	123
 read1202	123	123
