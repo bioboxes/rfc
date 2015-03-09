@@ -1,0 +1,11 @@
+# Current and Previous Data Format Specifications
+
+This is a stub which lists and links the major spec versions in git history.
+
+## Profiling Output Format
+[Version 0.9](https://github.com/bioboxes/rfc/blob/b3b49b111704803e1427c82e2ecf87c5c8ffdfb9/data-format/profiling.mkd)
+
+## Binning Output Format
+
+## Bioinformatics File Formats
+[Version 0.8](https://github.com/bioboxes/rfc/blob/b3b49b111704803e1427c82e2ecf87c5c8ffdfb9/data-format/sequence.mkd)
