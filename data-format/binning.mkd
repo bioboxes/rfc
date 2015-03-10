@@ -38,7 +38,7 @@ The specification requires that the following header tags MUST be present:
 
   * **METHODTYPE**:**VALUE** MUST be either `ReferenceBased` or `AssemblyBased`
 
-  * **SAMPLEID**:is the sample identifier, not the generating user or program name. It MUST match the regular  expression `[A-Za-z0-9\._]+`.
+  * **SAMPLEID**:**VALUE** is the sample identifier, not the generating user or program name. It MUST match the regular  expression `[A-Za-z0-9\._]+`.
 
 Additional tags and values MAY be specified but each additional tag MUST be
 prefixed by a case-insensitive string with an underscore before and after the string,
@@ -113,6 +113,8 @@ A
 ```
 #Format for Binning
 @Version:0.9.0
+@SampleID:SAMPLEID
+@MethodType:AssemblyBased
 @@SEQUENCEID	TAXID
 read1201	123
 read1202	123
@@ -124,6 +126,8 @@ B
 ```
 #Format for Binning
 @Version:0.9.0
+@SampleID:SAMPLEID
+@MethodType:AssemblyBased
 @@SEQUENCEID		BINID
 read1201	12346BIN
 read1202	ANOTHERBIN
@@ -135,6 +139,8 @@ C
 ```
 #Format for Binning
 @Version:0.9.0
+@SampleID:SAMPLEID
+@MethodType:ReferenceBased
 @@SEQUENCEID	TAXID	BINID
 read1201	123	123
 read1202	123	123
