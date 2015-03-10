@@ -31,10 +31,14 @@ More precisely, each non-empty and non-comment header line except for the last
 header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`. 
 Though capitalisation can be used for readability, tags are regarded as case insensitive.
 
-The specification requires that the following header tag MUST be present:
+The specification requires that the following header tags MUST be present:
 
   * **VERSION**: **VALUE** MUST specify the profiling format version in the heading
   of this specification and MUST match the regular expression `[0-9\.]`.
+
+  * **METHODTYPE**:**VALUE** MUST be either `ReferenceBased` or `AssemblyBased`
+
+  * **SAMPLEID**:is the sample identifier, not the generating user or program name. It MUST match the regular  expression `[A-Za-z0-9\._]+`.
 
 Additional tags and values MAY be specified but each additional tag MUST be
 prefixed by a case-insensitive string with an underscore before and after the string,
@@ -90,18 +94,18 @@ the last header line definition. Each field MUST match the regular expression
 There are three different scenarios for binning tools.
 
 The first case, example A below: If you create taxonomic bins as output without
-further resolution, you do not need to include the BINID colummn, but only the
-TAXID column, in your output.
+further resolution, you do not need to include the **BINID** colummn, but only the
+**TAXID** column, in your output.
 
 The second case, example B below: If you create bins that do not include
-taxonomic assignments you do not need to include the TAXID column, but only the
-BINID column, in your output.
+taxonomic assignments you do not need to include the **TAXID** column, but only the
+**BINID** column, in your output.
 
 The third case, example C below, is if you perform taxonomic binning and
 additionally resolve bins below existing taxonomic IDs, e.g. to define bins
-representing novel strains. In this case, you add both the TAXID. It will be
-easiest to check for consistency for us, if you in this case use for the BINID
-the TAXID entry and a numeric identifier appended (e.g. 562.2).
+representing novel strains. In this case, you add both the **TAXID**. It will be
+easiest to check for consistency for us, if you in this case use for the **BINID**
+the **TAXID** entry and a numeric identifier appended (e.g. 562.2).
 
 Further columns with additional information can be appended to the right.
 
