@@ -2,7 +2,7 @@
 
   * Version:    0.9.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-  * Authors: CAMI-Challege organizers
+  * Authors: CAMI-Challenge organizers
 
 ###1. Outline
 
@@ -107,9 +107,7 @@ representing novel strains. In this case, you add both the **TAXID**. It will be
 easiest to check for consistency for us, if you in this case use for the **BINID**
 the **TAXID** entry and a numeric identifier appended (e.g. 562.2).
 
-Further columns with additional information can be appended to the right.
-
-### 4 EXAMPLES
+### 4. EXAMPLES
 
 A
 ```
