@@ -42,7 +42,6 @@ The following tags MAY be given:
   * **TAXONOMYID**: **VALUE** specifies an identifier of the external taxonomy
   which was used in the output section. **TAXID** values MUST be valid
   taxon identifiers in this taxonomy.
-  * **METHODTYPE**: **VALUE** MUST be either `ReferenceBased` or `AssemblyBased`.
 
 Additional tags and values MAY be specified but each additional tag MUST be
 prefixed by a case-insensitive string with an underscore before and after the string,
@@ -117,7 +116,6 @@ A
 #Format for Binning
 @Version:0.9.0
 @SampleID:SAMPLEID
-@MethodType:AssemblyBased
 @@SEQUENCEID	TAXID
 read1201	123
 read1202	123
@@ -130,7 +128,6 @@ B
 #Format for Binning
 @Version:0.9.0
 @SampleID:SAMPLEID
-@MethodType:AssemblyBased
 @@SEQUENCEID		BINID
 read1201	12346BIN
 read1202	ANOTHERBIN
@@ -143,7 +140,6 @@ C
 #Format for Binning
 @Version:0.9.0
 @SampleID:SAMPLEID
-@MethodType:ReferenceBased
 @@SEQUENCEID	TAXID	BINID
 read1201	123	123
 read1202	123	123
