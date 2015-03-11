@@ -2,48 +2,52 @@
 
   * Version:    0.9.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-  * Authors: CAMI-Challenge organizers
+  * Authors: CAMI challenge organizers
 
-###1. Outline
+### 1. Outline
 
-The binning format was originally specified for the CAMI contest and is intended to
-serve as a standard format for (taxonomic) binning methods. 
+The binning format was originally specified for the CAMI contest and is intended to serve as a standard format for (taxonomic) binning methods. 
 
-It is a TAB (`\t`) delimited text format consisting of a header section and an output section.
-The header MUST be prior the output. Header lines start with `@` or `#` for
-comments, while output lines do not. Only the UNIX newline character `\n` MUST be used to define the end of a line and the text MUST be valid UTF-8 encoding.
+It is a TAB (`\t`) delimited text format consisting of a header section and an
+output section. The header section MUST be above the output section and header
+lines MUST start with `@` whereas output lines MUST NOT. Comment lines MUST
+start with `#` and MAY occur both in the header and output section. Empty lines
+MAY occur anywhere in the output for better readability. Only the UNIX newline
+character `\n` MUST be used to define the end of a line and the text MUST be
+valid UTF-8 encoding.
 
 Files containing this data format should be named with the filename suffix `.binning`.
 
-Each output line has 2 mandatory fields: The **SEQUENCEID** and either **TAXID** or
-**BINID**.
-
 Regular expressions, when provided, are given as specified in IEEE Std 1003.1™ ERE.
 
-###2. Header section
+### 2. Header section
 
-The header section MAY contain comment lines, which begin with the character
-`#`. Each mandatory header line begins with the character `@`. If there is just
-one `@`, this is followed by a data field with the format **TAG:VALUE** where **TAG**
-is a variable alphanumeric string that defines the content and the format of
-**VALUE**. **VALUE** MUST NOT contain characters other than alphanumerical and `,.;_-|`.
+Each header line MUST begin with the character `@`. A single `@` defines a
+key-value pair in the format **TAG:VALUE** where **TAG** MUST be an
+alphanumeric string. Tags are case insensitive but MAY be specified using upper
+and lower case letters for better readability. All tags MUST be unique per file.
+ **VALUE** MUST NOT contain characters other than alphanumerical and `,.;_-|`.
 More precisely, each non-empty and non-comment header line except for the last
-header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`. 
-Though capitalisation can be used for readability, tags are regarded as case insensitive.
+header line MUST match the regular expression `^\@(_[A-Za-z]*_)?[A-Za-z]+[A-Za-z0-9]*\:[A-Za-z0-9,\.;_\|]*$`
 
 The specification requires that the following header tags MUST be present:
 
   * **VERSION**: **VALUE** MUST specify the profiling format version in the heading
   of this specification and MUST match the regular expression `[0-9\.]`.
 
-  * **METHODTYPE**:**VALUE** MUST be either `ReferenceBased` or `AssemblyBased`
+  * **SAMPLEID**: **VALUE** is the sample identifier, not the generating user or program name. It MUST match the regular  expression `[A-Za-z0-9\._]+`.
 
-  * **SAMPLEID**:**VALUE** is the sample identifier, not the generating user or program name. It MUST match the regular  expression `[A-Za-z0-9\._]+`.
+The following tags MAY be given:
+
+  * **TAXONOMYID**: **VALUE** specifies an identifier of the external taxonomy
+  which was used in the output section. **TAXID** values MUST be valid
+  taxon identifiers in this taxonomy.
+  * **METHODTYPE**: **VALUE** MUST be either `ReferenceBased` or `AssemblyBased`.
 
 Additional tags and values MAY be specified but each additional tag MUST be
 prefixed by a case-insensitive string with an underscore before and after the string,
 e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
-Empty prefixes MAY be used and mean that the tag starts with `_`.
+Empty prefixes MAY be used and mean that the tag starts with `__`.
 
 The last header line MUST begin with `@@` and defines TAB-separated column tags,
 where each **TAG** MUST be a string matching the regular expression
@@ -54,13 +58,16 @@ corresponding column of the output section. The following lists all defined tags
   * **BINID**
   * **TAXID**
 
+The format requires that **SEQEUNCEID** and at least one of **BINID** and **TAXID** MUST be given.
 Further optional columns can be appended to the right but MUST be 
 prefixed by a case-insensitive string with an underscore before and after the string,
 e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
 Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
-custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`
+custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`.
 
-For instance: 
+The last header line MUST match the regular expression `^\@\@[Ss][Ee][Qq][Ue][Ee][Nn][Cc][Ee][Ii][Dd](\t[Tt][Aa][Xx][Ii][Dd])?(\t[Bb][Ii][Nn][Ii][Dd])?(\t([A-Za-z]*_[A-Za-z0-9]+)*$`.
+
+For instance:
 
     @@SEQUENCEID	TAXID
 
@@ -73,9 +80,9 @@ or
 
 or
 
-    @@SEQUENCEID	TAXID	BINID	_SCORE_	_MYCOLUMN2_	_MYCOLUMN3_
+    @@SEQUENCEID	TAXID	BINID	__SCORE	_MY_COLUMN2	_MY_COLUMN3
 
-###3. Output section
+### 3. Output section
 
 An output line MUST consist of TAB-separated fields and MUST correspond to
 the last header line definition. Each field MUST match the regular expression
@@ -84,12 +91,12 @@ the last header line definition. Each field MUST match the regular expression
   * **SEQUENCEID** specifies the ID of either a read or a contig sequence (depending on
     the sample).
 
-  * The **TAXID** is a taxonomic assignment for binned sequences and will be used for
-    evaluation of your predictions with taxonomy-based measures.
+  * The **TAXID** field contains a taxonomic assignment for binned sequences corresponding to a taxonomy which should be refered to by the header tag **TaxonomyVersion**. Each individual field MUST match the
+regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`.
 
-  * The **BINID** entries can be arbitrary alphanumeric identifiers for the bins.
-    No taxonomy-based evaluation will be performed using the entries in this
-    column.
+  * The **BINID** fields MUST be arbitrary alphanumeric identifiers for each bin.
+
+### 4. EXAMPLES
 
 There are three different scenarios for binning tools.
 
@@ -103,11 +110,7 @@ taxonomic assignments you do not need to include the **TAXID** column, but only 
 
 The third case, example C below, is if you perform taxonomic binning and
 additionally resolve bins below existing taxonomic IDs, e.g. to define bins
-representing novel strains. In this case, you add both the **TAXID**. It will be
-easiest to check for consistency for us, if you in this case use for the **BINID**
-the **TAXID** entry and a numeric identifier appended (e.g. 562.2).
-
-### 4. EXAMPLES
+representing novel strains. In this case, you add both the **TAXID** and **BINID**.
 
 A
 ```
