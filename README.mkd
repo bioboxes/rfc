@@ -1,4 +1,4 @@
-<p align="center"> <img width="800px" src="https://raw.githubusercontent.com/bioboxes/logo/master/logo.png" /></p>
+<p align="center"> <img width="800px" src="https://raw.githubusercontent.com/bioboxes/logo/0c6bfccd2440ccf06356243ba71b32588ad40617/logo_light.png" /></p>
 
 ## Outline
 
