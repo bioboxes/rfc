@@ -1,6 +1,6 @@
 ## Short-read genome assembler container
 
-  * Version:    0.8.1
+  * Version:    0.9.0
   * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
 
 ### Outline
@@ -13,31 +13,108 @@ specifications defined in 'Generic bioinformatics container'.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
+#### General Definition
 
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
+A biobox requires an input YAML that the following definition 
 
-* **CONT_CONTIGS_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the generated contig sequences MUST be created. The created contigs file MUST
-  be in FASTA format.
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fastq: LIST
+  - fragment_size: LIST
+```
 
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING** MUST be present in the container
-environment. Only one or both of these variables may be used. The container
-should decide which action to take and how to use the data to use based on the
-availability of these variables in the environment.
+##### Description:
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the followowing fields 
+       * fastq
+       * fragment_size
+       
+       You can find a definition for every field below this section.
+
+##### Mounts:
+ * The .yaml MUST be mounted to /bbx/input/assembler.yaml.
+ * Your output directory MUST be mounted to /bbx/output.
+
+#### fastq definition: 
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: paired or single
+```
+
+##### Description:
+* **value**: Absolute paths beginning with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to the provided path.
+* **id**: A unique id for every entry in the fastq list.
+* **type**: Two options:
+      * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
+      * single: Single end fastq reads. 
+      
+#### fragment_size definition:
+```YAML
+- id: STRING,
+  value: NUMBER
+```
+
+##### Description:
+* **id**: The specified id MUST match exactly one entry in the fastq entry list.
+* **number**: Number for the fragment size.
 
 ### Outputs
+```YAML
+---
+version: 0.9.0
+arguments:
+  - value: STRING
+    type: CONTIG or SCAFFOLD
+```
 
-The container MUST generate a FASTA file of contigs in the location
-**$CONT_CONTIGS_FILE**.
+##### Description:
+This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+It can contain the following types: 
+
+#### CONTIG
+
+```YAML
+value: STRING
+type: CONTIG
+```
+
+##### Description:
+* **value**: This is the path to a fasta file containing the contigs relative to your mounted output directory.
+
+#### SCAFFOLD
+
+```YAML
+---
+value: STRING
+type: SCAFFOLD
+```
+
+##### Description:
+* value: This is the path to your fasta file containing a scaffold relative to your mounted output directory.
+ 
+### Example
+This is an example .yaml file:
+
+```YAML
+---
+version: X.Y.Z
+arguments:
+   - fastq:
+      - value: "/path/inside/the/container/to/lib1"
+        id: "pe_1"
+        type: paired_fastq
+      - value: "/path/inside/the/container/to/lib2"
+        id: "pe_2"
+        type: paired_fastq
+      - value: "/path/inside/the/container/to/lib2"
+        id: "lmp_1"
+        type: paired_fastq
+   - fragment_size:
+      - value: 240
+        id: pe_1
+      - value: 5000
+        id: lmp_1
+```
