@@ -9,8 +9,8 @@ This specification describes the interface for containerised profiling applicati
 A profiling application gives an insight into the composition of the microbial community by 
 assigning percentage values to taxonomic identifiers.
 In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'. 
-Furthermore all variables from the 'Database' section will be available.
+specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container). 
+Furthermore all variables from the ['Database'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#databases) section will be available.
 
 ### Inputs
 
