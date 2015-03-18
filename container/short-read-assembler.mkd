@@ -27,7 +27,7 @@ arguments:
 
 ##### Description:
 * **version**: The current version is specified directly under the heading.
-* **arguments**: The arguments field consists out of the followowing fields 
+* **arguments**: The arguments field consists out of the following fields 
        * fastq
        * fragment_size
        
@@ -64,15 +64,13 @@ arguments:
 ### Outputs
 ```YAML
 ---
-version: 0.9.0
-arguments:
-  - value: STRING
-    type: CONTIG or SCAFFOLD
+version: NUMBER.NUMBER.NUMBER
+arguments: LIST
 ```
 
 ##### Description:
 This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
-It MAY contain the following types: 
+It MAY contain the following fields: 
 
 #### CONTIG
 
@@ -100,7 +98,7 @@ This is an example .yaml file:
 
 ```YAML
 ---
-version: X.Y.Z
+version: 0.9.0
 arguments:
    - fastq:
       - value: "/path/inside/the/container/to/lib1"
