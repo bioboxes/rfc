@@ -9,7 +9,7 @@ This specification describes the interface for containerised short-read genome
 assemblers. A genome assembler converts one or more FASTQ files of DNA short
 reads into larger contiguous ('contigs') regions of DNA. In addition to the
 specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'.
+specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container).
 
 ### Inputs
 
@@ -72,7 +72,7 @@ arguments:
 
 ##### Description:
 This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
-It can contain the following types: 
+It MAY contain the following types: 
 
 #### CONTIG
 
