@@ -42,3 +42,5 @@ team member should be willing to:
     issue tracker.
   * Meet for a 30 minute teleconference on a biweekly basis to discuss the
     progress of bioboxes.
+
+Join the chat at https://gitter.im/bioboxes/rfc
