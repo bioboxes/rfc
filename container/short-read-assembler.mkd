@@ -14,6 +14,7 @@
 * Outputs
    * CONTIG
    * SCAFFOLD
+* Signature
 * Example
 
 ### Outline
@@ -105,7 +106,15 @@ type: SCAFFOLD
 
 ##### Description:
 * value: This is the path to your fasta file containing a scaffold relative to your mounted output directory.
- 
+
+### Signature
+Any biobox based assembler accepts the following signature:
+
+`f: [fastq A], [Maybe fragment_size A] -> fasta B`
+
+where
+   * `Maybe` indicates an optional value
+
 ### Example
 This is an example .yaml file:
 
