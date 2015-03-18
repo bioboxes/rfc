@@ -3,6 +3,19 @@
   * Version:    0.9.0
   * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
 
+### Contents
+* Outline
+* Inputs
+   * General Definition
+      * Description
+      * Mounts
+   * fastq
+   * fragment_size
+* Outputs
+   * CONTIG
+   * SCAFFOLD
+* Example
+
 ### Outline
 
 This specification describes the interface for containerised short-read genome
