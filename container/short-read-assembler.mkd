@@ -12,8 +12,7 @@
    * fastq
    * fragment_size
 * Outputs
-   * CONTIG
-   * SCAFFOLD
+   * fasta
 * Signature
 * Example
 
@@ -76,38 +75,37 @@ arguments:
 * **number**: Number for the fragment size.
 
 ### Outputs
+
+#### General Definition
+
+##### Description:
+This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+
 ```YAML
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments: LIST
 ```
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the fasta field
 
-##### Description:
-This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
-It MAY contain the following fields: 
-
-#### CONTIG
+#### fasta definition:
 
 ```YAML
-value: STRING
-type: CONTIG
+- value: STRING
+  id: STRING or NUMBER
+  type: contig or scaffold
 ```
 
 ##### Description:
 * **value**: This is the path to a fasta file containing the contigs relative to your mounted output directory.
-
-#### SCAFFOLD
-
-```YAML
----
-value: STRING
-type: SCAFFOLD
-```
-
-##### Description:
-* value: This is the path to your fasta file containing a scaffold relative to your mounted output directory.
+* **id**: A unique id for every entry in the fasta list.
+* **type**: Two options:
+  * **contig**
+  * **scaffold**
 
 ### Signature
+
 Any biobox based assembler accepts the following signature:
 
 `f: [fastq A], [Maybe fragment_size A] -> fasta B`
