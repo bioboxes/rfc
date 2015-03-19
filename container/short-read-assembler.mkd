@@ -49,6 +49,7 @@ arguments:
 ##### Mounts:
  * The .yaml MUST be mounted to /bbx/input/assembler.yaml.
  * Your output directory MUST be mounted to /bbx/output.
+ * Your input files MUST be mounted to /bbx/input. 
 
 #### fastq definition: 
 ```YAML
@@ -58,7 +59,7 @@ arguments:
 ```
 
 ##### Description:
-* **value**: Absolute paths beginning with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to the provided path.
+* **value**: Relative paths MUST not begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
 * **id**: A unique id for every entry in the fastq list.
 * **type**: Two options:
       * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
@@ -78,16 +79,18 @@ arguments:
 
 #### General Definition
 
-##### Description:
-This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
-
 ```YAML
 ---
 version: NUMBER.NUMBER.NUMBER
-arguments: LIST
+arguments: 
+    - fasta: LIST
 ```
+
+##### Description:
+This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+
 * **version**: The current version is specified directly under the heading.
-* **arguments**: The arguments field consists out of the fasta field
+* **arguments**: The arguments field consists out of the **fasta** field
 
 #### fasta definition:
 
@@ -122,13 +125,13 @@ This is an example .yaml file:
 version: 0.9.0
 arguments:
    - fastq:
-      - value: "/path/inside/the/container/to/lib1"
+      - value: "path/to/lib1"
         id: "pe_1"
         type: paired_fastq
-      - value: "/path/inside/the/container/to/lib2"
+      - value: "path/to/lib2"
         id: "pe_2"
         type: paired_fastq
-      - value: "/path/inside/the/container/to/lib2"
+      - value: "path/to/lib2"
         id: "lmp_1"
         type: paired_fastq
    - fragment_size:
