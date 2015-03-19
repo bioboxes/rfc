@@ -106,9 +106,10 @@ arguments: LIST
 
 ### Signature
 
-Any biobox based assembler accepts the following signature:
+Any biobox based assembler accepts at least one of the following signatures:
 
-`f: [fastq A], [Maybe fragment_size A] -> fasta B`
+1. `[fastq A], [Maybe fragment_size A] -> contigs B, scaffolds C`
+2. `[fastq A], [fragment_size A] -> contigs B, scaffolds C`
 
 where
    * `Maybe` indicates an optional value
