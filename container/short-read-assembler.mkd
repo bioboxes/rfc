@@ -59,7 +59,7 @@ arguments:
 ```
 
 ##### Description:
-* **value**: Relative paths MUST not begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **value**: Relative path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
 * **id**: A unique id for every entry in the fastq list.
 * **type**: Two options:
       * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
@@ -125,13 +125,13 @@ This is an example .yaml file:
 version: 0.9.0
 arguments:
    - fastq:
-      - value: "path/to/lib1"
+      - value: "/path/to/lib1"
         id: "pe_1"
         type: paired_fastq
-      - value: "path/to/lib2"
+      - value: "/path/to/lib2"
         id: "pe_2"
         type: paired_fastq
-      - value: "path/to/lib2"
+      - value: "/path/to/lib2"
         id: "lmp_1"
         type: paired_fastq
    - fragment_size:
