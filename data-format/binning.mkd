@@ -1,6 +1,6 @@
 ## Binning Output Format
 
-  * Version:    0.9.0
+  * Version:    0.9.1
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
   * Authors: CAMI challenge organizers
 
