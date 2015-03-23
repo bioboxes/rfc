@@ -3,9 +3,10 @@
 This is a stub which lists and links the major spec versions in git history.
 
 ## Profiling Output Format
-[Version 0.9](https://github.com/bioboxes/rfc/blob/b3b49b111704803e1427c82e2ecf87c5c8ffdfb9/data-format/profiling.mkd)
+[Version 0.9](https://github.com/bioboxes/rfc/blob/aca1a5b3e042ae6df3310626ec96394433a4f466/data-format/profiling.mkd)
 
 ## Binning Output Format
+[Version 0.9](https://github.com/bioboxes/rfc/blob/4bb19a633a6a969c2332f1f298852114c5f89b1b/data-format/binning.mkd)
 
 ## Bioinformatics File Formats
 [Version 0.8](https://github.com/bioboxes/rfc/blob/b3b49b111704803e1427c82e2ecf87c5c8ffdfb9/data-format/sequence.mkd)
