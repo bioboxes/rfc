@@ -64,8 +64,6 @@ e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the 
 Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
 custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`.
 
-The last header line MUST match the regular expression `^\@\@[Ss][Ee][Qq][Ue][Ee][Nn][Cc][Ee][Ii][Dd](\t[Tt][Aa][Xx][Ii][Dd])?(\t[Bb][Ii][Nn][Ii][Dd])?(\t([A-Za-z]*_[A-Za-z0-9]+)*$`.
-
 For instance:
 
     @@SEQUENCEID	TAXID
