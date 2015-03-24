@@ -87,7 +87,7 @@ arguments:
 ```
 
 ##### Description:
-This yaml will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+This yaml with the name `output.yaml` will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
 
 * **version**: The current version is specified directly under the heading.
 * **arguments**: The arguments field consists out of the **fasta** field
