@@ -1,0 +1,16 @@
+# Current and Previous Container Specifications
+
+This is a list of permanent links to the latest major specification versions in the git history.
+
+## Assembly
+[Assembly container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/short-read-assembler.mkd)
+
+[Assembly reference-based benchmarking container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/genome-assembly-reference-benchmarking.mkd)
+
+## Binning
+[Binning container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/binning.mkd)
+
+[Binning evaluation container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/binning-evaluation.mkd)
+
+## Profiling
+[Profiling container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/profiling.mkd)
