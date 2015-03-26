@@ -1,6 +1,6 @@
 # Current and Previous Data Format Specifications
 
-This is a stub which lists and links the major spec versions in git history.
+This is a list of permanent links to the latest major specification versions in the git history.
 
 ## Profiling Output Format
 [Version 0.9](https://github.com/bioboxes/rfc/blob/aca1a5b3e042ae6df3310626ec96394433a4f466/data-format/profiling.mkd)
