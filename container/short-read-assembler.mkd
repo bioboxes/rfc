@@ -47,7 +47,7 @@ arguments:
        You can find a definition for every field below this section.
 
 ##### Mounts:
- * The .yaml MUST be mounted to /bbx/input/assembler.yaml.
+ * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
  * Your output directory MUST be mounted to /bbx/output.
  * Your input files MUST be mounted to /bbx/input. 
 
