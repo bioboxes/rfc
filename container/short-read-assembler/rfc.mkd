@@ -59,7 +59,7 @@ arguments:
 ```
 
 ##### Description:
-* **value**: Relative path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
 * **id**: A unique id for every entry in the fastq list.
 * **type**: Two options:
       * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
