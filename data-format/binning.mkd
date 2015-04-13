@@ -1,6 +1,6 @@
 ## Binning Output Format
 
-  * Version:    0.9.0
+  * Version:    0.9.1
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
   * Authors: CAMI challenge organizers
 
@@ -63,8 +63,6 @@ prefixed by a case-insensitive string with an underscore before and after the st
 e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
 Empty prefixes MAY be used and mean that the tag starts with `__`. This means that each
 custom field MUST match the regular expression `_[A-Za-z]*_[A-Za-z]+[A-Za-z0-9]*`.
-
-The last header line MUST match the regular expression `^\@\@[Ss][Ee][Qq][Ue][Ee][Nn][Cc][Ee][Ii][Dd](\t[Tt][Aa][Xx][Ii][Dd])?(\t[Bb][Ii][Nn][Ii][Dd])?(\t([A-Za-z]*_[A-Za-z0-9]+)*$`.
 
 For instance:
 

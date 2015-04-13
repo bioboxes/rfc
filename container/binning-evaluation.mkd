@@ -10,7 +10,7 @@ A binning evaluation application should validate the assigned [BIN and/or TAXID 
 of a binning container.
 
 In addition to the specifications described below, this container MUST implement the
-specifications defined in 'Generic bioinformatics container'. 
+specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container). 
 
 ### Inputs
 
