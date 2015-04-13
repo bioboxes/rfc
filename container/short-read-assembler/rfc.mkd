@@ -1,0 +1,142 @@
+## Short-read genome assembler container
+
+  * Version:    0.9.0
+  * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
+
+### Contents
+* Outline
+* Inputs
+   * General Definition
+      * Description
+      * Mounts
+   * fastq
+   * fragment_size
+* Outputs
+   * fasta
+* Signature
+* Example
+
+### Outline
+
+This specification describes the interface for containerised short-read genome
+assemblers. A genome assembler converts one or more FASTQ files of DNA short
+reads into larger contiguous ('contigs') regions of DNA. In addition to the
+specifications described below, this container MUST implement the
+specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container).
+
+### Inputs
+
+#### General Definition
+
+A biobox requires an input YAML that the following definition 
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fastq: LIST
+  - fragment_size: LIST
+```
+
+##### Description:
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the following fields 
+       * fastq
+       * fragment_size
+       
+       You can find a definition for every field below this section.
+
+##### Mounts:
+ * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
+ * Your output directory MUST be mounted to /bbx/output.
+ * Your input files MUST be mounted to /bbx/input. 
+
+#### fastq definition: 
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: paired or single
+```
+
+##### Description:
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **id**: A unique id for every entry in the fastq list.
+* **type**: Two options:
+      * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
+      * single: Single end fastq reads. 
+      
+#### fragment_size definition:
+```YAML
+- id: STRING,
+  value: NUMBER
+```
+
+##### Description:
+* **id**: The specified id MUST match exactly one entry in the fastq entry list.
+* **number**: Number for the fragment size.
+
+### Outputs
+
+#### General Definition
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments: 
+    - fasta: LIST
+```
+
+##### Description:
+This yaml with the name `biobox.yaml` will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the **fasta** field
+
+#### fasta definition:
+
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: contig or scaffold
+```
+
+##### Description:
+* **value**: This is the path to a fasta file containing the contigs relative to your mounted output directory.
+* **id**: A unique id for every entry in the fasta list.
+* **type**: Two options:
+  * **contig**
+  * **scaffold**
+
+### Signature
+
+Any biobox based assembler accepts at least one of the following signatures:
+
+1. `[fastq A], [Maybe fragment_size A] -> contigs B, scaffolds C`
+2. `[fastq A], [fragment_size A] -> contigs B, scaffolds C`
+
+where
+   * `Maybe` indicates an optional value
+
+### Example
+This is an example biobox.yaml file:
+
+```YAML
+---
+version: 0.9.0
+arguments:
+   - fastq:
+      - value: "/path/to/lib1"
+        id: "pe_1"
+        type: paired_fastq
+      - value: "/path/to/lib2"
+        id: "pe_2"
+        type: paired_fastq
+      - value: "/path/to/lib2"
+        id: "lmp_1"
+        type: paired_fastq
+   - fragment_size:
+      - value: 240
+        id: pe_1
+      - value: 5000
+        id: lmp_1
+```
