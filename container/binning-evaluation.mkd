@@ -1,8 +1,21 @@
 ## Binning evaluation container
 
- * Version:    0.8.0
+ * Version:    0.9.0
  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
+### Contents
+
+* Outline
+* Inputs
+  * General definition
+     * Description 
+     * Mounts
+  * binning
+  * scaffold_contig_mapping
+  * ncbi_taxonomy
+* Outputs 
+* Example
+* 
 ### Outline
 
 This specification describes the interface for containerised binning evaluation applications. 
@@ -12,34 +25,108 @@ of a binning container.
 In addition to the specifications described below, this container MUST implement the
 specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container). 
 
+
 ### Inputs
 
-* **CONT_BINNING_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format).
+#### General Definition
 
-* **CONT_TRUE_BINNING_FILE**: This variable MUST be present in the container environment.
-  This specifies the absolute to the file containing the true binning and/or taxonomic assignments.
-  This file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format).
+A biobox requires an input YAML that the following definition 
 
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
-  environment. It specifies the absolute path of a text file, inside the
-  container. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which points to
-  FASTA contigs.
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fasta: LIST (one entry)
+  - binning: LIST (two entries)
+  - scaffold_contig_mapping (one entry)
+  - ncbi_taxonomy (one entry)
+```
 
-* **CONT_SCAFFOLD_CONTIG_MAPPING**: This variable MAY be present in the container environment. 
-  It specifies the path to a tab separated file with the scaffold name in the first column and the contig name in the second column.
-  The sequence names have to be equal to the sequence names specified in the FASTA files listed in **CONT_CONTIGS_FILE_LISTING**. 
+##### Description:
 
-* **CONT_NCBI_TAXONOMY**: This variable MAY be present in the container. It specifies the path
-  to a directory with the ncbi [taxonomy database](ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz) containing .dmp files.
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the following fields 
+       * fasta
+       * binning
+       * scaffold_contig_mapping
+       * ncbi_taxonomy       
+       
+       You can find a definition for every field below this section.
 
-* **CONT_OUTPUT_DIR**: This variable MUST be present in the container
-  environment. This variable specifies the absolute path of where the directories/files MUST
-  be created containing the metrics describing the binning quality.
+##### Mounts:
+ * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
+ * Your output directory MUST be mounted to /bbx/output.
+ * Your input files MUST be mounted to /bbx/input. 
+
+#### fasta definition:
+
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: contig or scaffold
+```
+
+##### Description:
+* **value**: This is the path to a fasta file containing the contigs relative to your mounted output directory.
+* **id**: A unique id for every entry in the fasta list.
+* **type**: Two options:
+  * **contig**
+  * **scaffold**
+
+#### binning definition:
+
+```YAML
+- value: STRING
+  type: Boolean
+```
+
+##### Description:
+* **value**: This is the path to a [binning file](https://github.com/pbelmann/rfc/blob/master/data-format/binning.mkd).
+* **type**: Type represents a boolean:
+  * **true** : Binning file contains the true binning and/or taxonomic assignments.
+  * **false** : Binning file contains the computed binning and/or taxonomic groups.
+
+#### scaffold_contig_mapping definition:
+
+```YAML
+- value: STRING
+```
+
+##### Description:
+
+* **value**: This specifies the path to a tab separated file with the scaffold name in the first column and the contig name in the second column. The sequence names have to be equal to the sequence names specified in the FASTA file.
+
+#### ncbi_taxonomy definition:
+
+```YAML
+- value: STRING
+```
+
+##### Description:
+
+* **value**: This specifies the path to a directory with the ncbi [taxonomy database](ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz) containing .dmp files.
 
 ### Outputs
 
-The container MUST generate files of metrics in the directory **$CONT_OUTPUT_DIR** from evaluating the quality of the binning in the file **$CONT_BINNING_FILE**.
+The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/pbelmann/rfc/blob/master/data-format/binning.mkd).
+
+### Example for input biobox.yaml
+
+```YAML
+---
+version: 0.9.0
+arguments:
+   - fasta:
+      - value: "/path/to/lib1"
+        id: "pe_1"
+        type: contig
+   - binning:
+      - value: "/path/to/binning/file"
+        type: false
+      - value: "/path/to/true/binning/file"
+        type: true
+   - scaffold_contig_mapping:
+      - value: "/path/to/binning/file/mapping"
+   - ncbi_taxonomy
+      - value: "/path/to/ncbi/taxonomy"
+```
