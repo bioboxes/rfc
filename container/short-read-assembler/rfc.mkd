@@ -1,6 +1,6 @@
 ## Short-read genome assembler container
 
-  * Version:    0.9.0
+  * Version:    0.9.1
   * Maintainer: Michael Barton <mail@michaelbarton.me.uk>
 
 ### Contents
@@ -28,7 +28,7 @@ specifications defined in ['Generic bioinformatics container'](https://github.co
 
 #### General Definition
 
-A biobox requires an input YAML that the following definition 
+A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml) schema. 
 
 ```YAML
 ---
