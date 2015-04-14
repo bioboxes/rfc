@@ -15,7 +15,7 @@
   * ncbi_taxonomy
 * Outputs 
 * Example
-* 
+
 ### Outline
 
 This specification describes the interface for containerised binning evaluation applications. 
