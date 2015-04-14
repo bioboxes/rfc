@@ -15,7 +15,7 @@
   * ncbi_taxonomy
 * Outputs 
 * Example
-* 
+
 ### Outline
 
 This specification describes the interface for containerised binning evaluation applications. 
@@ -38,8 +38,8 @@ version: NUMBER.NUMBER.NUMBER
 arguments:
   - fasta: LIST (one entry)
   - binning: LIST (two entries)
-  - scaffold_contig_mapping (one entry)
-  - ncbi_taxonomy (one entry)
+  - scaffold_contig_mapping: (one entry)
+  - ncbi_taxonomy: (one entry)
 ```
 
 ##### Description:
@@ -127,6 +127,6 @@ arguments:
         type: true
    - scaffold_contig_mapping:
       - value: "/path/to/binning/file/mapping"
-   - ncbi_taxonomy
+   - ncbi_taxonomy:
       - value: "/path/to/ncbi/taxonomy"
 ```
