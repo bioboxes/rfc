@@ -31,7 +31,7 @@ A biobox requires an input YAML that follows the below definition and is valid a
 version: NUMBER.NUMBER.NUMBER
 arguments:
   - fastq: LIST
-  - fasta: LIST
+  - fasta: LIST (one entry)
 ```
 
 ##### Description:
