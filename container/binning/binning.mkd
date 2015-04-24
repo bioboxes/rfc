@@ -11,6 +11,8 @@
       * Mounts
    * fasta
    * fastq
+   * database
+   * cache
 * Outputs
    * binning
 * Signature
@@ -18,8 +20,7 @@
 
 ### Outline
 
-This specification describes the interface for containerised binning applications. A binning application groups reads or contigs and/or assigns them to operational taxonomic units. In addition to the specifications described below, this container MUST implement the specifications defined in 'Generic bioinformatics container'. Furthermore all variables from the 'Database' section will be available.
-
+This specification describes the interface for containerised binning applications. A binning application groups reads or contigs and/or assigns them to operational taxonomic units. In addition to the specifications described below, this container MUST implement the specifications defined in 'Generic bioinformatics container'.
 ### Inputs
 
 #### General Definition
@@ -30,8 +31,11 @@ A biobox requires an input YAML that follows the below definition and is valid a
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments:
+  - fasta:
+      value: STRING
+      id: STRING
+      type: STRING
   - fastq: LIST
-  - fasta: LIST (one entry)
   - databases: LIST
   - cache: STRING
 ```
@@ -42,6 +46,7 @@ arguments:
        * fasta
        * fastq
        * databases
+       * cache
        You can find a definition for every field below this section.
 
 ##### Mounts:
@@ -67,7 +72,7 @@ arguments:
 #### fasta definition:
 
 ```YAML
-- value: STRING
+  value: STRING
   id: STRING or NUMBER
   type: contig or scaffold
 ```
@@ -98,7 +103,7 @@ arguments:
 #### cache definition:
 
 ```YAML
-- value: STRING
+  value: STRING
 ```
 
 ##### Description:
@@ -112,7 +117,9 @@ arguments:
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments: 
-    - binning: LIST (one entry)
+    - binning:
+       value: STRING
+       type: Boolean
 ```
 
 ##### Description:
@@ -124,7 +131,7 @@ This yaml with the name `biobox.yaml` will be available on a successful run and 
 #### binning definition:
 
 ```YAML
-- value: STRING
+  value: STRING
   type: Boolean
 ```
 
@@ -138,8 +145,8 @@ This yaml with the name `biobox.yaml` will be available on a successful run and 
 
 Any biobox based assembler accepts at least one of the following signatures:
 
-1. `[fasta A] -> binning B`
-2. `[fastq A] -> binning B`
+1. `fasta A -> binning B`
+2. `fasta A, [fastq B] -> binning C`
 
 ### Example
 This is an example biobox.yaml file:
@@ -149,10 +156,7 @@ This is an example biobox.yaml file:
 version: 0.9.0
 arguments:
    - fasta:
-      - value: "/path/to/lib1"
+        value: "/path/to/lib1"
         id: "pe_1"
-        type: paired_fastq
-      - value: "/path/to/lib2"
-        id: "pe_2"
         type: paired_fastq
 ```
