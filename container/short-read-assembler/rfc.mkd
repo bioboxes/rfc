@@ -127,13 +127,13 @@ arguments:
    - fastq:
       - value: "/path/to/lib1"
         id: "pe_1"
-        type: paired_fastq
+        type: paired
       - value: "/path/to/lib2"
         id: "pe_2"
-        type: paired_fastq
+        type: paired
       - value: "/path/to/lib2"
         id: "lmp_1"
-        type: paired_fastq
+        type: paired
    - fragment_size:
       - value: 240
         id: pe_1
