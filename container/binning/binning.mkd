@@ -33,6 +33,7 @@ arguments:
   - fastq: LIST
   - fasta: LIST (one entry)
   - databases: LIST
+  - cache: STRING
 ```
 
 ##### Description:
@@ -78,7 +79,6 @@ arguments:
   * **contig**
   * **scaffold**
 
-
 #### databases definition:
 
 ```YAML
@@ -94,6 +94,15 @@ arguments:
   * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
   * **[ncbi_genomes](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_genomes.txt)**
   * **[ncbi_taxonomy](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_taxonomy.txt)**
+
+#### cache definition:
+
+```YAML
+- value: STRING
+```
+
+##### Description:
+* **value**: Path to a writeable mounted directory. If mounted the tool will place intermediate results in this directory and reuse them on a second run.
 
 ### Outputs
 
