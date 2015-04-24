@@ -31,7 +31,7 @@ specifications defined in ['Generic bioinformatics container'](https://github.co
 
 #### General Definition
 
-A biobox requires an input YAML that the following definition 
+A biobox requires an input YAML with the following definition 
 
 ```YAML
 ---
@@ -45,7 +45,7 @@ arguments:
      - value: STRING
        type: true
      - value: STRING
-       type: false
+       type: assignments
   - scaffold_contig_mapping: STRING
   - database: LIST 
 ```
@@ -85,14 +85,14 @@ arguments:
 
 ```YAML
 - value: STRING
-  type: Boolean
+  type: STRING
 ```
 
 ##### Description:
 * **value**: This is the path to a [binning file](https://github.com/pbelmann/rfc/blob/master/data-format/binning.mkd).
 * **type**: Type represents a boolean:
   * **true** : Binning file contains the true binning and/or taxonomic assignments.
-  * **false** : Binning file contains the computed binning and/or taxonomic groups.
+  * **assigments** : Binning file contains the computed binning and/or taxonomic groups.
 
 #### scaffold_contig_mapping definition:
 
@@ -135,8 +135,8 @@ arguments:
         id: "pe_1"
         type: contig
    - binning:
-      - value: "/path/to/binning/file"
-        type: false
+      - value: "/path/to/assigned/binning/file"
+        type: assignments
       - value: "/path/to/true/binning/file"
         type: true
    - scaffold_contig_mapping: "/path/to/binning/file/mapping"
