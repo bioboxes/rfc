@@ -12,7 +12,7 @@
      * Mounts
   * binning
   * scaffold_contig_mapping
-  * ncbi_taxonomy
+  * databases
 * Outputs 
 * Example
 
@@ -56,7 +56,7 @@ arguments:
        * fasta
        * binning
        * scaffold_contig_mapping
-       * ncbi_taxonomy       
+       * databases       
        
        You can find a definition for every field below this section.
 
@@ -103,16 +103,21 @@ arguments:
 
 * This specifies the path to a tab separated file with the scaffold name in the first column and the contig name in the second column. The sequence names have to be equal to the sequence names specified in the FASTA file.
 
-#### database definition:
+#### databases definition:
 
 ```YAML
- - value: STRING
-   type: ncbi_taxonomy 
+- value: STRING
+  type: STRING
 ```
 
 ##### Description:
-
-* **value**: This specifies the path to a directory with the ncbi [taxonomy database](ftp://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz) containing .dmp files.
+* **value**: Path to a database directory.
+* **type**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
+  * **[refseq](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/refseq.txt)**  
+  * **[blastdb](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/blastdb.txt)**
+  * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
+  * **[ncbi_genomes](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_genomes.txt)**
+  * **[ncbi_taxonomy](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_taxonomy.txt)**
 
 ### Outputs
 
