@@ -10,6 +10,7 @@
   * General definition
      * Description 
      * Mounts
+  * fasta
   * binning
   * scaffold_contig_mapping
   * databases
@@ -130,7 +131,7 @@ The biobox produces on a successful run a `biobox.yaml` and can be found in the 
 version: 0.9.0
 arguments:
    - fasta:
-      - value: "/path/to/lib1"
+        value: "/path/to/lib1"
         id: "pe_1"
         type: contig
    - binning:
@@ -138,8 +139,8 @@ arguments:
         type: false
       - value: "/path/to/true/binning/file"
         type: true
-   - scaffold_contig_mapping:
-      - value: "/path/to/binning/file/mapping"
-   - ncbi_taxonomy:
+   - scaffold_contig_mapping: "/path/to/binning/file/mapping"
+   - databases:
       - value: "/path/to/ncbi/taxonomy"
+        type: ncbi_taxonomy 
 ```
