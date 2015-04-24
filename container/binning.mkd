@@ -1,49 +1,145 @@
 ## Binning container
 
- * Version:    0.8.1
- * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+  * Version:    0.9.1
+  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Contents
+* Outline
+* Inputs
+   * General Definition
+      * Description
+      * Mounts
+   * fasta
+   * fastq
+* Outputs
+   * binning
+* Signature
+* Example
 
 ### Outline
 
-This specification describes the interface for containerised binning applications. 
-A binning application groups reads or contigs and/or assigns them to operational taxonomic units.
-In addition to the specifications described below, this container MUST implement the
-specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container). 
-Furthermore all variables from the ['Database'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#databases) section will be available.
+This specification describes the interface for containerised binning applications. A binning application groups reads or contigs and/or assigns them to operational taxonomic units. In addition to the specifications described below, this container MUST implement the specifications defined in 'Generic bioinformatics container'. Furthermore all variables from the 'Database' section will be available.
 
 ### Inputs
 
-* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths beginning
-  with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
-  Only one FASTQ file path MUST appear per line. These files MUST contain FASTQ reads.
+#### General Definition
 
-* **CONT_PAIRED_FASTQ_FILE_LISTING**: This variable MAY be present in the
-  container environment. If used this variable MUST specify the absolute path,
-  inside the container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to gzipped
-  PAIRED FASTQ files. Only one FASTQ file path MUST appear per line. These files MUST
-  contain PAIRED FASTQ reads.
+A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml) schema. 
 
-* **CONT_CONTIGS_FILE_LISTING**: This variable MAY be present in the container
-  environment. If used this variable MUST specify the absolute path, inside the
-  container, of a text file. This file MUST contain a list of absolute paths
-  beginning with a slash ('/'), or paths relative to this file, which point to
-  FASTA contigs.
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fastq: LIST
+  - fasta: LIST (one entry)
+```
 
-* **CONT_BINNING_FILE**: This variable MUST be present in the container
-  environment. This specifies the absolute path of where the file containing
-  the computed binning and/or taxonomic groups MUST be created. The created
-  file MUST be in [BINNING format](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format/binning_spec.mkd).
+##### Description:
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the following fields 
+       * fasta
+       * fastq
+       
+       You can find a definition for every field below this section.
 
-**Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
-**CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
-present in the container environment. One or more of these variables may be
-used. The container should decide which action to take and how to use the data
-to use based on the availability of these variables in the environment.
+##### Mounts:
+ * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
+ * Your output directory MUST be mounted to /bbx/output.
+ * Your input files MUST be mounted to /bbx/input. 
+
+#### fastq definition: 
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: paired or single
+```
+
+##### Description:
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **id**: A unique id for every entry in the fastq list.
+* **type**: Two options:
+      * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
+      * single: Single end fastq reads. 
+ 
+
+#### fasta definition:
+
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: contig or scaffold
+```
+
+##### Description:
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTA file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **id**: A unique id for every entry in the fasta list.
+* **type**: Two options:
+  * **contig**
+  * **scaffold**
+
+
+#### binning definition:
+
+```YAML
+- value: STRING
+  type: Boolean (must be false)
+```
+
+##### Description:
+* **value**: This is the path to a binning file.
+* **type**: Two options:
+  * **true** Binning file contains the true binning and/or taxonomic assignments.
+  * **false** Binning file contains the computed binning and/or taxonomic groups.
 
 ### Outputs
 
-The container MUST generate a binning file in the location
-**$CONT_BINNING_FILE**.
+#### General Definition
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments: 
+    - binning: LIST (one entry)
+```
+
+##### Description:
+This yaml with the name `biobox.yaml` will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the **binning** field
+
+#### binning definition:
+
+```YAML
+- value: STRING
+  type: Boolean
+```
+
+##### Description:
+* **value**: This is the path to a binning file relative to your mounted output directory.
+* **type**: Two options:
+  * **true** Binning file contains the true binning and/or taxonomic assignments.
+  * **false** Binning file contains the computed binning and/or taxonomic groups.
+
+### Signature
+
+Any biobox based assembler accepts at least one of the following signatures:
+
+1. `[fasta A] -> binning B`
+2. `[fastq A] -> binning B`
+
+### Example
+This is an example biobox.yaml file:
+
+```YAML
+---
+version: 0.9.0
+arguments:
+   - fasta:
+      - value: "/path/to/lib1"
+        id: "pe_1"
+        type: paired_fastq
+      - value: "/path/to/lib2"
+        id: "pe_2"
+        type: paired_fastq
+```
