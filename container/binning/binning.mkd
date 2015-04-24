@@ -32,6 +32,7 @@ version: NUMBER.NUMBER.NUMBER
 arguments:
   - fastq: LIST
   - fasta: LIST (one entry)
+  - databases: LIST
 ```
 
 ##### Description:
@@ -39,7 +40,7 @@ arguments:
 * **arguments**: The arguments field consists out of the following fields 
        * fasta
        * fastq
-       
+       * databases
        You can find a definition for every field below this section.
 
 ##### Mounts:
@@ -76,20 +77,6 @@ arguments:
 * **type**: Two options:
   * **contig**
   * **scaffold**
-
-
-#### binning definition:
-
-```YAML
-- value: STRING
-  type: Boolean (must be false)
-```
-
-##### Description:
-* **value**: This is the path to a binning file.
-* **type**: Two options:
-  * **true** Binning file contains the true binning and/or taxonomic assignments.
-  * **false** Binning file contains the computed binning and/or taxonomic groups.
 
 ### Outputs
 
