@@ -93,7 +93,7 @@ arguments:
 
 ##### Description:
 * **value**: Path to a database directory.
-* **type**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
+* **id**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
   * **[refseq](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/refseq.txt)**  
   * **[blastdb](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/blastdb.txt)**
   * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
