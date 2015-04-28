@@ -65,7 +65,7 @@ definitions:
       - "databases"
     properties: 
       databases: 
-        $ref: "#/definitions/values"
+        $ref: "#/definitions/database_values"
   values: 
     type: "array"
     uniqueItems: true
@@ -79,4 +79,23 @@ definitions:
       properties: 
         id: {}
         type: {}
+        value: {}
+  database_values: 
+    type: "array"
+    uniqueItems: true
+    minItems: 1
+    items: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "id"
+        - "value"
+      properties: 
+        id: 
+          enum: 
+            - "ncbi_taxonomy"
+            - "refseq"
+            - "blastdb"
+            - "cog"
+            - "ncbi_genomes"
         value: {}
