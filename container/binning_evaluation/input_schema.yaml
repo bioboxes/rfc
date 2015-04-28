@@ -1,0 +1,103 @@
+---
+$schema: "http://json-schema.org/draft-04/schema#"
+title: "Bioboxes binning input file validator"
+type: "object"
+properties: 
+  version: 
+    type: "string"
+    pattern: "^0.9.\\d+$"
+  arguments: 
+    type: "array"
+    minItems: 1
+    maxItems: 4
+    uniqueItems: true
+    items: 
+      - 
+        $ref: "#/definitions/fasta"
+      - 
+        $ref: "#/definitions/binning"
+    additionalItems: 
+      anyOf: 
+        - 
+          $ref: "#/definitions/scaffold_contig_mapping"
+        - 
+          $ref: "#/definitions/databases"
+required: 
+  - "version"
+  - "arguments"
+additionalProperties: false
+definitions: 
+  fasta: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "fasta"
+    properties: 
+      fasta: 
+        type: "object"
+        additionalProperties: false
+        required: 
+          - "id"
+          - "value"
+        properties: 
+          id: {}
+          type: {}
+          value: {}
+  binning: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "binning"
+    properties: 
+      binning: 
+        $ref: "#/definitions/binning_values"
+  scaffold_contig_mapping: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "scaffold_contig_mapping"
+    properties: 
+      scaffold_contig_mapping: {}
+  databases: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "databases"
+    properties: 
+      databases: 
+        $ref: "#/definitions/database_values"
+  database_values: 
+    type: "array"
+    uniqueItems: true
+    minItems: 1
+    items: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "id"
+        - "value"
+      properties: 
+        id: 
+          enum: 
+            - "ncbi_taxonomy"
+            - "refseq"
+            - "blastdb"
+            - "cog"
+            - "ncbi_genomes"
+        value: {}
+  binning_values: 
+    type: "array"
+    uniqueItems: true
+    minItems: 1
+    items: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "type"
+        - "value"
+      properties: 
+        type: 
+          enum: 
+            - "assignments"
+            - true
+        value: {}
