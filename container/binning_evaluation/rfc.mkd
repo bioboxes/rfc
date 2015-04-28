@@ -107,7 +107,7 @@ arguments:
 
 ```YAML
  - value: STRING
-   type: ncbi_taxonomy 
+   id: ncbi_taxonomy 
 ```
 
 ##### Description:
@@ -135,6 +135,7 @@ arguments:
         type: true
    - scaffold_contig_mapping:
       - value: "/path/to/binning/file/mapping"
-   - ncbi_taxonomy:
-      - value: "/path/to/ncbi/taxonomy"
+   - databases:
+      - id: "ncbi_taxonomy"
+        value: "/path/to/ncbi/taxonomy"
 ```
