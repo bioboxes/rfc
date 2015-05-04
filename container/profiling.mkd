@@ -1,6 +1,6 @@
 ## Profiling container
 
- * Version:    0.8.1
+ * Version:    0.8.2
  * Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
 
 ### Outline
@@ -14,7 +14,7 @@ Furthermore all variables from the ['Database'](https://github.com/bioboxes/rfc/
 
 ### Inputs
 
-**CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
+* **CONT_FASTQ_FILE_LISTING**: This variable MAY be present in the container
   environment. If used this variable MUST specify the absolute path, inside the
   container, of a text file. This file MUST contain a list of absolute paths beginning
   with a slash ('/'), or paths relative to this file, which point to gzipped FASTQ files.
@@ -38,7 +38,8 @@ Furthermore all variables from the ['Database'](https://github.com/bioboxes/rfc/
   the computed profiling and/or taxonomic groups MUST be created. The created
   files MUST be in [PROFILING format](https://github.com/bioboxes/rfc/blob/master/data-format/profiling.mkd#the-profiling-output-format). Furthermore these 
   files MUST be numbered beginning with 1 where the value corresponds to the 1-based
-  index in the text file whose path is specified by **CONT_CONTIGS_FILE_LISTING**.
+  index in the text file whose path is specified either by **CONT_FASTQ_FILE_LISTING**,
+  **CONT_PAIRED_FASTQ_FILE_LISTING** or **CONT_CONTIGS_FILE_LISTING**.
 
 **Note!** At least one of the variables **CONT_FASTQ_FILE_LISTING**,
 **CONT_PAIRED_FASTQ_FILE_LISTING**, or **CONT_CONTIGS_FILE_LISTING** MUST be
