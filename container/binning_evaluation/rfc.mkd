@@ -47,7 +47,7 @@ arguments:
      - value: STRING
        type: assignments
   - scaffold_contig_mapping: STRING
-  - database: LIST 
+  - databases: LIST 
 ```
 
 ##### Description:
