@@ -10,3 +10,6 @@ This is a list of permanent links to the latest major specification versions in 
 
 ## Bioinformatics File Formats
 [Version 0.8](https://github.com/bioboxes/rfc/blob/b3b49b111704803e1427c82e2ecf87c5c8ffdfb9/data-format/sequence.mkd)
+
+## Evaluation Output Format
+[Version 0.1](https://github.com/bioboxes/rfc/blob/5f5305300f4609e5b4b477e6184a5d231455ebd0/data-format/evaluation.mkd)
