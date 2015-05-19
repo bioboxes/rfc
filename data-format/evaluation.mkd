@@ -4,9 +4,7 @@
 *  Maintainer: Peter Belmann pbelmann@cebitec.uni-bielefeld.de
 *  Authors: Ivan Gregor Ivan.Gregor@uni-duesseldorf.de, Johannes Dröge johannes.droege@uni-duesseldorf.de, Michael Barton mail@michaelbarton.me.uk, Peter Belmann pbelmann@cebitec.uni-bielefeld.de
 
-An evaluation container should produce a yaml file that consists out of an array of outputs an evaluation method will produce. 
-Please see below for a description.
-
+This document contains a definition for a yaml that is produced by an evaluation container.  
 
 ### General Definition
 
