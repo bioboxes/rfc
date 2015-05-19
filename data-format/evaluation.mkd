@@ -17,89 +17,47 @@ version: NUMBER.NUMBER.NUMBER
 results: ARRAY
 ```
 
-* version **(Required)**: Version number must match the regular expression `[0-9\.]` 
+* version: Version number must match the regular expression `[0-9\.]` 
 
-* results **(Required)**: The results property must have an array as value. Each results item consists out of the 
+* results: The results property must have an array as value. Each results item consists out of the 
 following properties:
 
 ### Results Item
 
-* title **(Required)**: 
+* name: 
 
   Title is an arbitrary String.
 
-* type **(Required)**
+* type:
 
   Type attribute has the following structure:
 
 ```YAML
-  type:
-    name: txt|png|html|tsv|csv
-    options: OPTIONS
+  type: txt|png|html|tsv|csv
 ```
   
-  * name **(Required)**
-   
-    Name must be one of the types:
-   
-    * txt
-  
-    * png 
-  
-    * html
-  
-    * tsv
-  
-    * csv
-    
-  * options 
-   
-    The option parameter can have multiple properties. The following properties are allowed: 
+* value:
 
-      * separator: The value for this is a String that represents the separation between the data. 
+  If the **inline** property is false then the value is the absolute path to a file.
+  If the **inline** property is true then the value contains the metric. 
 
-* data **(Required)**
+* description
 
-  The data field is just allowed to have one property and that must be one of the following:
-
-  * reference: 
-  
-    The reference property indicates that the data for this type is in another file. The value is always an absolute path to the file.
-
-  * inline: 
-   
-    Inline property contains the data for this type. 
-
-* description **(Required)**
-
-  Description for the evaluation method. The value for this field must be one of the following:
-
-  * reference: 
-  
-    The reference property indicates that the description for this type is in another file. 
-    The value is always an absolute path to the file.
-
-  * inline: 
-   
-    Inline property contains the description for this type. 
+  Description for the evaluation method.
 
 ## Example
 
 ```YAML
 version: 0.1.0
 results:
-  - title: text1
-    type:
-      name: txt
-      options:
-       separator: "\t"
-    data:
-      inline: my text
-  - title: text2
-    type:
-      name: txt
-    description:
-      inline: my description
-    data:
-      reference: /path/to/reference1
+  - name: N50
+    description: N50 is the length for which the collection of all contigs of that length or longer covers at least half an assembly.
+    value: 42
+    type: txt
+    inline:true
+  - name: my metric
+    type: csv
+    inline: false
+    description: Method that produces confusion matrices
+    value: /path/to/file 
 ```
