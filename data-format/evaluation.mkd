@@ -1,0 +1,62 @@
+# Evaluation Output Specification
+
+*  Version: 0.1.0
+*  Maintainer: Peter Belmann pbelmann@cebitec.uni-bielefeld.de
+*  Authors: Ivan Gregor Ivan.Gregor@uni-duesseldorf.de, Johannes Dröge johannes.droege@uni-duesseldorf.de, Michael Barton mail@michaelbarton.me.uk, Peter Belmann pbelmann@cebitec.uni-bielefeld.de
+
+This document contains a definition for a yaml that is produced by an evaluation container.  
+
+### General Definition
+
+This YAML has the following structure: 
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+results: ARRAY
+```
+
+* version: Version number must match the regular expression `[0-9\.]` 
+
+* results: The results property must have an array as value. Each results item consists out of the 
+following properties:
+
+### Results Item
+
+* name: 
+
+  Title is an arbitrary String.
+
+* type:
+
+  Type attribute has the following structure:
+
+```YAML
+  type: txt|png|html|tsv|csv
+```
+  
+* value:
+
+  If the **inline** property is false then the value is the absolute path to a file.
+  If the **inline** property is true then the value contains the metric. 
+
+* description
+
+  Description for the evaluation method.
+
+## Example
+
+```YAML
+version: 0.1.0
+results:
+  - name: N50
+    description: N50 is the length for which the collection of all contigs of that length or longer covers at least half an assembly.
+    value: 42
+    type: txt
+    inline:true
+  - name: my metric
+    type: csv
+    inline: false
+    description: Method that produces confusion matrices
+    value: /path/to/file 
+```
