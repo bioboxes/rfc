@@ -132,14 +132,13 @@ This yaml with the name `biobox.yaml` will be available on a successful run and 
 
 ```YAML
   value: STRING
-  type: Boolean
+  type: assignments
 ```
 
 ##### Description:
 * **value**: This is the path to a binning file relative to your mounted output directory.
-* **type**: Two options:
-  * **true** Binning file contains the true binning and/or taxonomic assignments.
-  * **false** Binning file contains the computed binning and/or taxonomic groups.
+* **type**
+  * **assignments** : Binning file contains the computed binning and/or taxonomic groups.
 
 ### Signature
 
@@ -158,5 +157,5 @@ arguments:
    - fasta:
         value: "/path/to/lib1"
         id: "pe_1"
-        type: paired_fastq
+        type: paired
 ```
