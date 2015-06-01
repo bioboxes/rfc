@@ -1,0 +1,101 @@
+---
+$schema: "http://json-schema.org/draft-04/schema#"
+title: "Bioboxes binning input file validator"
+type: "object"
+properties: 
+  version: 
+    type: "string"
+    pattern: "^0.9.\\d+$"
+  arguments: 
+    type: "array"
+    minItems: 1
+    maxItems: 4
+    uniqueItems: true
+    items: 
+      - 
+        $ref: "#/definitions/fasta"
+    additionalItems: 
+      anyOf: 
+        - 
+          $ref: "#/definitions/fastq"
+        - 
+          $ref: "#/definitions/databases"
+        - 
+          $ref: "#/definitions/cache"
+required: 
+  - "version"
+  - "arguments"
+additionalProperties: false
+definitions: 
+  fasta: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "fasta"
+    properties: 
+      fasta: 
+        type: "object"
+        additionalProperties: false
+        required: 
+          - "id"
+          - "value"
+        properties: 
+          id: {}
+          type: {}
+          value: {}
+  fastq: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "fastq"
+    properties: 
+      fastq: 
+        $ref: "#/definitions/values"
+  cache: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "cache"
+    properties: 
+      cache: {}
+  databases: 
+    type: "object"
+    additionalProperties: false
+    required: 
+      - "databases"
+    properties: 
+      databases: 
+        $ref: "#/definitions/database_values"
+  values: 
+    type: "array"
+    uniqueItems: true
+    minItems: 1
+    items: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "id"
+        - "value"
+      properties: 
+        id: {}
+        type: {}
+        value: {}
+  database_values: 
+    type: "array"
+    uniqueItems: true
+    minItems: 1
+    items: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "id"
+        - "value"
+      properties: 
+        id: 
+          enum: 
+            - "ncbi_taxonomy"
+            - "refseq"
+            - "blastdb"
+            - "cog"
+            - "ncbi_genomes"
+        value: {}

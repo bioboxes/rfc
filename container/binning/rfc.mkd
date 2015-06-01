@@ -1,0 +1,161 @@
+## Binning container
+
+  * Version:    0.9.1
+  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Contents
+* Outline
+* Inputs
+   * General Definition
+      * Description
+      * Mounts
+   * fasta
+   * fastq
+   * database
+   * cache
+* Outputs
+   * binning
+* Signature
+* Example
+
+### Outline
+
+This specification describes the interface for containerised binning applications. A binning application groups reads or contigs and/or assigns them to operational taxonomic units. In addition to the specifications described below, this container MUST implement the specifications defined in 'Generic bioinformatics container'.
+### Inputs
+
+#### General Definition
+
+A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml) schema. 
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fasta:
+      value: STRING
+      id: STRING
+      type: STRING
+  - fastq: LIST
+  - databases: LIST
+  - cache: STRING
+```
+
+##### Description:
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the following fields 
+       * fasta
+       * fastq
+       * databases
+       * cache
+       You can find a definition for every field below this section.
+
+##### Mounts:
+ * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
+ * Your output directory MUST be mounted to /bbx/output.
+ * Your input files MUST be mounted to /bbx/input. 
+
+#### fastq definition: 
+```YAML
+- value: STRING
+  id: STRING or NUMBER
+  type: paired or single
+```
+
+##### Description:
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTQ file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **id**: A unique id for every entry in the fastq list.
+* **type**: Two options:
+      * paired: Paired end fastq reads. By choosing this type the **value** field hast to be interleaved gzipped fastq.
+      * single: Single end fastq reads. 
+ 
+
+#### fasta definition:
+
+```YAML
+  value: STRING
+  id: STRING or NUMBER
+  type: contig or scaffold
+```
+
+##### Description:
+* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTA file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
+* **id**: A unique id for every entry in the fasta list.
+* **type**: Two options:
+  * **contig**
+  * **scaffold**
+
+#### databases definition:
+
+```YAML
+- value: STRING
+  id: STRING
+```
+
+##### Description:
+* **value**: Path to a database directory.
+* **id**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
+  * **[refseq](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/refseq.txt)**  
+  * **[blastdb](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/blastdb.txt)**
+  * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
+  * **[ncbi_genomes](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_genomes.txt)**
+  * **[ncbi_taxonomy](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_taxonomy.txt)**
+
+#### cache definition:
+
+```YAML
+  value: STRING
+```
+
+##### Description:
+* **value**: Path to a writeable mounted directory. If mounted the tool will place intermediate results in this directory and reuse them on a second run.
+
+### Outputs
+
+#### General Definition
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments: 
+    - binning:
+       value: STRING
+       type: Boolean
+```
+
+##### Description:
+This yaml with the name `biobox.yaml` will be available on a successful run and can be found in the `bbx` directory in your mounted output directory.
+
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists out of the **binning** field
+
+#### binning definition:
+
+```YAML
+  value: STRING
+  type: assignments
+```
+
+##### Description:
+* **value**: This is the path to a binning file relative to your mounted output directory.
+* **type**
+  * **assignments** : Binning file contains the computed binning and/or taxonomic groups.
+
+### Signature
+
+Any biobox based assembler accepts at least one of the following signatures:
+
+1. `fasta A -> binning B`
+2. `fasta A, [fastq B] -> binning C`
+
+### Example
+This is an example biobox.yaml file:
+
+```YAML
+---
+version: 0.9.0
+arguments:
+   - fasta:
+        value: "/path/to/lib1"
+        id: "pe_1"
+        type: paired
+```
