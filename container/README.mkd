@@ -11,6 +11,9 @@ This is a list of permanent links to the latest major specification versions in 
 [Assembly reference-based benchmarking container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/genome-assembly-reference-benchmarking.mkd)
 
 ## Binning
+
+[Binning container version 0.9](https://github.com/bioboxes/rfc/blob/3835b5721dc03f2fc10d8c9139f7f201ced7ccfe/container/binning/rfc.mkd)
+
 [Binning container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/binning.mkd)
 
 [Binning evaluation container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/binning-evaluation.mkd)
