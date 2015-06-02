@@ -25,7 +25,7 @@ This specification describes the interface for containerised binning application
 
 #### General Definition
 
-A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml) schema. 
+A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/binning/input_schema.yaml) schema. 
 
 ```YAML
 ---
@@ -94,11 +94,11 @@ arguments:
 ##### Description:
 * **value**: Path to a database directory.
 * **id**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
-  * **[refseq](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/refseq.txt)**  
-  * **[blastdb](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/blastdb.txt)**
-  * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
-  * **[ncbi_genomes](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_genomes.txt)**
-  * **[ncbi_taxonomy](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_taxonomy.txt)**
+  * **[refseq](https://github.com/bioboxes/rfc/blob/master/databases/refseq.txt)**  
+  * **[blastdb](https://github.com/bioboxes/rfc/blob/master/databases/blastdb.txt)**
+  * **[cog](https://github.com/bioboxes/rfc/blob/master/databases/cog.txt)**
+  * **[ncbi_genomes](https://github.com/bioboxes/rfc/blob/master/databases/ncbi_genomes.txt)**
+  * **[ncbi_taxonomy](https://github.com/bioboxes/rfc/blob/master/databases/ncbi_taxonomy.txt)**
 
 #### cache definition:
 
