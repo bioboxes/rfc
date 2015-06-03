@@ -3,7 +3,7 @@
 This is a list of permanent links to the latest major specification versions in the git history.
 
 ## Profiling Output Format
-[Version 0.9](https://github.com/bioboxes/rfc/blob/aca1a5b3e042ae6df3310626ec96394433a4f466/data-format/profiling.mkd)
+[Version 0.9](https://github.com/bioboxes/rfc/blob/60263f34c57bc4137deeceec4c68a7f9f810f6a5/data-format/profiling.mkd)
 
 ## Binning Output Format
 [Version 0.9](https://github.com/bioboxes/rfc/blob/4bb19a633a6a969c2332f1f298852114c5f89b1b/data-format/binning.mkd)
