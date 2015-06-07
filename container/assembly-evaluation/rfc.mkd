@@ -19,8 +19,8 @@
 ### Outline
 
 This specification describes the interface for containerised software to
-evaluate a genome assembly in FASTQ format using optional multiple reference genome sequences in
-FASTQ format. Genome assemblers vary in efficiency and the quality of an assembly
+evaluate a genome assembly in FASTA format using optional multiple reference genome sequences in
+FASTA format. Genome assemblers vary in efficiency and the quality of an assembly
 may be evaluated by comparing it to a higher quality reference of the same
 genome. In addition to the specifications described below, this container MUST
 implement all specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container).
