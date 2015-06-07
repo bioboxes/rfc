@@ -28,7 +28,7 @@ information for [beginners to get started with bioboxes][started] and [how to
 make contributions to bioboxes][contribute].
 
 [started]: http://bioboxes.org/guide/user/
-[contribute]: http://bioboxes.org/guide/developer/
+[contribute]: http://bioboxes.org/contribute/getting-started/
 
 ### Core team
 
