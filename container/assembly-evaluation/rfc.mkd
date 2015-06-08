@@ -83,7 +83,7 @@ arguments:
 ```
 
 ##### Description:
-* **value**: This variable specifies the absolute path of the file containing a FASTA formatted reference sequence from the same origin as the fastas specified in the fasta entry.
+* **value**: This variable specifies the absolute path to a directoy containing FASTA formatted reference sequence files from the same origin as the fastas specified in the fasta entry.
 
 ### Outputs
 
