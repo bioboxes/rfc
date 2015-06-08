@@ -64,7 +64,7 @@ arguments:
 #### fasta definition :
 
 ```YAML
-  value: STRING
+- value: STRING
   id: STRING or NUMBER
   type: contig or scaffold
 ```
@@ -110,8 +110,8 @@ This is an example biobox.yaml file:
 version: 0.9.0
 arguments:
    - fasta:
-        value: "/path/to/lib1"
-        id: "pe_1"
-        type: paired
+       - value: "/path/to/lib1"
+         id: "pe_1"
+         type: paired
    - fasta_dir: "/path/to/dir/with/references"
 ```
