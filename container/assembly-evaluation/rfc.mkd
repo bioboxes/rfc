@@ -52,6 +52,14 @@ arguments:
  * Your output directory MUST be mounted to /bbx/output.
  * Your input files MUST be mounted to /bbx/input. 
 
+#### cache definition:
+
+```YAML
+  value: STRING
+```
+
+##### Description:
+* **value**: Path to a writeable mounted directory. If mounted the tool will place intermediate results in this directory and reuse them on a second run.
 
 #### fasta definition:
 
