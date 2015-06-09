@@ -1,6 +1,6 @@
 # Evaluation Output Specification
 
-*  Version: 0.1.0
+*  Version: 0.1.1
 *  Maintainer: Peter Belmann pbelmann@cebitec.uni-bielefeld.de
 *  Authors: Ivan Gregor Ivan.Gregor@uni-duesseldorf.de, Johannes Dröge johannes.droege@uni-duesseldorf.de, Michael Barton mail@michaelbarton.me.uk, Peter Belmann pbelmann@cebitec.uni-bielefeld.de
 
@@ -35,6 +35,10 @@ following properties:
   type: txt|png|html|tsv|csv
 ```
   
+* inline: 
+
+  Indicates whether the metric is reprented inline in the **value** field or in an external file. 
+  
 * value:
 
   If the **inline** property is false then the value is the absolute path to a file.
@@ -47,7 +51,7 @@ following properties:
 ## Example
 
 ```YAML
-version: 0.1.0
+version: 0.1.1
 results:
   - name: N50
     description: N50 is the length for which the collection of all contigs of that length or longer covers at least half an assembly.
