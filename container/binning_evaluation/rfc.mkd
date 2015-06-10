@@ -89,7 +89,7 @@ arguments:
 ```
 
 ##### Description:
-* **value**: This is the path to a [binning file](https://github.com/pbelmann/rfc/blob/master/data-format/binning.mkd).
+* **value**: This is the path to a [binning file](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd).
 * **type**: Type represents a boolean:
   * **true** : Binning file contains the true binning and/or taxonomic assignments.
   * **assigments** : Binning file contains the computed binning and/or taxonomic groups.
@@ -114,15 +114,15 @@ arguments:
 ##### Description:
 * **value**: Path to a database directory.
 * **type**: Database identifier. Each database identifier is a link to the directory structure. You can find the compressed version of the database with the corresponding structure on this ftp site: ftp://cami.psc.edu/ftp.ncbi.nlm.nih.gov/
-  * **[refseq](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/refseq.txt)**  
-  * **[blastdb](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/blastdb.txt)**
-  * **[cog](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/cog.txt)**
-  * **[ncbi_genomes](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_genomes.txt)**
-  * **[ncbi_taxonomy](https://github.com/pbelmann/rfc/blob/feature/new_binning_spec/databases/ncbi_taxonomy.txt)**
+  * **[refseq](https://github.com/bioboxes/rfc/blob/master/databases/refseq.txt)**  
+  * **[blastdb](https://github.com/bioboxes/rfc/blob/master/databases/blastdb.txt)**
+  * **[cog](https://github.com/bioboxes/rfc/blob/master/databases/cog.txt)**
+  * **[ncbi_genomes](https://github.com/bioboxes/rfc/blob/master/databases/ncbi_genomes.txt)**
+  * **[ncbi_taxonomy](https://github.com/bioboxes/rfc/blob/master/databases/ncbi_taxonomy.txt)**
 
 ### Outputs
 
-The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/pbelmann/rfc/blob/master/data-format/binning.mkd).
+The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/bioboxes/rfc/blob/master/data-format/evaluation.mkd).
 
 ### Example for input biobox.yaml
 
