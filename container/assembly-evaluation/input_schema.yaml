@@ -1,0 +1,61 @@
+---
+  $schema: "http://json-schema.org/draft-04/schema#"
+  title: "Bioboxes short read assembler input file validator"
+  type: "object"
+  properties: 
+    version: 
+      type: "string"
+      pattern: "^0.9.\\d+$"
+    arguments: 
+      type: "array"
+      minItems: 1
+      maxItems: 3
+      items: 
+        oneOf: 
+          - 
+            $ref: "#/definitions/fasta"
+          - 
+            $ref: "#/definitions/fasta_dir"
+          - 
+            $ref: "#/definitions/cache"
+  required: 
+    - "version"
+    - "arguments"
+  additionalProperties: false
+  definitions: 
+    fasta: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "fasta"
+      properties: 
+        fasta: 
+          $ref: "#/definitions/values"
+    cache: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "cache"
+      properties: 
+        cache: {}
+    fasta_dir: 
+      type: "object"
+      additionalProperties: false
+      required: 
+        - "fasta_dir"
+      properties: 
+        fasta_dir: {}
+    values: 
+      type: "array"
+      uniqueItems: true
+      minItems: 1
+      items: 
+        type: "object"
+        additionalProperties: false
+        required: 
+          - "id"
+          - "value"
+        properties: 
+          id: {}
+          type: {}
+          value: {}
