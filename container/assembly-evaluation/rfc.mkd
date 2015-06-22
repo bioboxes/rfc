@@ -11,6 +11,7 @@
       * Mounts
    * fasta
    * fasta_dir
+   * cache
 * Outputs
    * evaluation
 * Signature
@@ -37,6 +38,7 @@ version: NUMBER.NUMBER.NUMBER
 arguments:
   - fasta: LIST
   - fasta_dir: STRING  
+  - cache: STRING
 ```
 
 ##### Description:
