@@ -114,6 +114,6 @@ arguments:
    - fasta:
        - value: "/path/to/lib1"
          id: "pe_1"
-         type: paired
+         type: "contig"
    - fasta_dir: "/path/to/dir/with/references"
 ```
