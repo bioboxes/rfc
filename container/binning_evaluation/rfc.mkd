@@ -139,8 +139,7 @@ arguments:
         type: assignments
       - value: "/path/to/true/binning/file"
         type: true
-   - scaffold_contig_mapping:
-      - value: "/path/to/binning/file/mapping"
+   - scaffold_contig_mapping: "/path/to/binning/file/mapping"
    - databases:
       - id: "ncbi_taxonomy"
         value: "/path/to/ncbi/taxonomy"
