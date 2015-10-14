@@ -99,5 +99,5 @@ definitions:
         type: 
           enum: 
             - "assignments"
-            - true
+            - "true"
         value: {}
