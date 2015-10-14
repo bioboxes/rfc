@@ -1,12 +1,12 @@
 ## Binning evaluation container
 
- * Version:    0.9.0
+ * Version:    0.10.0
  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ### Contents
 
 * Outline
-* Inputs
+* Input
   * General definition
      * Description 
      * Mounts
@@ -14,7 +14,7 @@
   * binning
   * scaffold_contig_mapping
   * databases
-* Outputs 
+* Output 
 * Example
 
 ### Outline
@@ -37,74 +37,65 @@ A biobox requires an input YAML with the following definition
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments:
-  - fasta:
-       value: STRING
-       id: STRING or NUMBER
-       type: contig or scaffold
-  - binning: 
-     - value: STRING
-       type: true
-     - value: STRING
-       type: assignments
-  - scaffold_contig_mapping: STRING
-  - databases: LIST 
+  sequences:
+    path: STRING
+    id: STRING
+    type: contig
+    format: fasta
+  labels:
+    path: STRING
+    id: STRING
+    type: binning
+    format: bioboxes.org:/binning:0.9
+  predictions:
+    path: STRING
+    id: STRING
+    type: binning
+    format: bioboxes.org:/binning:0.9
+  databases: LIST
 ```
 
 ##### Description:
 
 * **version**: The current version is specified directly under the heading.
-* **arguments**: The arguments field consists out of the following fields 
-       * fasta
-       * binning
-       * scaffold_contig_mapping
-       * databases       
+* **arguments**: The arguments field consists of the following fields 
+       * sequences
+       * labels
+       * predictions
+       * databases     
        
        You can find a definition for every field below this section.
 
 ##### Mounts:
- * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
- * Your output directory MUST be mounted to /bbx/output.
- * Your input files MUST be mounted to /bbx/input. 
+ * Your output directory MUST be mounted to /bbx/mnt/output
+ * Your input files MUST be mounted to /bbx/mnt/input
+ * The .yaml MUST be placed as /bbx/mnt/input/biobox.yaml
 
-#### fasta definition:
+#### Definition:
 
-```YAML
-  value: STRING
-  id: STRING or NUMBER
-  type: contig or scaffold
-```
-
-##### Description:
-* **value**: This is the path to a fasta file containing the contigs relative to your mounted output directory.
-* **id**: A unique id for every entry in the fasta list.
-* **type**: Two options:
-  * **contig**
-  * **scaffold**
-
-#### binning definition:
+##### File object entries
 
 ```YAML
-- value: STRING
-  type: STRING
+  path: STRING
+  id: STRING
+  type: String
+  format: STRING
 ```
 
-##### Description:
-* **value**: This is the path to a [binning file](https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd).
-* **type**: Type represents a boolean:
-  * **true** : Binning file contains the true binning and/or taxonomic assignments.
-  * **assigments** : Binning file contains the computed binning and/or taxonomic groups.
+* `path` means absolute path to file in container
+* `id` is a unique id for the file (optional)
+* `type` specifies the semantic type (optional)
+* `format` gives a machine-checkable type definition (will be transformed to YAML tag in future)
 
-#### scaffold_contig_mapping definition:
-
-```YAML
- - scaffold_contig_mapping: STRING
-```
+##### File formats
+* `fasta`: FASTA file
+* `bioboxes.org:/binning:0.9`: bioboxes.org binning file in version 0.9
 
 ##### Description:
 
 * This specifies the path to a tab separated file with the scaffold name in the first column and the contig name in the second column. The sequence names have to be equal to the sequence names specified in the FASTA file.
 
-#### databases definition:
+#### Databases definition:
 
 ```YAML
  - value: STRING
@@ -144,3 +135,4 @@ arguments:
       - id: "ncbi_taxonomy"
         value: "/path/to/ncbi/taxonomy"
 ```
+
