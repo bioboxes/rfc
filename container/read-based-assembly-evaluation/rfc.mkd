@@ -1,4 +1,4 @@
-## Genome read based assembly benchmarking container
+## Read based assembly benchmarking container
 
   * Version:    0.1.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
