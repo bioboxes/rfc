@@ -1,1 +1,18 @@
+## Genome read based assembly benchmarking container
 
+  * Version:    0.9.0
+  * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Contents
+* Outline
+* Inputs
+   * General Definition
+      * Description
+      * Mounts
+   * fasta
+   * fastq
+   * cache
+* Outputs
+   * evaluation
+* Signature
+* Example
