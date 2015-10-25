@@ -5,7 +5,7 @@ type: "object"
 properties: 
   version: 
     type: "string"
-    pattern: "^0.9.\\d+$"
+    pattern: "^0.10.\\d+$"
   arguments: 
     type: object
     required:
