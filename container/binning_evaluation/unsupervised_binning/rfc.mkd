@@ -1,0 +1,81 @@
+## Binning evaluation container
+
+ * Version:    0.10.0
+ * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Contents
+
+
+### Outline
+
+This specification describes the interface for containerised binning evaluation applications. 
+A binning evaluation application should validate the assigned TAXID
+(https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format) 
+of a binning container.
+
+In addition to the specifications described below, this container MUST implement the
+specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container). 
+
+
+### Input
+
+#### General Definition
+
+A biobox requires an input YAML with the following definition 
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  sequences:
+    path: STRING
+    id: STRING
+    type: contig
+    format: bioboxes.org:/fasta
+  labels:
+    path: STRING
+    id: STRING
+    type: binning
+    format: bioboxes.org:/binning/binning:0.9
+  predictions:
+    path: STRING
+    id: STRING
+    type: binning
+    format: bioboxes.org:/binning/binning:0.9
+```
+
+##### Description:
+
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists of the following fields 
+       * **sequences**: The input FASTA file for the binned sequences.
+       * **labels**: The correct binning in bioboxes.org binning format.
+       * **predictions**: The predicted binning in bioboxes.org binning format.
+       
+##### Mounts:
+ * Your output directory MUST be mounted to /bbx/mnt/output
+ * Your input files MUST be mounted to /bbx/mnt/input
+ * The .yaml MUST be placed as /bbx/mnt/input/biobox.yaml
+
+##### File/folder object entries
+
+```YAML
+  path: STRING
+  id: STRING
+  type: String
+  format: STRING
+```
+
+* `path` means absolute path to file in container
+* `id` is a unique id for the file (optional)
+* `type` specifies the semantic type (optional)
+* `format` gives a machine-checkable type definition (will be transformed to YAML tag in future)
+
+##### Formats
+* `fasta`: FASTA file
+* `bioboxes.org:/binning:0.9`: bioboxes.org binning file in version 0.9
+
+### Output
+
+The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/bioboxes/rfc/blob/master/data-format/evaluation.mkd).
+
