@@ -118,13 +118,13 @@ This is an example biobox.yaml file:
 version: 0.1.0
 arguments:
    assemblies:
-     - path: STRING
-       id: STRING
+     - path: /path/to/assembly1/fasta
+       id: ray
        type: contig
        format: bioboxes.org:/fasta
    fastqs:
-     path: STRING
-     id: STRING
-     type: contig
+     path: /path/to/short/read.fastq.gz
+     id: lib1
+     type: paired
      format: bioboxes.org:/fastq
 ```
