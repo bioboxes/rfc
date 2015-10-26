@@ -2,6 +2,7 @@
 $schema: "http://json-schema.org/draft-04/schema#"
 title: "Bioboxes unsupervised binning benchmark input file validator"
 type: "object"
+additionalProperties: false
 required: 
     - "version"
     - "arguments"
@@ -10,6 +11,7 @@ properties:
     type: "string"
     pattern: "^0.10.\\d+$"
   arguments: 
+    additionalProperties: false
     type: object
     required:
        - labels
