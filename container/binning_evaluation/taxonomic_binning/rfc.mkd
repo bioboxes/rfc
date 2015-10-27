@@ -5,6 +5,13 @@
 
 ### Contents
 
+* Outline
+* Input
+  * General Definition
+    * Description
+    * File/folder object entries
+    * Formats
+* Output
 
 ### Outline
 
