@@ -122,7 +122,7 @@ arguments:
        id: ray
        type: contig
        format: bioboxes.org:/fasta
-   fastqs:
+   reads:
      path: /path/to/short/read.fastq.gz
      id: lib1
      type: paired
