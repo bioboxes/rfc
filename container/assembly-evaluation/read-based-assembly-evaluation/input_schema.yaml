@@ -1,0 +1,50 @@
+---
+$schema: "http://json-schema.org/draft-04/schema#"
+title: "Bioboxes read based assembly validator"
+type: "object"
+properties: 
+  version: 
+    type: "string"
+    pattern: "^0.1.\\d+$"
+  arguments: 
+    type: "object"
+    additionalProperties: false
+    properties: 
+      reads: 
+        type: "object"
+        additionalProperties: false
+        properties: 
+          id: {}
+          format: 
+            enum: 
+              - "bioboxes.org:/fastq"
+          type: 
+            enum: 
+              - "paired"
+              - "single"
+          path: {}
+        required: 
+          - "path"
+      assemblies: 
+        type: "array"
+        uniqueItems: true
+        minItems: 1
+        items: 
+          type: "object"
+          additionalProperties: false
+          required: 
+            - "path"
+          properties: 
+            id: {}
+            format: 
+              enum: 
+                - "bioboxes.org:/fasta"
+            type: 
+              enum: 
+                - "contig"
+                - "scaffold"
+            path: {}
+required: 
+  - "version"
+  - "arguments"
+additionalProperties: false
