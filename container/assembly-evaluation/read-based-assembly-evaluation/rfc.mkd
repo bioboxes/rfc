@@ -57,7 +57,7 @@ arguments:
 - path: STRING
   id: STRING or NUMBER
   type: contig or scaffold
-  format: bioboxes.org:/fastq
+  format: bioboxes.org:/fasta
 ```
 
 ##### Description:
