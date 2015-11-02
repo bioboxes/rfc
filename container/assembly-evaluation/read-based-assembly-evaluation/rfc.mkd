@@ -1,6 +1,6 @@
 ## Read based assembly benchmarking container
 
-  * Version:    0.1.0
+  * Version:    0.2.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ### Contents
@@ -35,7 +35,7 @@ A biobox requires an input YAML with the following definition
 version: NUMBER.NUMBER.NUMBER
 arguments:
   assemblies: LIST
-  reads: FASTQ
+  reads: LIST
   cache: STRING
 ```
 
@@ -69,10 +69,10 @@ arguments:
 
 #### reads definition: 
 ```YAML
-  value: STRING
-  id: STRING or NUMBER
-  type: paired or single
-  format: bioboxes.org:/fastq
+ - value: STRING
+   id: STRING or NUMBER
+   type: paired or single
+   format: bioboxes.org:/fastq
 ```
 
 ##### Description:
@@ -115,7 +115,7 @@ This is an example biobox.yaml file:
 
 ```YAML
 ---
-version: 0.1.0
+version: 0.2.0
 arguments:
    assemblies:
      - path: /path/to/assembly1/fasta
@@ -123,8 +123,8 @@ arguments:
        type: contig
        format: bioboxes.org:/fasta
    reads:
-     path: /path/to/short/read.fastq.gz
-     id: lib1
-     type: paired
-     format: bioboxes.org:/fastq
+     - path: /path/to/short/read.fastq.gz
+       id: lib1
+       type: paired
+       format: bioboxes.org:/fastq
 ```
