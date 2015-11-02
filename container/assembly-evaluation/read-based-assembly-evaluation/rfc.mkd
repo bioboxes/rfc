@@ -54,7 +54,7 @@ arguments:
 
 #### assemblies definition: 
 ```YAML
-- value: STRING
+- path: STRING
   id: STRING or NUMBER
   type: contig or scaffold
   format: bioboxes.org:/fastq
@@ -69,7 +69,7 @@ arguments:
 
 #### reads definition: 
 ```YAML
- - value: STRING
+ - path: STRING
    id: STRING or NUMBER
    type: paired or single
    format: bioboxes.org:/fastq
