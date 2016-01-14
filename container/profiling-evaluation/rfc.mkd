@@ -22,7 +22,12 @@ A biobox requires an input YAML with the following definition
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments:
-  predictions: LIST
+  prediction:
+    path: STRING
+    format: bioboxes.org:/profiling/profiling:0.9/profiling
+  ground_truth:
+    path: STRING
+    format: bioboxes.org:/profiling/profiling:0.9/profiling
 ```
 
 ##### Description:
