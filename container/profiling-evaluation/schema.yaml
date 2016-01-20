@@ -1,0 +1,39 @@
+---
+  $schema: "http://json-schema.org/draft-04/schema#"
+  title: "Bioboxes profiling benchmark input file validator"
+  type: "object"
+  additionalProperties: false
+  required: 
+    - "version"
+    - "arguments"
+  properties: 
+    version: 
+      type: "string"
+      pattern: "^0.1.\\d+$"
+    arguments: 
+      additionalProperties: false
+      type: "object"
+      required: 
+        - "ground_truth"
+        - "prediction"
+      properties: 
+        prediction: 
+          type: "object"
+          required: 
+            - "path"
+            - "format"
+          properties: 
+            format: 
+              enum: 
+                - "bioboxes.org:/profiling:0.9"
+            path: {}
+        ground_truth: 
+          type: "object"
+          required: 
+            - "path"
+            - "format"
+          properties: 
+            format: 
+              enum: 
+                - "bioboxes.org:/profiling:0.9"
+            path: {}
