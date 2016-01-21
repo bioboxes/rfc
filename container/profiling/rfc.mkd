@@ -1,0 +1,14 @@
+
+
+~~~YAML
+version: 1.0.0
+arguments:
+  reads:
+    - format: bioboxes.org:/fastq
+      path: "/path/to/fastq"
+  databases:
+    taxonomy:
+      path: "/path/to/taxonomy"
+      format: bioboxes.org:/taxonomy_ncbi_dumps  
+  cache: /path/to/cache
+~~~
