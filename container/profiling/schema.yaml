@@ -1,0 +1,56 @@
+---
+  $schema: "http://json-schema.org/draft-04/schema#"
+  title: "Bioboxes Profiling validator"
+  type: "object"
+  properties: 
+    version: 
+      type: "string"
+      pattern: "^1.0.\\d+$"
+    arguments: 
+      type: "object"
+      required: 
+        - "reads"
+      additionalProperties: false
+      properties: 
+        reads: 
+          $ref: "#/definitions/fastq"
+        databases: 
+          $ref: "#/definitions/databases"
+        cache: {}
+  required: 
+    - "version"
+    - "arguments"
+  additionalProperties: false
+  definitions: 
+    fastq: 
+      type: "array"
+      minItems: 1
+      items: 
+        type: "object"
+        additionalProperties: false
+        required: 
+          - "format"
+          - "path"
+        properties: 
+          format: 
+            enum: 
+              - "bioboxes.org:/fastq"
+          path: {}
+    databases: 
+      type: "object"
+      required: 
+        - "taxonomy"
+      properties: 
+        taxonomy: 
+          type: "object"
+          required: 
+            - "path"
+            - "format"
+          properties: 
+            format: 
+              enum: 
+                - "bioboxes.org:/taxonomy_ncbi_dumps"
+            type: 
+              enum: 
+                - "ncbi"
+            path: {}
