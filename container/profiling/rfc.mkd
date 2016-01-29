@@ -77,8 +77,8 @@ arguments:
 version: NUMBER.NUMBER.NUMBER
 arguments: 
     profiling:
-       path: STRING
-       format: bioboxes.org:/profling:0.9
+       - path: STRING
+         format: bioboxes.org:/profling:0.9
 ~~~
 
 #### Description:
