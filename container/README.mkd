@@ -21,4 +21,8 @@ This is a list of permanent links to the latest major specification versions in 
 [Binning evaluation container version 0.8](https://github.com/bioboxes/rfc/blob/1aaeffc1f97dbea1ec05016a4a45e739dd47e20e/container/binning-evaluation.mkd)
 
 ## Profiling
+
+[Profiling container version 0.8.2]
+(https://github.com/bioboxes/rfc/blob/f03f05e70972aa2eb3716f57f017d1ec704a84f2/container/profiling.mkd)
+
 [Profiling container version 0.8](https://github.com/bioboxes/rfc/blob/5a23b8a40ab67541a9a851c765872aea5c0336f9/container/profiling.mkd)
