@@ -112,7 +112,7 @@ arguments:
       path: /path/to/fastq
   databases:
     taxonomy:
-      path: /path/to/fastq
+      path: /path/to/ncbi_dump
       format: bioboxes.org:/taxonomy_ncbi_dumps  
   cache: /path/to/cache/directory
 ~~~
