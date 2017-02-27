@@ -4,55 +4,64 @@
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
 
 ### Contents
-* Outline
-* Inputs
-   * General Definition
-      * Description
-      * Mounts
-   * fasta
-   * fasta_dir
-   * cache
-* Outputs
-   * evaluation
-* Signature
-* Example
+
+  * Outline
+  * Inputs
+     * General Definition
+        * Description
+        * Mounts
+     * fasta
+     * fasta_dir
+     * cache
+  * Outputs
+     * evaluation
+  * Signature
+  * Example
 
 ### Outline
 
 This specification describes the interface for containerised software to
-evaluate a genome assembly in FASTA format using optional multiple reference genome sequences in
-FASTA format. Genome assemblers vary in efficiency and the quality of an assembly
-may be evaluated by comparing it to a higher quality reference of the same
-genome. In addition to the specifications described below, this container MUST
-implement all specifications defined in ['Generic bioinformatics container'](https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container).
+evaluate a genome assembly in FASTA format using optional multiple reference
+genome sequences in FASTA format. Genome assemblers vary in efficiency and the
+quality of an assembly may be evaluated by comparing it to a higher quality
+reference of the same genome. In addition to the specifications described
+below, this container MUST implement all specifications defined in ['Generic
+bioinformatics container'][1].
+
+[1]: https://github.com/bioboxes/rfc/blob/master/rfc.mkd#generic-bioinformatics-container
 
 ### Inputs
 
 #### General Definition
 
-A biobox requires an input YAML that follows the below definition and is valid according to [this](https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml) schema. 
+A biobox requires an input YAML that follows the below definition and is valid
+according to [this][2].
+
+[2]: https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml
 
 ```YAML
 ---
 version: NUMBER.NUMBER.NUMBER
 arguments:
   - fasta: LIST
-  - fasta_dir: STRING  
+  - fasta_dir: STRING
   - cache: STRING
 ```
 
 ##### Description:
-* **version**: The current version is specified directly under the heading.
-* **arguments**: The arguments field consists out of the following fields 
+
+  * **version**: The current version is specified directly under the heading.
+  * **arguments**: The arguments field consists out of the following fields
        * fasta
        * fasta_dir
-       
+
        You can find a definition for every field below this section.
 
 ##### Mounts:
+
  * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
  * Your output directory MUST be mounted to /bbx/output.
- * Your input files MUST be mounted to /bbx/input. 
+ * Your input files MUST be mounted to /bbx/input.
 
 #### cache definition (optional):
 
@@ -61,7 +70,9 @@ arguments:
 ```
 
 ##### Description:
-* **value**: Path to a writeable mounted directory. If mounted the tool will place intermediate results in this directory and reuse them on a second run.
+
+ * **value**: Path to a writeable mounted directory. If mounted the tool will
+   place intermediate results in this directory and reuse them on a second run.
 
 #### fasta definition :
 
@@ -72,11 +83,14 @@ arguments:
 ```
 
 ##### Description:
-* **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTA file. This file has to be mounted to a path that is prefixed by `/bbx/input`.
-* **id**: A unique id for every entry in the fasta list.
-* **type**: Two options:
-  * **contig**
-  * **scaffold**
+
+ * **value**: Path MUST begin with a slash ('/'), which points to gzipped FASTA
+   file. This file has to be mounted to a path that is prefixed by
+   `/bbx/input`.
+ * **id**: A unique id for every entry in the fasta list.
+ * **type**: Two options:
+   * **contig**
+   * **scaffold**
 
 #### fasta_dir definition (optional):
 
@@ -85,15 +99,25 @@ arguments:
 ```
 
 ##### Description:
-* **value**: This variable specifies the absolute path to a directoy containing FASTA formatted reference sequence files from the same origin as the fastas specified in the fasta entry.
+
+ * **value**: This variable specifies the absolute path to a directoy
+   containing FASTA formatted reference sequence files from the same origin as
+   the fastas specified in the fasta entry.
 
 ### Outputs
 
-The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/bioboxes/rfc/blob/master/data-format/evaluation.mkd).
+The biobox produces on a successful run a `biobox.yaml` and can be found in the
+`bbx` directory in your mounted output directory. The output biobox.yaml must
+be in an evaluation specific [format][].
+
+[format]: https://github.com/bioboxes/rfc/blob/master/data-format/evaluation.mkd
 
 ##### Mounts:
- * If the directory `/bbx/metadata` is mounted then the following files should be placed inside the directory:
-   * `log.txt` Logging information that is generated by the application inside the container.   
+
+  * If the directory `/bbx/metadata` is mounted then the following files should
+    be placed inside the directory:
+  * `log.txt` Logging information that is generated by the application inside
+    the container.
 
 ### Signature
 
@@ -102,9 +126,11 @@ Any biobox based assembler accepts at least one of the following signatures:
 1. `[fasta A], [Maybe fasta_dir B] -> evaluation C`
 
 where
+
    * `Maybe` indicates an optional value
 
 ### Example
+
 This is an example biobox.yaml file:
 
 ```YAML
