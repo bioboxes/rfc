@@ -35,7 +35,7 @@ bioinformatics container'][1].
 #### General Definition
 
 A biobox requires an input YAML that follows the below definition and is valid
-according to [this][2].
+according to [the input schema][2].
 
 [2]: https://github.com/bioboxes/rfc/blob/master/container/short-read-assembler/input_schema.yaml
 
@@ -50,18 +50,24 @@ arguments:
 
 ##### Description:
 
-  * **version**: The current version is specified directly under the heading.
+  * **version**: The version number of the biobox YAML defines how the fields
+    should be parsed by the biobox.
   * **arguments**: The arguments field consists out of the following fields
        * fasta
        * fasta_dir
 
-       You can find a definition for every field below this section.
+The fields in the biobox YAML are defined below.
 
 ##### Mounts:
 
- * The .yaml MUST be mounted to /bbx/input/biobox.yaml.
- * Your output directory MUST be mounted to /bbx/output.
- * Your input files MUST be mounted to /bbx/input.
+  * The biobox.yaml MUST be mounted at `/bbx/input/biobox.yaml` in the Docker
+    container. The specification of inputs as defined by the user should be
+    read from this file.
+  * The input files MUST be mounted at `/bbx/input`. These should be mounted as
+    read-only files.
+  * The output directory MUST be mounted at `/bbx/output`. All output files
+    generated should be placed here. Furthermore a `biobox.yaml` file should be
+    created here too.
 
 #### cache definition (optional):
 
@@ -72,7 +78,8 @@ arguments:
 ##### Description:
 
  * **value**: Path to a writeable mounted directory. If mounted the tool will
-   place intermediate results in this directory and reuse them on a second run.
+   place intermediate results in this directory and may reuse them on future
+   runs.
 
 #### fasta definition :
 
@@ -100,9 +107,9 @@ arguments:
 
 ##### Description:
 
- * **value**: This variable specifies the absolute path to a directoy
-   containing FASTA formatted reference sequence files from the same origin as
-   the fastas specified in the fasta entry.
+ * **value**: This variable specifies the absolute path to a directory
+   containing FASTA formatted reference sequence files for comparison with the
+   FASTA files specified by the `fasta` entry.
 
 ### Outputs
 
