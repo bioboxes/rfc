@@ -38,12 +38,12 @@ arguments:
   - fastq:
     - type: fastq
       value: STRING
-  - databases:
-    - type: bioboxes.org:/taxonomy_ncbi_dumps 
+  - database:
+      type: bioboxes.org:/taxonomy_ncbi_dumps 
       value: STRING
   - cache:
-    type: directory
-    value: STRING
+      type: directory
+      value: STRING
 ~~~
 
 ##### Description:
@@ -51,7 +51,7 @@ arguments:
 * **version**: The current version is specified directly under the heading.
 * **arguments**: The arguments field consists of the following fields 
        * **fastq**: An array of gzipped fastq sequence libraries.
-       * **databases**: The taxonomy database. A directory containing nodes.dmp and names.dmp. 
+       * **database**: The taxonomy database. A directory containing nodes.dmp and names.dmp. 
        * **cache**: Path to a cache directory.
 
 ##### Mounts:
@@ -111,9 +111,9 @@ arguments:
     - type: fastq
       value: /path/to/fastq
   - database:
-    type: bioboxes.org:/taxonomy_ncbi_dumps
-    value: /path/to/ncbi_dump
+      type: bioboxes.org:/taxonomy_ncbi_dumps
+      value: /path/to/ncbi_dump
   - cache:
-    type: directory
-    value: /path/to/cache/directory
+      type: directory
+      value: /path/to/cache/directory
 ~~~
