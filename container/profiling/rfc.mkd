@@ -66,8 +66,8 @@ arguments:
   value: STRING
 ```
 
-* `path` means absolute path to file in container
-* `value` gives a machine-checkable type definition
+* `value` means absolute path to file in container
+* `type` gives a machine-checkable type definition
 
 ### Outputs
 
@@ -78,8 +78,8 @@ arguments:
 version: NUMBER.NUMBER.NUMBER
 arguments: 
     profiling:
-       - path: STRING
-         value: bioboxes.org:/profling:0.9
+       - value: STRING
+         type: bioboxes.org:/profling:0.9
 ~~~
 
 #### Description:
