@@ -1,63 +1,51 @@
-"$schema": "http://json-schema.org/draft-04/schema#"
-title: "Bioboxes Profiling Evaluation"
-type: object
-properties: 
- version: 
-  type: string
-  pattern: "^1.0.\\d+$"
- arguments: 
-  type: array
-  required: 
-   - 
-   prediction
-   - 
-   ground_truth
-  additionalItems: false
-  minItems: 2
-  items: 
-   oneOf: 
-    - 
-   "$ref": "#/definitions/prediction"
-    - 
-   "$ref": "#/definitions/ground_truth"
-required: 
- - 
-   version
- - 
-   arguments
+--- 
+$schema: "http://json-schema.org/draft-04/schema#"
 additionalProperties: false
 definitions: 
- prediction: 
-  required: 
-   - 
-   prediction
-  properties: 
-   prediction: 
-    required: 
-     - 
-   type
-     - 
-   value
+  ground_truth: 
     properties: 
-     type: 
-      enum: 
-       - 
-   "bioboxes.org:/profiling:0.9"
-     value: 
- ground_truth: 
-  required: 
-   - 
-   ground_truth
-  properties: 
-   ground_truth: 
+      ground_truth: 
+        properties: 
+          type: 
+            enum: 
+              - "bioboxes.org:/profiling:0.9"
+          value: {}
+        required: 
+          - type
+          - value
     required: 
-     - 
-   type
-     - 
-   value
+      - ground_truth
+  prediction: 
     properties: 
-     type: 
-      enum: 
-       - 
-   "bioboxes.org:/profiling:0.9"
-     value: 
+      prediction: 
+        properties: 
+          type: 
+            enum: 
+              - "bioboxes.org:/profiling:0.9"
+          value: {}
+        required: 
+          - type
+          - value
+    required: 
+      - prediction
+properties: 
+  arguments: 
+    additionalItems: false
+    items: 
+      oneOf: 
+        - $ref: "#/definitions/prediction"
+        - $ref: "#/definitions/ground_truth"
+    minItems: 2
+    required: 
+      - prediction
+      - ground_truth
+    type: array
+  version: 
+    pattern: ^1.0.\d+$
+    type: string
+required: 
+  - version
+  - arguments
+title: "Bioboxes Profiling Evaluation"
+type: object
+
