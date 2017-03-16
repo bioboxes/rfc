@@ -1,39 +1,63 @@
----
-  $schema: "http://json-schema.org/draft-04/schema#"
-  title: "Bioboxes profiling benchmark input file validator"
-  type: "object"
-  additionalProperties: false
+"$schema": "http://json-schema.org/draft-04/schema#"
+title: "Bioboxes Profiling Evaluation"
+type: object
+properties: 
+ version: 
+  type: string
+  pattern: "^1.0.\\d+$"
+ arguments: 
+  type: array
   required: 
-    - "version"
-    - "arguments"
+   - 
+   prediction
+   - 
+   ground_truth
+  additionalItems: false
+  minItems: 2
+  items: 
+   oneOf: 
+    - 
+   "$ref": "#/definitions/prediction"
+    - 
+   "$ref": "#/definitions/ground_truth"
+required: 
+ - 
+   version
+ - 
+   arguments
+additionalProperties: false
+definitions: 
+ prediction: 
+  required: 
+   - 
+   prediction
   properties: 
-    version: 
-      type: "string"
-      pattern: "^0.1.\\d+$"
-    arguments: 
-      additionalProperties: false
-      type: "object"
-      required: 
-        - "ground_truth"
-        - "prediction"
-      properties: 
-        prediction: 
-          type: "object"
-          required: 
-            - "path"
-            - "format"
-          properties: 
-            format: 
-              enum: 
-                - "bioboxes.org:/profiling:0.9"
-            path: {}
-        ground_truth: 
-          type: "object"
-          required: 
-            - "path"
-            - "format"
-          properties: 
-            format: 
-              enum: 
-                - "bioboxes.org:/profiling:0.9"
-            path: {}
+   prediction: 
+    required: 
+     - 
+   type
+     - 
+   value
+    properties: 
+     type: 
+      enum: 
+       - 
+   "bioboxes.org:/profiling:0.9"
+     value: 
+ ground_truth: 
+  required: 
+   - 
+   ground_truth
+  properties: 
+   ground_truth: 
+    required: 
+     - 
+   type
+     - 
+   value
+    properties: 
+     type: 
+      enum: 
+       - 
+   "bioboxes.org:/profiling:0.9"
+     value: 
