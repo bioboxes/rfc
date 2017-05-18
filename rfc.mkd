@@ -89,6 +89,6 @@ This section describes the variables containing the paths to various databases.
 
 * Michael Barton <mail@michaelbarton.me.uk>
 * Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
-* Andreas Bremges <abremges@cebitec.uni-bielefeld.de>
+* Andreas Bremges <andreas.bremges@helmholtz-hzi.de>
 * Johannes Dröge <johannes.droege@uni-duesseldorf.de>
 * Alexander Sczyrba <asczyrba@cebitec.uni-bielefeld.de>
