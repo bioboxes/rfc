@@ -1,0 +1,49 @@
+---
+"$schema": http://json-schema.org/draft-04/schema#
+title: Bioboxes unsupervised binning benchmark input file validator
+type: object
+additionalProperties: false
+required:
+- version
+- arguments
+properties:
+  version:
+    type: string
+    pattern: "^0.11.\\d+$"
+  arguments:
+    additionalProperties: false
+    type: array
+    required:
+    - labels
+    - predictions
+    properties:
+      sequences:
+        type: object
+        required:
+        - value
+        - type
+        properties:
+          id: {}
+          type:
+            enum:
+            - contig
+          value: {}
+      labels:
+        type: object
+        required:
+        - type
+        - value
+        properties:
+          type:
+            enum:
+            - binning
+          value: {}
+      predictions:
+        type: object
+        required:
+        - value
+        properties:
+          type:
+            enum:
+            - binning
+          value: {}
