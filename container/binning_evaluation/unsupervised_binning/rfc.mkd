@@ -1,0 +1,62 @@
+## Binning evaluation container
+
+ * Version:    0.11.0
+ * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
+
+### Contents
+
+
+### Outline
+
+This specification describes the interface for containerised binning evaluation applications. 
+An unsupervised binning evaluation application should validate the assigned BINID
+(https://github.com/bioboxes/rfc/blob/master/data-format/binning.mkd#the-binning-output-format) 
+of a binning container.
+
+### Input
+
+#### General Definition
+
+A biobox requires an input YAML with the following definition 
+
+```YAML
+---
+version: NUMBER.NUMBER.NUMBER
+arguments:
+  - fasta:
+      value: STRING
+      type: contig
+  - labels:
+      value: STRING
+      type: binning
+  - predictions:
+      value: STRING
+      type: binning
+```
+
+##### Description:
+
+* **version**: The current version is specified directly under the heading.
+* **arguments**: The arguments field consists of the following fields 
+       * **fasta**: The input FASTA file for the binned sequences.
+       * **labels**: The correct binning in bioboxes.org binning format.
+       * **predictions**: The predicted binning in bioboxes.org binning format.
+       
+##### Mounts:
+ * Your output directory MUST be mounted to /bbx/mnt/output
+ * Your input files MUST be mounted to /bbx/mnt/input
+ * The .yaml MUST be placed as /bbx/mnt/input/biobox.yaml
+
+##### File/folder object entries
+
+```YAML
+  value: STRING
+  type: String
+```
+
+* `value` means absolute path to file in container
+* `type` specifies the semantic type
+
+### Output
+
+The biobox produces on a successful run a `biobox.yaml` and can be found in the `bbx` directory in your mounted output directory. The output biobox.yaml must be in an evaluation specific [format](https://github.com/bioboxes/rfc/blob/master/data-format/evaluation.mkd).

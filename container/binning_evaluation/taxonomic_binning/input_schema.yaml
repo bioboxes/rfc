@@ -1,0 +1,78 @@
+---
+$schema: "http://json-schema.org/draft-04/schema#"
+title: "Bioboxes unsupervised binning benchmark input file validator"
+type: "object"
+additionalProperties: false
+required: 
+    - "version"
+    - "arguments"
+properties: 
+  version: 
+    type: "string"
+    pattern: "^0.10.\\d+$"
+  arguments: 
+    additionalProperties: false
+    type: object
+    required:
+       - labels
+       - predictions
+    properties:
+      sequences: 
+        type: "object"
+        required: 
+          - "path"
+          - "format"
+        properties: 
+          format: 
+            enum:
+               - "bioboxes.org:/fasta"
+          id: {}
+          type:
+            enum:
+               - "contig"
+          path: {}
+      labels: 
+        type: "object"
+        required: 
+          - "format"
+          - "path"
+        properties: 
+          format: 
+            enum:
+               - "bioboxes.org:/binning/binning:0.9/taxbinning"
+          id: {}
+          type:
+            enum:
+               - "binning"
+          path: {}
+      predictions:
+        type: "object"
+        required: 
+          - "path"
+          - "format"
+        properties: 
+          format: 
+            enum:
+               - "bioboxes.org:/binning/binning:0.9/taxbinning"
+          id: {}
+          type:
+            enum:
+               - "binning"
+          path: {}
+      databases:
+        type: "object"
+        properties: 
+          taxonomy:
+            type: object
+            required: 
+              - "path"
+              - "format"
+            properties: 
+              format: 
+                enum:
+                 - "bioboxes.org:/taxonomy_ncbi_dumps"
+              id: {}
+              type: 
+                enum: 
+                  - "ncbi"
+              path: {}
