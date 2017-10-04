@@ -1,6 +1,6 @@
 ## Profiling Output Format 
 
-  * Version:    0.9.3
+  * Version:    0.10.0
   * Maintainer: Johannes Dröge <code@fungs.de>
   * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <code@fungs.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
 
@@ -138,8 +138,15 @@ or
     # Example for TAXPATH:
     2157|651137|651142|1104572|1052838
 
+### 4. Multi-sample format
 
-### 4. Example
+Starting with version 0.10.0, multiple samples MAY be represented in a single file by concatenation.
+Sample entries MUST be separated by at least one empty line after the last content line of an entry
+and in front of the next header line. Additionally, a multi-sample file MUST specify the exact same
+**VERSION** and **RANKS** tag in every entry and the exact same **TAXONOMYID** tag, if specified in
+at least one of the entries.
+
+### 5. Example
 
     # Taxonomic Profiling Output
     @SampleID:SAMPLEID
