@@ -96,13 +96,14 @@ regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`.
 ### 4. Multi-sample format
 
 Starting with version `0.10.0`, multiple samples MAY be represented in a single file by concatenation.
-Sample entries MUST be separated by at least one empty line after the last content line of an entry
+Sample sections MUST be separated by at least one empty line after the last content line of a section
 and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
 **VERSION** tag value in every section. It MUST also specify the exact same **TAXONOMYID** tag value,
-if this tag is specified in at least one of the entries. The type and order of column tags MUST be
-identical for all sections. The **SAMPLEID** values must be unique for all concatenated sections. The
-meaning of the **BINID** values is local for each section, for instance sequences from different
-samples can only be grouped into the same bin if they are pooled and reported in a joint section.
+if this tag is specified in at least one of the sections. The type and order of column tags MUST be
+identical for all sections. The **SAMPLEID** tag values must be unique for all concatenated sections.
+The meaning of the **BINID** tag values is local for each section, for instance, `BIN1` would have a
+different meaning in each section so that sequences from different samples can only be grouped into
+the same bin if they are pooled and reported in a joint section.
 
 ### 5. EXAMPLES
 
