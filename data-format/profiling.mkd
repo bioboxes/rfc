@@ -2,7 +2,7 @@
 
   * Version:    0.9.3
   * Maintainer: Johannes Dröge <code@fungs.de>
-  * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <johannes.droege@uni-duesseldorf.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
+  * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <code@fungs.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
 
 ### 1. Outline
 
