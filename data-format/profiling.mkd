@@ -1,10 +1,10 @@
 ## Profiling Output Format 
 
   * Version:    0.9.3
-  * Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
+  * Maintainer: Johannes Dröge <code@fungs.de>
   * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <johannes.droege@uni-duesseldorf.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
 
-###1. Outline
+### 1. Outline
 
 The taxonomic profiling format was originally specified for the CAMI contest
 and is intended to serve as a standard format for the output of
@@ -22,7 +22,7 @@ Files containing this data format should be named with the filename suffix `.pro
 
 Regular expressions, when provided, are given as specified in IEEE Std 1003.1™ ERE.
 
-###2. Header section
+### 2. Header section
 
 Each header line MUST begin with the character `@`. A single `@` defines a
 key-value pair in the format **TAG:VALUE** where **TAG** MUST be an
@@ -139,7 +139,7 @@ or
     2157|651137|651142|1104572|1052838
 
 
-###4. Example
+### 4. Example
 
     # Taxonomic Profiling Output
     @SampleID:SAMPLEID
