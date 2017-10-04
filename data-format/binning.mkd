@@ -119,9 +119,11 @@ representing novel strains. In this case, you add both the **TAXID** and **BINID
 
 A
 ```
-#Format for Binning
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
 @Version:0.10.0
-@SampleID:SAMPLEID
+@SampleID:mysample1
 @@SEQUENCEID	TAXID
 read1201	123
 read1202	123
@@ -131,25 +133,49 @@ read1205	562
 ```
 B
 ```
-#Format for Binning
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
 @Version:0.10.0
-@SampleID:SAMPLEID
+@SampleID:mysample1
 @@SEQUENCEID		BINID
-read1201	12346BIN
-read1202	ANOTHERBIN
-read1203	BIN6
-read1204	BIN5
-read1205	BIN5
+contig01	12346BIN
+contig02	ANOTHERBIN
+contig03	BIN6
+contig04	BIN5
+contig05	BIN5
 ```
 C
 ```
-#Format for Binning
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
 @Version:0.10.0
-@SampleID:SAMPLEID
+@SampleID:mysample1
 @@SEQUENCEID	TAXID	BINID
-read1201	123	123
-read1202	123	123
-read1203	131564	131564
-read1204	562	562.1
-read1205	562	562.2
+contig01	123	123
+contig02	123	123
+contig03	131564	131564
+contig04	562	562.1
+contig05	562	562.2
 ```
+D
+```
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
+@Version:0.10.0
+@SampleID:mysample_A
+@@SEQUENCEID		BINID
+contig_A_01	BIN_A_1
+contig_A_02	BIN_A_2
+contig_A_03	BIN_A_1
+
+@Version:0.10.0
+@SampleID:mysample_B
+@@SEQUENCEID		BINID
+contig_B_01	BIN_B_1
+contig_B_02	BIN_B_1
+contig_B_03	BIN_B_2
+```
+
