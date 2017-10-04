@@ -144,7 +144,8 @@ Starting with version `0.10.0`, multiple samples MAY be represented in a single 
 Sample entries MUST be separated by at least one empty line after the last content line of an entry
 and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
 **VERSION** and **RANKS** tag in every entry and the exact same **TAXONOMYID** tag, if this tag is
-specified in at least one of the entries.
+specified in at least one of the entries. The type and order of column tags MUST be identical for all
+entries.
 
 ### 5. Example
 
