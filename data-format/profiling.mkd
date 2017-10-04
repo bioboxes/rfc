@@ -140,19 +140,21 @@ or
 
 ### 4. Multi-sample format
 
-Starting with version 0.10.0, multiple samples MAY be represented in a single file by concatenation.
+Starting with version `0.10.0`, multiple samples MAY be represented in a single file by concatenation.
 Sample entries MUST be separated by at least one empty line after the last content line of an entry
-and in front of the next header line. Additionally, a multi-sample file MUST specify the exact same
+and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
 **VERSION** and **RANKS** tag in every entry and the exact same **TAXONOMYID** tag, if specified in
 at least one of the entries.
 
 ### 5. Example
 
-    # Taxonomic Profiling Output
-    @SampleID:SAMPLEID
-    @Version:0.9.1
+    # This is the bioboxes.org profiling output format at
+    # https://github.com/bioboxes/rfc/tree/master/data-format
+    
+    @SampleID:mysample1
+    @Version:0.10.0
     @Ranks:superkingdom|phylum|class|order|family|genus|species
-    @TaxonomyID:ncbi-taxonomy_DATE
+    @TaxonomyID:ncbi-taxonomy_20171004
     @@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE
     2	superkingdom	2	Bacteria	98.81211
     2157	superkingdom	2157	Archaea	1.18789
