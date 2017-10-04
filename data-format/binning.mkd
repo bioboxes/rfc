@@ -1,6 +1,6 @@
 ## Binning Output Format
 
-  * Version:    0.9.1
+  * Version:    0.10.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
   * Authors: CAMI challenge organizers
 
@@ -57,7 +57,7 @@ corresponding column of the output section. The following lists all defined tags
   * **BINID**
   * **TAXID**
 
-The format requires that **SEQEUNCEID** and at least one of **BINID** and **TAXID** MUST be given.
+The format requires that **SEQUENCEID** and at least one of **BINID** and **TAXID** MUST be given.
 Further optional columns can be appended to the right but MUST be 
 prefixed by a case-insensitive string with an underscore before and after the string,
 e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
@@ -93,7 +93,15 @@ regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`.
 
   * The **BINID** fields MUST be arbitrary alphanumeric identifiers for each bin.
 
-### 4. EXAMPLES
+### 4. Multi-sample format
+
+Starting with version `0.10.0`, multiple samples MAY be represented in a single file by concatenation.
+Sample entries MUST be separated by at least one empty line after the last content line of an entry
+and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
+**VERSION** tag in every entry and the exact same **TAXONOMYID** tag, if this tag is specified in at
+least one of the entries. The type and order of column tags MUST be identical for all entries.
+
+### 5. EXAMPLES
 
 There are three different scenarios for binning tools.
 
@@ -112,7 +120,7 @@ representing novel strains. In this case, you add both the **TAXID** and **BINID
 A
 ```
 #Format for Binning
-@Version:0.9.0
+@Version:0.10.0
 @SampleID:SAMPLEID
 @@SEQUENCEID	TAXID
 read1201	123
@@ -124,7 +132,7 @@ read1205	562
 B
 ```
 #Format for Binning
-@Version:0.9.0
+@Version:0.10.0
 @SampleID:SAMPLEID
 @@SEQUENCEID		BINID
 read1201	12346BIN
@@ -136,7 +144,7 @@ read1205	BIN5
 C
 ```
 #Format for Binning
-@Version:0.9.0
+@Version:0.10.0
 @SampleID:SAMPLEID
 @@SEQUENCEID	TAXID	BINID
 read1201	123	123
