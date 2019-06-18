@@ -1,6 +1,6 @@
 ## Binning Output Format
 
-  * Version:    0.9.1
+  * Version:    0.10.0
   * Maintainer: Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>
   * Authors: CAMI challenge organizers
 
@@ -57,7 +57,7 @@ corresponding column of the output section. The following lists all defined tags
   * **BINID**
   * **TAXID**
 
-The format requires that **SEQEUNCEID** and at least one of **BINID** and **TAXID** MUST be given.
+The format requires that **SEQUENCEID** and at least one of **BINID** and **TAXID** MUST be given.
 Further optional columns can be appended to the right but MUST be 
 prefixed by a case-insensitive string with an underscore before and after the string,
 e.g. `_CUSTOM_`, to avoid collisions when this specification is extended in the future.
@@ -93,7 +93,19 @@ regular expression `[A-Za-z0-9\.;,\(\)_\-\ ]+`.
 
   * The **BINID** fields MUST be arbitrary alphanumeric identifiers for each bin.
 
-### 4. EXAMPLES
+### 4. Multi-sample format
+
+Starting with version `0.10.0`, multiple samples MAY be represented in a single file by concatenation.
+Sample sections MUST be separated by at least one empty line after the last content line of a section
+and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
+**VERSION** tag value in every section. It MUST also specify the exact same **TAXONOMYID** tag value,
+if this tag is specified in at least one of the sections. The type and order of column tags MUST be
+identical for all sections. The **SAMPLEID** tag values must be unique for all concatenated sections.
+The meaning of the **BINID** tag values is local for each section, for instance, `BIN1` would have a
+different meaning in each section so that sequences from different samples can only be grouped into
+the same bin if they are pooled and reported in a joint section.
+
+### 5. EXAMPLES
 
 There are three different scenarios for binning tools.
 
@@ -111,9 +123,11 @@ representing novel strains. In this case, you add both the **TAXID** and **BINID
 
 A
 ```
-#Format for Binning
-@Version:0.9.0
-@SampleID:SAMPLEID
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
+@Version:0.10.0
+@SampleID:mysample1
 @@SEQUENCEID	TAXID
 read1201	123
 read1202	123
@@ -123,25 +137,49 @@ read1205	562
 ```
 B
 ```
-#Format for Binning
-@Version:0.9.0
-@SampleID:SAMPLEID
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
+@Version:0.10.0
+@SampleID:mysample1
 @@SEQUENCEID		BINID
-read1201	12346BIN
-read1202	ANOTHERBIN
-read1203	BIN6
-read1204	BIN5
-read1205	BIN5
+contig01	12346BIN
+contig02	ANOTHERBIN
+contig03	BIN6
+contig04	BIN5
+contig05	BIN5
 ```
 C
 ```
-#Format for Binning
-@Version:0.9.0
-@SampleID:SAMPLEID
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
+@Version:0.10.0
+@SampleID:mysample1
 @@SEQUENCEID	TAXID	BINID
-read1201	123	123
-read1202	123	123
-read1203	131564	131564
-read1204	562	562.1
-read1205	562	562.2
+contig01	123	123
+contig02	123	123
+contig03	131564	131564
+contig04	562	562.1
+contig05	562	562.2
 ```
+D
+```
+# This is the bioboxes.org binning output format at
+# https://github.com/bioboxes/rfc/tree/master/data-format
+
+@Version:0.10.0
+@SampleID:mysample_A
+@@SEQUENCEID		BINID
+contig_A_01	BIN_A_1
+contig_A_02	BIN_A_2
+contig_A_03	BIN_A_1
+
+@Version:0.10.0
+@SampleID:mysample_B
+@@SEQUENCEID		BINID
+contig_B_01	BIN_B_1
+contig_B_02	BIN_B_1
+contig_B_03	BIN_B_2
+```
+

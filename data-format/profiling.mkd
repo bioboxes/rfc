@@ -1,10 +1,10 @@
 ## Profiling Output Format 
 
-  * Version:    0.9.3
-  * Maintainer: Johannes Dröge <johannes.droege@uni-duesseldorf.de>
-  * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <johannes.droege@uni-duesseldorf.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
+  * Version:    0.10.0
+  * Maintainer: Johannes Dröge <code@fungs.de>
+  * Authors:    Alice C. McHardy <alice.mchardy@helmholtz-hzi.de>,  David Koslicki <david.koslicki@math.oregonstate.edu>, Johannes Dröge <code@fungs.de>, Peter Belmann <pbelmann@cebitec.uni-bielefeld.de>, Stephan Majda <stephan.majda@uni-duesseldorf.de>
 
-###1. Outline
+### 1. Outline
 
 The taxonomic profiling format was originally specified for the CAMI contest
 and is intended to serve as a standard format for the output of
@@ -22,7 +22,7 @@ Files containing this data format should be named with the filename suffix `.pro
 
 Regular expressions, when provided, are given as specified in IEEE Std 1003.1™ ERE.
 
-###2. Header section
+### 2. Header section
 
 Each header line MUST begin with the character `@`. A single `@` defines a
 key-value pair in the format **TAG:VALUE** where **TAG** MUST be an
@@ -138,14 +138,24 @@ or
     # Example for TAXPATH:
     2157|651137|651142|1104572|1052838
 
+### 4. Multi-sample format
 
-###4. Example
+Starting with version `0.10.0`, multiple samples MAY be represented in a single file by concatenation.
+Sample sections MUST be separated by at least one empty line after the last content line of a section
+and preceding the next header line. Additionally, a multi-sample file MUST specify the exact same
+**VERSION** and **RANKS** tag values in every section and the exact same **TAXONOMYID** tag value, if
+this tag is specified in at least one of the sections. The type and order of column tags MUST be
+identical for all sections. The **SAMPLEID** tag values must be unique for all concatenated sections.
 
-    # Taxonomic Profiling Output
-    @SampleID:SAMPLEID
-    @Version:0.9.1
+### 5. Example
+
+    # This is the bioboxes.org profiling output format at
+    # https://github.com/bioboxes/rfc/tree/master/data-format
+    
+    @SampleID:mysample1
+    @Version:0.10.0
     @Ranks:superkingdom|phylum|class|order|family|genus|species
-    @TaxonomyID:ncbi-taxonomy_DATE
+    @TaxonomyID:ncbi-taxonomy_20171004
     @@TAXID	RANK	TAXPATH	TAXPATHSN	PERCENTAGE
     2	superkingdom	2	Bacteria	98.81211
     2157	superkingdom	2157	Archaea	1.18789
